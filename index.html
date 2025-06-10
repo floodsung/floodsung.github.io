@@ -1,0 +1,914 @@
+<!DOCTYPE html><html lang="zh"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Flood Sung：人工智能前沿开拓者</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #7c2d12;
+            --accent: #f59e0b;
+            --neutral: #374151;
+            --base-100: #fefefe;
+            --base-200: #f8fafc;
+            --base-300: #e2e8f0;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--neutral);
+            background: var(--base-100);
+        }
+        
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+            color: white;
+            overflow-y: auto;
+            z-index: 1000;
+            padding: 2rem 1.5rem;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+        
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-visual {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, var(--base-200) 0%, var(--base-300) 100%);
+        }
+        
+        .citation-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .citation-link:hover {
+            border-bottom-color: var(--primary);
+            background: rgba(30, 58, 138, 0.05);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--secondary) 100%);
+            margin: 4rem 0;
+            opacity: 0.3;
+        }
+        
+        .insight-highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .tech-card {
+            background: var(--base-200);
+            border: 1px solid var(--base-300);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 0.375rem;
+            top: 1.25rem;
+            width: 2px;
+            height: calc(100% + 1rem);
+            background: linear-gradient(180deg, var(--primary) 0%, transparent 100%);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 固定目录 -->
+    <nav class="toc-fixed">
+        <div class="mb-8">
+            <h3 class="text-xl font-bold mb-4">目录</h3>
+            <ul class="space-y-2 text-sm">
+                <li><a href="#executive-summary" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">摘要</a></li>
+                <li><a href="#basic-information" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">基本信息</a></li>
+                <li><a href="#professional-profile" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">职业履历</a></li>
+                <li><a href="#research-focus" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">研究方向</a></li>
+                <li><a href="#kimi-k15-project" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">Kimi k1.5 项目</a></li>
+                <li><a href="#technical-expertise" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">技术专长</a></li>
+                <li><a href="#industry-impact" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">行业影响</a></li>
+                <li><a href="#future-outlook" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">未来展望</a></li>
+                <li><a href="#citations" class="block py-2 px-3 rounded hover:bg-white/10 transition-colors">参考文献</a></li>
+            </ul>
+        </div>
+        
+        <div class="text-xs opacity-75">
+            <p>AI研究员档案</p>
+            <p class="mt-2">2025年6月更新</p>
+        </div>
+    </nav>
+
+    <!-- 主体内容 -->
+    <main class="main-content">
+        <!-- 头图区块 -->
+        <section class="px-8 py-12 bg-gradient-to-br from-slate-50 to-blue-50">
+            <div class="max-w-7xl mx-auto">
+                <div class="hero-grid">
+                    <div class="hero-text">
+                        <h1 class="serif text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                            <span class="italic text-blue-900">Flood Sung</span><br/>
+                            人工智能前沿<br/>
+                            <span class="text-amber-600">开拓者</span>
+                        </h1>
+                        <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                            探索大型语言模型架构师背后的故事，他用强化学习与多模态思考模型推动通用人工智能发展的边界。
+                        </p>
+                        <div class="flex items-center space-x-6 text-sm text-gray-600">
+                            <span class="flex items-center">
+                                <i class="fas fa-building mr-2"></i>
+                                Moonshot AI
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-flask mr-2"></i>
+                                研究员
+                            </span>
+                            <span class="flex items-center">
+                                <i class="fas fa-brain mr-2"></i>
+                                AGI &amp; 强化学习
+                            </span>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <img src="https://kimi-web-img.moonshot.cn/img/img.freepik.com/35e68d473d493fa276508ee605a201da217983d5.jpg" alt="Futuristic visualization of neural networks and AI research" class="w-full h-96 object-cover rounded-xl shadow-2xl" size="large" aspect="wide" query="AI neural network brain technology futuristic research laboratory" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 摘要 -->
+        <section id="executive-summary" class="px-8 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">摘要</h2>
+                
+                <div class="insight-highlight">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-lightbulb text-amber-600 mr-3"></i>
+                        要点速览
+                    </h3>
+                    <p class="text-lg leading-relaxed">
+                        <strong>Flood Sung</strong> 是 Moonshot AI 的核心研究员，专注推动大型语言模型与强化学习的前沿。他深度参与了突破性 Kimi k1.5 多模态思考模型的研发，在拓展 AI 复杂推理与类人问题解决能力方面扮演着关键角色。
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div class="tech-card text-center">
+                        <i class="fas fa-rocket text-3xl text-blue-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">Kimi k1.5 研发</h3>
+                        <p class="text-gray-600">突破性多模态模型架构的核心贡献者</p>
+                    </div>
+                    <div class="tech-card text-center">
+                        <i class="fas fa-link text-3xl text-amber-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">长推理链</h3>
+                        <p class="text-gray-600">拓展 AI 复杂推理能力的前沿技术专家</p>
+                    </div>
+                    <div class="tech-card text-center">
+                        <i class="fas fa-cogs text-3xl text-red-600 mb-4"></i>
+                        <h3 class="font-bold text-lg mb-2">强化学习</h3>
+                        <p class="text-gray-600">2015年起专注于 AI 训练范式</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 基本信息 -->
+        <section id="basic-information" class="px-8 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">基本信息</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3 text-blue-900">姓名</h3>
+                            <p class="text-lg">Flood Sung</p>
+                            <p class="text-sm text-gray-600 mt-2">
+                                多个渠道均一致确认，包括 
+                                <a href="https://openreview.net/profile?id=~Flood_Sung1" class="citation-link" target="_blank">OpenReview 个人资料</a>、
+                                <a href="https://github.com/floodsung" class="citation-link" target="_blank">GitHub 主页</a> 及
+                                <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation-link" target="_blank">媒体报道</a>。
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold mb-3 text-blue-900">现属机构</h3>
+                            <p class="text-lg font-medium">Moonshot AI (月之暗面)</p>
+                            <p class="text-sm text-gray-600 mt-2">2024年至今 • 研究员</p>
+                            <p class="text-sm text-gray-600">
+                                经 
+                                <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="citation-link" target="_blank">LinkedIn</a>、
+                                <a href="https://www.zhihu.com/people/flood-sung" class="citation-link" target="_blank">知乎</a> 及学术平台等多渠道确认。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-4 text-blue-900">数字身份</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fab fa-github text-gray-700 mr-3"></i>
+                                <a href="https://github.com/floodsung" class="citation-link" target="_blank">GitHub</a>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-graduation-cap text-gray-700 mr-3"></i>
+                                <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="citation-link" target="_blank">Google Scholar</a>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-users text-gray-700 mr-3"></i>
+                                <a href="https://www.zhihu.com/people/flood-sung" class="citation-link" target="_blank">知乎</a>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fab fa-linkedin text-gray-700 mr-3"></i>
+                                <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="citation-link" target="_blank">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 职业履历 -->
+        <section id="professional-profile" class="px-8 py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">职业履历</h2>
+                
+                <div class="space-y-8">
+                    <div class="timeline-item">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-semibold text-blue-900 mb-2">Moonshot AI (月之暗面)</h3>
+                            <p class="text-amber-600 font-medium mb-3">研究员 • 2024年至今</p>
+                            <p class="text-gray-700 mb-4">专注通用人工智能研发，并担任强化学习技术负责人。深度参与 Kimi k1.5 多模态思考模型的研发。</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">AGI 研究</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">强化学习</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">大模型</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-semibold text-blue-900 mb-2">职业历程</h3>
+                            <p class="text-gray-700 mb-4">
+                                加入 Moonshot AI 前，曾在 Inspir AI 和 
+                                <a href="https://openreview.net/profile?id=~Flood_Sung1" class="citation-link" target="_blank">Bytedance AI Lab</a> 
+                                担任研究员，积累了丰富的行业经验。
+                            </p>
+                            <div class="text-sm text-gray-600">
+                                <p>• Inspir AI • 研究员</p>
+                                <p>• Bytedance AI Lab • 研究员</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="text-xl font-semibold text-blue-900 mb-2">学术背景</h3>
+                            <p class="text-gray-700">
+                                自2015年起深耕人工智能方向，早期专注
+                                <a href="https://blog.csdn.net/omnispace/article/details/55503062" class="citation-link" target="_blank">深度学习、强化学习与机器人研究</a>。
+                                持续参与学术交流，活跃于 OpenReview 等平台。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 研究方向 -->
+        <section id="research-focus" class="px-8 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">研究方向</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="tech-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-brain text-2xl text-blue-600 mr-4"></i>
+                            <h3 class="text-xl font-semibold">通用人工智能 (AGI)</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            当前工作的核心，专注于构建具备类人推理与问题解决能力的 AGI 系统。
+                        </p>
+                        <div class="text-sm text-gray-600">
+                            <p>• AGI 架构设计</p>
+                            <p>• 类人推理研究</p>
+                            <p>• 自主智能体开发</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-link text-2xl text-green-600 mr-4"></i>
+                            <h3 class="text-xl font-semibold">深度强化学习</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            2015年起持续深耕，擅长将 RL 方法应用于大规模语言模型训练。
+                        </p>
+                        <div class="text-sm text-gray-600">
+                            <p>• 策略优化方法</p>
+                            <p>• 模型训练范式</p>
+                            <p>• 探索机制</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-highlight">
+                    <h3 class="text-xl font-semibold mb-4">研究理念</h3>
+                    <p class="text-lg leading-relaxed">
+                        Flood Sung 认为
+                        <a href="https://www.tmtpost.com/7460548.html" class="citation-link" target="_blank">“AGI 已近在眼前”</a>
+                        ，并已开始思考超级智能（ASL）的可能性。他的研究理念强调通过强化学习提升模型能力，是实现 AGI 的重要路径。
+                    </p>
+                </div>
+
+                <div class="mt-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-900">具体研究领域</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-xl border border-gray-200">
+                            <h4 class="font-semibold text-lg mb-3 text-purple-900">长推理链 (Long-CoT)</h4>
+                            <p class="text-gray-700 text-sm">
+                                拓展 AI 复杂推理能力的前沿技术，通过生成长序列思维过程提升模型表现。
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200">
+                            <h4 class="font-semibold text-lg mb-3 text-orange-900">元学习</h4>
+                            <p class="text-gray-700 text-sm">
+                                让计算机在元层面学习知识，助力 AGI 系统更高效地适应新任务。
+                            </p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl border border-gray-200">
+                            <h4 class="font-semibold text-lg mb-3 text-teal-900">多模态理解</h4>
+                            <p class="text-gray-700 text-sm">
+                                让 AI 系统具备联合处理文本和视觉信息的能力，实现更全面的推理。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Kimi k1.5 项目 -->
+        <section id="kimi-k15-project" class="px-8 py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">Kimi k1.5 突破性项目</h2>
+                
+                <div class="mb-12">
+                    <img src="https://kimi-web-img.moonshot.cn/img/aitranslationhub.com/9c90b7d6611433090921119db90fd1e0ccd3fe5b.jpg" alt="Visualization of Kimi k1.5 AI model architecture showing multimodal processing capabilities" class="w-full h-64 object-cover rounded-xl shadow-lg mb-6" size="medium" aspect="wide" query="AI model architecture diagram neural network reinforcement learning" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-900">项目贡献</h3>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Flood Sung 深度参与了 Kimi k1.5 多模态思考模型的研发，担任关键技术贡献者与项目对外发言人。他分享了大量关于
+                            <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation-link" target="_blank">研发过程与技术实现</a>
+                            的洞见。
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">长上下文拓展</h4>
+                                    <p class="text-sm text-gray-600">实现128k上下文窗口，支持部分截断提升训练效率</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">强化学习集成</h4>
+                                    <p class="text-sm text-gray-600">创新性将 RL 与长推理链模式相结合</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-600 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold">多模态能力</h4>
+                                    <p class="text-sm text-gray-600">联合文本-视觉训练，支持跨模态推理</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-900">技术创新</h3>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h4 class="font-semibold text-lg mb-4">核心突破</h4>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1 text-sm"></i>
+                                    <span>实现了与 OpenAI o1 正式版相当的数学、代码和多模态推理能力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1 text-sm"></i>
+                                    <span>在短推理链模式下显著超越 GPT-4o 与 Claude 3.5 Sonnet</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-600 mr-3 mt-1 text-sm"></i>
+                                    <span>简化 RL 框架，无需复杂的蒙特卡洛树搜索</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-highlight">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-microscope text-amber-600 mr-3"></i>
+                        研究发现
+                    </h3>
+                    <p class="text-lg leading-relaxed">
+                        在 RL 训练过程中，Flood Sung 团队观察到模型能力提升的同时，生成 token 的数量也随之增加——这是模型自发涌现的现象
+                        <a href="https://m.thepaper.cn/newsDetail_forward_30175897" class="citation-link" target="_blank">（来源）</a>。
+                        这一洞见与 DeepSeek 等同行机构的发现相契合。
+                    </p>
+                </div>
+
+                <div class="mt-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-900">技术出版物</h3>
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-file-alt text-2xl text-blue-600 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-lg mb-2">Kimi k1.5: 借助大语言模型实现强化学习的 Scaling</h4>
+                                <p class="text-gray-700 mb-3">
+                                    Flood Sung 为主要作者的 arXiv 预印本论文，详细介绍模型训练实践、RL 技术与多模态数据配方。
+                                </p>
+                                <a href="https://arxiv.org/abs/2501.12599" class="citation-link font-medium" target="_blank">
+                                    <i class="fas fa-external-link-alt mr-2"></i>
+                                    查看论文
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 技术专长 -->
+        <section id="technical-expertise" class="px-8 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">技术专长</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="tech-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-robot text-3xl text-purple-600 mr-4"></i>
+                            <h3 class="text-xl font-semibold">大型语言模型</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            在 LLM 架构设计、训练方法及性能优化上经验丰富，尤其擅长多模态数据融合与处理。
+                        </p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-dot-circle text-purple-600 mr-2 text-xs"></i>
+                                <span>模型架构设计</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dot-circle text-purple-600 mr-2 text-xs"></i>
+                                <span>监督微调</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dot-circle text-purple-600 mr-2 text-xs"></i>
+                                <span>性能优化</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-link text-3xl text-green-600 mr-4"></i>
+                            <h3 class="text-xl font-semibold">强化学习</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            自2015年起专注强化学习，擅长将其应用于大规模语言模型训练，提升探索能力与任务达成率。
+                        </p>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex items-center">
+                                <i class="fas fa-dot-circle text-green-600 mr-2 text-xs"></i>
+                                <span>策略优化方法</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dot-circle text-green-600 mr-2 text-xs"></i>
+                                <span>探索机制</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-dot-circle text-green-600 mr-2 text-xs"></i>
+                                <span>模型训练范式</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-gray-50 to-blue-50 p-8 rounded-xl mb-12">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-900">核心能力</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-lightbulb text-2xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">长推理链技术</h4>
+                            <p class="text-sm text-gray-600">通过生成细粒度推理步骤，提升 AI 复杂问题解决能力</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-cogs text-2xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">模型训练</h4>
+                            <p class="text-sm text-gray-600">基础设施优化、数据配方设计与策略优化方法</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-chart-line text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">学术研究</h4>
+                            <p class="text-sm text-gray-600">前沿进展跟踪与发表高影响力研究成果</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-highlight">
+                    <h3 class="text-xl font-semibold mb-4">技术理念</h3>
+                    <p class="text-lg leading-relaxed">
+                        Flood Sung 倡导性能优先的研发理念，强调
+                        <a href="https://www.iaiol.com/yue-zhi-an-mian-jie-mi-o1-long-cot-shi-guan-jian-mo-xing-si-kao-xu-yao-fang-zhang-xian" class="citation-link" target="_blank">简洁、高效的 RL 框架</a>
+                        ，避免过度复杂的技术依赖。他的方法专注于可实现能力突破的实用解决方案。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 行业影响 -->
+        <section id="industry-impact" class="px-8 py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">行业影响与交流</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-900">媒体报道</h3>
+                        <p class="text-gray-700 mb-6">
+                            Flood Sung 通过公开分享 Kimi k1.5 模型研发过程，获得了广泛的行业关注和媒体报道。
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                                <h4 class="font-semibold mb-2">Science Net</h4>
+                                <p class="text-sm text-gray-600 mb-2">深度报道 Kimi k1.5 技术突破</p>
+                                <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation-link text-sm" target="_blank">查看报道</a>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                                <h4 class="font-semibold mb-2">The Paper</h4>
+                                <p class="text-sm text-gray-600 mb-2">长推理链技术路线分析</p>
+                                <a href="https://www.thepaper.cn/newsDetail_forward_30175897" class="citation-link text-sm" target="_blank">查看报道</a>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                                <h4 class="font-semibold mb-2">TMTPost</h4>
+                                <p class="text-sm text-gray-600 mb-2">AGI 发展路径相关专访</p>
+                                <a href="https://www.tmtpost.com/7460548.html" class="citation-link text-sm" target="_blank">查看报道</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-blue-900">知识分享</h3>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h4 class="font-semibold text-lg mb-4">平台贡献</h4>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fab fa-zhihu text-blue-600 mr-3 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-medium">知乎</h5>
+                                        <p class="text-sm text-gray-600">认证为“AI研究员”与“Moonshot AI 员工”</p>
+                                        <a href="https://www.zhihu.com/people/flood-sung" class="citation-link text-sm" target="_blank">查看主页</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-blog text-green-600 mr-3 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-medium">CSDN 博客</h5>
+                                        <p class="text-sm text-gray-600">分享深度强化学习与 AI 研究洞见</p>
+                                        <a href="https://blog.csdn.net/omnispace/article/details/55503062" class="citation-link text-sm" target="_blank">查看博客</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-graduation-cap text-purple-600 mr-3 mt-1"></i>
+                                    <div>
+                                        <h5 class="font-medium">学术平台</h5>
+                                        <p class="text-sm text-gray-600">活跃于 OpenReview 与 Google Scholar</p>
+                                        <a href="https://openreview.net/profile?id=~Flood_Sung1" class="citation-link text-sm" target="_blank">OpenReview</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insight-highlight">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-broadcast-tower text-amber-600 mr-3"></i>
+                        传播影响
+                    </h3>
+                    <p class="text-lg leading-relaxed">
+                        Flood Sung 的技术分享和开放交流推动了长推理链、RL 在 LLM 中的应用等方向的发展。他坦率反思技术路线选择，为行业提供了宝贵参考，促进了对 AI 前沿技术的深入讨论。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 未来展望 -->
+        <section id="future-outlook" class="px-8 py-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">未来展望</h2>
+                
+                <div class="mb-12">
+                    <img src="https://kimi-web-img.moonshot.cn/img/cdn.mos.cms.futurecdn.net/fadab3f2de3b3562dbaba6313e95637e46de47b7.jpg" alt="Futuristic vision of AGI and AI research showing the path toward human-level artificial intelligence" class="w-full h-64 object-cover rounded-xl shadow-lg mb-6" size="medium" aspect="wide" query="futuristic AI AGI artificial general intelligence brain technology" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="tech-card">
+                        <h3 class="text-xl font-semibold mb-4 text-blue-900">AGI 发展</h3>
+                        <p class="text-gray-700 mb-4">
+                            Flood Sung 认为
+                            <a href="https://www.tmtpost.com/7460548.html" class="citation-link" target="_blank">“AGI 已近在眼前”</a>
+                            ，他的工作将持续推进构建具备类人推理能力的系统。
+                        </p>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <p>• 持续提升推理能力</p>
+                            <p>• 探索超级智能（ASL）可能性</p>
+                            <p>• 开发自主智能体系统</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-card">
+                        <h3 class="text-xl font-semibold mb-4 text-green-900">研究前沿</h3>
+                        <p class="text-gray-700 mb-4">
+                            未来研究将聚焦于提升模型复杂任务解决能力与多模态理解。
+                        </p>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <p>• 高级推理链技术</p>
+                            <p>• 多模态融合方法</p>
+                            <p>• 元学习应用于 AGI</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-6 text-gray-900">行业影响展望</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-rocket text-2xl text-blue-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">技术创新</h4>
+                            <p class="text-sm text-gray-600">持续推进 LLM 与 RL 融合范式</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-2xl text-green-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">知识传播</h4>
+                            <p class="text-sm text-gray-600">持续分享推动行业进步</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-globe text-2xl text-purple-600"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">全球协作</h4>
+                            <p class="text-sm text-gray-600">促进国际 AI 研究合作</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- 参考文献 -->
+        <section id="citations" class="px-8 py-16 bg-gray-50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="serif text-4xl font-bold text-gray-900 mb-8">参考文献与来源</h2>
+                
+                <div class="space-y-4 text-sm">
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500">
+                        <p><strong>[19]</strong> Science Net - <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation-link" target="_blank">Kimi k1.5 研发报道</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-green-500">
+                        <p><strong>[24]</strong> OpenReview - <a href="https://openreview.net/profile?id=~Flood_Sung1" class="citation-link" target="_blank">Flood Sung 个人档案</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500">
+                        <p><strong>[26]</strong> GitHub - <a href="https://github.com/floodsung" class="citation-link" target="_blank">floodsung 主页</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-orange-500">
+                        <p><strong>[60]</strong> Science Net - <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation-link" target="_blank">长推理链技术分享</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-red-500">
+                        <p><strong>[67]</strong> arXiv - <a href="https://arxiv.org/abs/2501.12599" class="citation-link" target="_blank">Kimi k1.5: 借助大语言模型实现强化学习的 Scaling</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-teal-500">
+                        <p><strong>[80]</strong> 知乎 - <a href="https://www.zhihu.com/people/flood-sung" class="citation-link" target="_blank">Flood Sung 知乎主页</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p><strong>[85]</strong> LinkedIn - <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="citation-link" target="_blank">职业档案</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-yellow-500">
+                        <p><strong>[91]</strong> Google Scholar - <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="citation-link" target="_blank">学术成果</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-pink-500">
+                        <p><strong>[92]</strong> TMTPost - <a href="https://www.tmtpost.com/7460548.html" class="citation-link" target="_blank">AGI 发展专访</a></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg border-l-4 border-gray-500">
+                        <p><strong>[108]</strong> CSDN - <a href="https://blog.csdn.net/omnispace/article/details/55503062" class="citation-link" target="_blank">深度学习与 RL 研究</a></p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-center text-gray-600">
+                    <p class="text-sm">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        所有信息来源均为公开资料，并通过学术平台、媒体报道及官方渠道交叉验证。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="px-8 py-12 bg-gray-900 text-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="mb-6">
+                    <h3 class="serif text-2xl font-bold mb-2">Flood Sung</h3>
+                    <p class="text-gray-400">AI Researcher • Moonshot AI</p>
+                </div>
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="https://github.com/floodsung" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                        <i class="fas fa-graduation-cap text-xl"></i>
+                    </a>
+                    <a href="https://www.zhihu.com/people/flood-sung" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                        <i class="fab fa-zhihu text-xl"></i>
+                    </a>
+                    <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="text-gray-400 hover:text-white transition-colors" target="_blank">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500">
+                    © 2025 AI Researcher Profile • 最后更新：2025年6月
+                </p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // 目录锚点平滑滚动
+        document.querySelectorAll('.toc-fixed a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端目录切换（如有需要）
+        function toggleTOC() {
+            const toc = document.querySelector('.toc-fixed');
+            toc.classList.toggle('open');
+        }
+
+        // 引用链接点击追踪（如有需要）
+        document.querySelectorAll('.citation-link').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('引用链接被点击:', this.href);
+            });
+        });
+
+        // 滚动时高亮当前目录项
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocLinks = document.querySelectorAll('.toc-fixed a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('bg-white/20');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('bg-white/20');
+                }
+            });
+        });
+    </script>
+
+</body></html>
