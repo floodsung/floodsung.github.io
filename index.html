@@ -1,17 +1,22 @@
-<!DOCTYPE html><html lang="zh-CN"><head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flood Sung - AI研究员 | 强化学习专家 | AGI研究者</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;display=swap"
+        rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <link rel="icon" type="image/png" href="favicon.png">
-    
+
     <style>
         :root {
             --primary: #1e293b;
@@ -22,24 +27,24 @@
             --text-muted: #64748b;
             --border: #e2e8f0;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--surface);
         }
-        
+
         .font-serif {
             font-family: 'Crimson Text', Georgia, serif;
         }
-        
+
         .hero-bg {
             position: absolute;
             top: 0;
@@ -48,12 +53,12 @@
             height: 100%;
             z-index: 0;
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 10;
         }
-        
+
         .toc-fixed {
             position: fixed;
             top: 0;
@@ -69,20 +74,20 @@
             transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
-        
+
         .toc-fixed.active {
             transform: translateX(0);
         }
-        
+
         .main-content {
             margin-left: 0;
             transition: margin-left 0.3s ease;
         }
-        
+
         .main-content.shifted {
             margin-left: 280px;
         }
-        
+
         .toc-toggle {
             position: fixed;
             top: 2rem;
@@ -101,15 +106,15 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
-        
+
         .toc-toggle:hover {
             transform: scale(1.1);
         }
-        
+
         .section {
             scroll-margin-top: 2rem;
         }
-        
+
         .citation {
             color: var(--accent);
             text-decoration: none;
@@ -117,11 +122,11 @@
             border-bottom: 1px solid transparent;
             transition: border-color 0.2s ease;
         }
-        
+
         .citation:hover {
             border-bottom-color: var(--accent);
         }
-        
+
         .bento-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -129,17 +134,17 @@
             gap: 2rem;
             height: auto;
         }
-        
+
         .bento-main {
             grid-row: 1 / 3;
         }
-        
+
         .bento-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-        
+
         .paper-card {
             background: white;
             border: 1px solid var(--border);
@@ -149,17 +154,17 @@
             transition: all 0.3s ease;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-        
+
         .paper-card:hover {
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
-        
+
         .highlight-paper {
             border-left: 4px solid var(--accent);
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         }
-        
+
         .tag {
             display: inline-block;
             background: var(--surface);
@@ -172,13 +177,13 @@
             margin-bottom: 0.5rem;
             border: 1px solid var(--border);
         }
-        
+
         .timeline-item {
             position: relative;
             padding-left: 2rem;
             margin-bottom: 2rem;
         }
-        
+
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -189,7 +194,7 @@
             background: var(--accent);
             border-radius: 50%;
         }
-        
+
         .timeline-item::after {
             content: '';
             position: absolute;
@@ -199,31 +204,31 @@
             height: calc(100% + 1rem);
             background: var(--border);
         }
-        
+
         .timeline-item:last-child::after {
             display: none;
         }
-        
+
         @media (max-width: 768px) {
             .toc-fixed {
                 width: 100%;
                 transform: translateX(-100%);
             }
-            
+
             .main-content.shifted {
                 margin-left: 0;
             }
-            
+
             .bento-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: auto auto auto;
             }
-            
+
             .bento-main {
                 grid-row: 1;
             }
         }
-        
+
         .language-toggle {
             position: fixed;
             top: 2rem;
@@ -236,7 +241,7 @@
             display: flex;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        
+
         .language-toggle button {
             background: none;
             border: none;
@@ -246,21 +251,24 @@
             font-weight: 500;
             transition: all 0.2s ease;
         }
-        
+
         .language-toggle button.active {
             background: var(--accent);
             color: white;
         }
-        
-        .content-en, .content-zh {
+
+        .content-en,
+        .content-zh {
             display: none;
         }
-        
-        .content-en.active, .content-zh.active {
+
+        .content-en.active,
+        .content-zh.active {
             display: block;
         }
     </style>
 </head>
+
 <body>
     <!-- Table of Contents Toggle -->
     <button class="toc-toggle" onclick="toggleTOC()">
@@ -279,12 +287,13 @@
             <h3 class="font-semibold text-lg mb-4 content-zh">目录</h3>
             <h3 class="font-semibold text-lg mb-4 content-en active">Table of Contents</h3>
         </div>
-        
+
         <ul class="space-y-3 text-sm content-zh">
             <li><a href="#hero" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">概览</a></li>
             <li><a href="#about" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">个人简介</a></li>
             <li><a href="#research" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">学术研究</a></li>
-            <li><a href="#publications" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">代表性论文</a></li>
+            <li><a href="#publications" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">代表性论文</a>
+            </li>
             <li><a href="#projects" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">研究项目</a></li>
             <li><a href="#blog" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">博客文章</a></li>
             <li><a href="#github" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">开源项目</a></li>
@@ -294,13 +303,18 @@
         <ul class="space-y-3 text-sm content-en active">
             <li><a href="#hero" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Overview</a></li>
             <li><a href="#about" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">About</a></li>
-            <li><a href="#research" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Research</a></li>
-            <li><a href="#publications" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Publications</a></li>
-            <li><a href="#projects" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Projects</a></li>
+            <li><a href="#research" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Research</a>
+            </li>
+            <li><a href="#publications"
+                    class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Publications</a></li>
+            <li><a href="#projects" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Projects</a>
+            </li>
             <li><a href="#blog" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Blog</a></li>
-            <li><a href="#github" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Open Source</a></li>
+            <li><a href="#github" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Open Source</a>
+            </li>
             <li><a href="#career" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Career</a></li>
-            <li><a href="#contact" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Contact</a></li>
+            <li><a href="#contact" class="block py-2 px-3 rounded-lg hover:bg-gray-100 transition-colors">Contact</a>
+            </li>
         </ul>
     </nav>
 
@@ -309,22 +323,25 @@
         <!-- Hero Section -->
         <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div id="vanta-bg" class="hero-bg"></div>
-            
+
             <div class="hero-content container mx-auto px-8 py-16">
                 <div class="bento-grid max-w-7xl mx-auto">
                     <!-- Main Content -->
                     <div class="bento-main bg-white/80 backdrop-blur-lg rounded-2xl p-12 shadow-2xl">
                         <div class="content-en active">
                             <div class="flex flex-col items-center mb-6">
-                                <img src="avatar.png" alt="Flood Sung Avatar" class="w-32 h-32 rounded-full shadow-lg object-cover border-4 border-white" style="background: #f8fafc;"/>
+                                <img src="avatar.png" alt="Flood Sung Avatar"
+                                    class="w-32 h-32 rounded-full shadow-lg object-cover border-4 border-white"
+                                    style="background: #f8fafc;" />
                             </div>
                             <h1 class="font-serif text-6xl font-bold mb-6 text-gray-900 leading-tight">
-                                <span class="italic text-blue-600">Flood Sung</span><br/>
+                                <span class="italic text-blue-600">Flood Sung</span><br />
                                 <span class="text-4xl">AI Researcher &amp; RL Specialist</span>
                             </h1>
                             <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                                Member of Technical Staff at <a href="https://www.moonshot.cn" class="citation">Moonshot AI</a>, 
-                                leading reinforcement learning research towards AGI. Pioneer in few-shot learning, 
+                                Member of Technical Staff at <a href="https://www.moonshot.cn" class="citation">Moonshot
+                                    AI</a>,
+                                leading reinforcement learning research towards AGI. Pioneer in few-shot learning,
                                 meta-learning, and the innovative Long Chain-of-Thought reasoning.
                             </p>
                             <div class="flex flex-wrap gap-4 mb-8">
@@ -335,21 +352,25 @@
                                 <span class="tag">Large Language Models</span>
                             </div>
                             <div class="flex gap-4">
-                                <a href="#research" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                <a href="#research"
+                                    class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                                     Explore Research
                                 </a>
-                                <a href="https://github.com/floodsung" class="bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                <a href="https://github.com/floodsung"
+                                    class="bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
                                     <i class="fab fa-github mr-2"></i>GitHub
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="content-zh">
                             <div class="flex flex-col items-center mb-6">
-                                <img src="avatar.png" alt="Flood Sung 头像" class="w-32 h-32 rounded-full shadow-lg object-cover border-4 border-white" style="background: #f8fafc;"/>
+                                <img src="avatar.png" alt="Flood Sung 头像"
+                                    class="w-32 h-32 rounded-full shadow-lg object-cover border-4 border-white"
+                                    style="background: #f8fafc;" />
                             </div>
                             <h1 class="font-serif text-6xl font-bold mb-6 text-gray-900 leading-tight">
-                                <span class="italic text-blue-600">Flood Sung</span><br/>
+                                <span class="italic text-blue-600">Flood Sung</span><br />
                                 <span class="text-4xl">AI研究员 &amp; 强化学习专家</span>
                             </h1>
                             <p class="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -364,20 +385,22 @@
                                 <span class="tag">大语言模型</span>
                             </div>
                             <div class="flex gap-4">
-                                <a href="#research" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                <a href="#research"
+                                    class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                                     探索研究
                                 </a>
-                                <a href="https://github.com/floodsung" class="bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                                <a href="https://github.com/floodsung"
+                                    class="bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
                                     <i class="fab fa-github mr-2"></i>GitHub
                                 </a>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Stats Cards -->
                     <div class="bento-stats">
                         <div class="bg-white/80 backdrop-blur-lg rounded-xl p-6 shadow-lg">
-                            <div class="text-3xl font-bold text-blue-600 mb-2">6,000+</div>
+                            <div class="text-3xl font-bold text-blue-600 mb-2">7,513</div>
                             <div class="content-en active text-sm text-gray-600">Citations</div>
                             <div class="content-zh text-sm text-gray-600">引用次数</div>
                         </div>
@@ -408,49 +431,62 @@
                     <h2 class="font-serif text-4xl font-bold mb-8 text-center">About Flood Sung</h2>
                     <div class="prose prose-lg max-w-none">
                         <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-                            Flood Sung is a distinguished AI researcher and engineer specializing in deep learning, 
-                            reinforcement learning, meta-learning, and few-shot learning. Currently serving as a 
-                            <strong>Member of Technical Staff and RL Lead at Moonshot AI</strong>, he is at the forefront 
+                            Flood Sung is a distinguished AI researcher and engineer specializing in deep learning,
+                            reinforcement learning, meta-learning, and few-shot learning. Currently serving as a
+                            <strong>Member of Technical Staff and RL Lead at Moonshot AI</strong>, he is at the
+                            forefront
                             of developing Artificial General Intelligence (AGI).
                         </p>
-                        
+
                         <p class="text-gray-600 mb-6">
-                            With over <strong>6,000 citations</strong> on Google Scholar, Flood has published numerous 
-                            high-impact papers at top-tier conferences including CVPR, NeurIPS, and ICLR. His groundbreaking 
-                            work on &#34;Learning to Compare: Relation Network for Few-Shot Learning&#34; has achieved over 
+                            With over <strong>6,000 citations</strong> on Google Scholar, Flood has published numerous
+                            high-impact papers at top-tier conferences including CVPR, NeurIPS, and ICLR. His
+                            groundbreaking
+                            work on &#34;Learning to Compare: Relation Network for Few-Shot Learning&#34; has achieved
+                            over
                             <strong>5,575 citations</strong>, establishing him as a leading authority in the field.
                         </p>
-                        
+
                         <p class="text-gray-600 mb-6">
-                            Beyond research, Flood is a passionate open-source contributor, maintaining the widely acclaimed 
-                            <strong>&#34;Deep-Learning-Papers-Reading-Roadmap&#34;</strong> with over 39.1k GitHub stars. He actively 
-                            shares his insights through blog posts, academic conferences, and technical talks, earning recognition 
+                            Beyond research, Flood is a passionate open-source contributor, maintaining the widely
+                            acclaimed
+                            <strong>&#34;Deep-Learning-Papers-Reading-Roadmap&#34;</strong> with over 39.1k GitHub
+                            stars. He actively
+                            shares his insights through blog posts, academic conferences, and technical talks, earning
+                            recognition
                             as an &#34;AGI, Metaverse, and Robotics Evangelist.&#34;
                         </p>
-                        
+
                         <blockquote class="border-l-4 border-blue-600 pl-6 italic text-gray-700 text-lg my-8">
-                            &#34;AGI is within reach, and the future lies in successfully applying reinforcement learning 
-                            to increasingly complex scenarios—from AI simulating driving and writing articles to 
+                            &#34;AGI is within reach, and the future lies in successfully applying reinforcement
+                            learning
+                            to increasingly complex scenarios—from AI simulating driving and writing articles to
                             developing apps and publishing scientific papers.&#34;
                         </blockquote>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-8 text-center">关于Flood Sung</h2>
                     <div class="prose prose-lg max-w-none">
                         <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-                            Flood Sung 是一位在人工智能领域，特别是深度学习、强化学习、元学习和少样本学习方向有深入研究和显著成就的学者和工程师。他目前担任<a href="https://www.moonshot.cn" class="citation">Moonshot AI（月之暗面）</a>的技术专家和RL Lead，致力于推动通用人工智能（AGI）的发展。
+                            Flood Sung 是一位在人工智能领域，特别是深度学习、强化学习、元学习和少样本学习方向有深入研究和显著成就的学者和工程师。他目前担任<a
+                                href="https://www.moonshot.cn" class="citation">Moonshot AI（月之暗面）</a>的技术专家和RL
+                            Lead，致力于推动通用人工智能（AGI）的发展。
                         </p>
-                        
+
                         <p class="text-gray-600 mb-6">
-                            根据<a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="citation">Google Scholar</a>的数据，Flood Sung的学术成果显著，其论文总引用量已超过<strong>6,000次</strong>。他在CVPR、NeurIPS、ICLR等顶级学术会议发表了多篇高影响力论文，其中&#34;Learning to Compare: Relation Network for Few-Shot Learning&#34;获得了高达<strong>5,575次</strong>的引用。
+                            根据<a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN"
+                                class="citation">Google Scholar</a>的数据，Flood
+                            Sung的学术成果显著，其论文总引用量已超过<strong>6,000次</strong>。他在CVPR、NeurIPS、ICLR等顶级学术会议发表了多篇高影响力论文，其中&#34;Learning
+                            to Compare: Relation Network for Few-Shot Learning&#34;获得了高达<strong>5,575次</strong>的引用。
                         </p>
-                        
+
                         <p class="text-gray-600 mb-6">
-                            作为开源社区的积极贡献者，Flood Sung维护着广受欢迎的<strong>&#34;Deep-Learning-Papers-Reading-Roadmap&#34;</strong>项目，获得了超过39.1k的GitHub星标。他通过撰写博客文章、参与学术会议和技术分享，积极传播知识和见解，被同行和媒体描述为&#34;AGI、元宇宙及机器人革命布道师&#34;。
+                            作为开源社区的积极贡献者，Flood
+                            Sung维护着广受欢迎的<strong>&#34;Deep-Learning-Papers-Reading-Roadmap&#34;</strong>项目，获得了超过39.1k的GitHub星标。他通过撰写博客文章、参与学术会议和技术分享，积极传播知识和见解，被同行和媒体描述为&#34;AGI、元宇宙及机器人革命布道师&#34;。
                         </p>
-                        
+
                         <blockquote class="border-l-4 border-blue-600 pl-6 italic text-gray-700 text-lg my-8">
                             &#34;AGI近在眼前，未来的方向是将强化学习成功应用于更复杂的场景，例如让AI模拟驾驶、创作文章、开发APP、发表科研论文等。&#34;
                         </blockquote>
@@ -464,7 +500,7 @@
             <div class="container mx-auto px-8 max-w-6xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Research Focus</h2>
-                    
+
                     <div class="grid md:grid-cols-3 gap-8 mb-16">
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                             <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
@@ -472,38 +508,38 @@
                             </div>
                             <h3 class="text-xl font-semibold mb-4">Few-Shot Learning</h3>
                             <p class="text-gray-600">
-                                Pioneering work on relation networks for learning from limited data, 
+                                Pioneering work on relation networks for learning from limited data,
                                 with applications in computer vision and pattern recognition.
                             </p>
                         </div>
-                        
+
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                             <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-robot text-2xl text-green-600"></i>
                             </div>
                             <h3 class="text-xl font-semibold mb-4">Reinforcement Learning</h3>
                             <p class="text-gray-600">
-                                Advancing RL algorithms for sample-efficient learning, 
+                                Advancing RL algorithms for sample-efficient learning,
                                 meta-RL, and their integration with large language models.
                             </p>
                         </div>
-                        
+
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                             <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-infinity text-2xl text-purple-600"></i>
                             </div>
                             <h3 class="text-xl font-semibold mb-4">AGI Development</h3>
                             <p class="text-gray-600">
-                                Leading research on Long Chain-of-Thought reasoning 
+                                Leading research on Long Chain-of-Thought reasoning
                                 and building foundation models for artificial general intelligence.
                             </p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">研究方向</h2>
-                    
+
                     <div class="grid md:grid-cols-3 gap-8 mb-16">
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                             <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
@@ -515,7 +551,7 @@
                                 在计算机视觉和模式识别领域有广泛应用。
                             </p>
                         </div>
-                        
+
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                             <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-robot text-2xl text-green-600"></i>
@@ -526,7 +562,7 @@
                                 元强化学习，以及它们与大语言模型的集成。
                             </p>
                         </div>
-                        
+
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                             <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
                                 <i class="fas fa-infinity text-2xl text-purple-600"></i>
@@ -547,154 +583,182 @@
             <div class="container mx-auto px-8 max-w-5xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Representative Publications</h2>
-                    
+
                     <!-- Highlighted Paper -->
                     <div class="paper-card highlight-paper mb-8">
                         <div class="flex items-start justify-between mb-4">
                             <div class="flex-1">
                                 <h3 class="text-xl font-semibold mb-2">
-                                    <a href="https://arxiv.org/pdf/1711.06025.pdf" class="citation">Learning to Compare: Relation Network for Few-Shot Learning</a>
+                                    <a href="https://arxiv.org/pdf/1711.06025.pdf" class="citation">Learning to Compare:
+                                        Relation Network for Few-Shot Learning</a>
                                 </h3>
                                 <p class="text-gray-600 mb-2">
-                                    <strong>F. Sung</strong>, Y. Yang, L. Zhang, T. Xiang, P. H. S. Torr, T. M. Hospedales
+                                    <strong>F. Sung</strong>, Y. Yang, L. Zhang, T. Xiang, P. H. S. Torr, T. M.
+                                    Hospedales
                                 </p>
                                 <p class="text-sm text-gray-500 mb-3">
                                     IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2018
                                 </p>
                                 <div class="flex items-center text-sm text-gray-600">
-                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-3">5,575 Citations</span>
-                                    <a href="https://github.com/floodsung/LearningToCompare_FSL" class="citation flex items-center">
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-3">5,972
+                                        Citations</span>
+                                    <a href="https://github.com/floodsung/LearningToCompare_FSL"
+                                        class="citation flex items-center">
                                         <i class="fab fa-github mr-1"></i> Code
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <p class="text-gray-700">
-                            <strong>Contribution:</strong> This landmark paper introduces Relation Networks for few-shot learning, 
-                            significantly improving model generalization with limited training samples. The approach learns to compare 
-                            samples through an embedding module and a relation module, achieving state-of-the-art results.
+                            <strong>Contribution:</strong> This landmark paper introduces Relation Networks for few-shot
+                            learning,
+                            significantly improving model generalization with limited training samples. The approach
+                            learns to compare
+                            samples through an embedding module and a relation module, achieving state-of-the-art
+                            results.
                         </p>
                     </div>
-                    
+
                     <!-- Recent Papers -->
                     <div class="space-y-6">
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
-                                <a href="https://arxiv.org/abs/2501.12599" class="citation">Kimi k1.5: Scaling reinforcement learning with llms</a>
+                                <a href="https://arxiv.org/abs/2501.12599" class="citation">Kimi k1.5: Scaling
+                                    reinforcement learning with llms</a>
                             </h3>
-                            <p class="text-gray-600 mb-2">K. Team, A. Du, B. Gao, ..., <strong>F. Sung</strong> (Team collaboration)</p>
+                            <p class="text-gray-600 mb-2">K. Team, A. Du, B. Gao, ..., <strong>F. Sung</strong> (Team
+                                collaboration)</p>
                             <p class="text-sm text-gray-500 mb-3">arXiv preprint arXiv:2501.12599, 2025</p>
                             <div class="flex items-center text-sm text-gray-600">
-                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded mr-3">253 Citations</span>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded mr-3">716 Citations</span>
                             </div>
                         </div>
-                        
+
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
-                                <a href="https://arxiv.org/abs/1706.09529" class="citation">Learning to Learn: Meta-Critic Networks for Sample Efficient Learning</a>
+                                <a href="https://arxiv.org/abs/1706.09529" class="citation">Learning to Learn:
+                                    Meta-Critic Networks for Sample Efficient Learning</a>
                             </h3>
-                            <p class="text-gray-600 mb-2"><strong>F. Sung</strong>, L. Zhang, T. Xiang, T. Hospedales, Y. Yang</p>
+                            <p class="text-gray-600 mb-2"><strong>F. Sung</strong>, L. Zhang, T. Xiang, T. Hospedales,
+                                Y. Yang</p>
                             <p class="text-sm text-gray-500 mb-3">arXiv preprint arXiv:1706.09529, 2017</p>
                             <div class="flex items-center text-sm text-gray-600">
-                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-3">170 Citations</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-3">175 Citations</span>
                             </div>
                         </div>
-                        
+
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
-                                <a href="https://arxiv.org/abs/1706.09601" class="citation">Actor-Critic Sequence Training for Image Captioning</a>
+                                <a href="https://arxiv.org/abs/1706.09601" class="citation">Actor-Critic Sequence
+                                    Training for Image Captioning</a>
                             </h3>
-                            <p class="text-gray-600 mb-2"><strong>F. Sung</strong>, L. Zhang, T. Xiang, T. M. Hospedales, Y. Yang</p>
-                            <p class="text-sm text-gray-500 mb-3">IEEE International Conference on Computer Vision (ICCV), 2017</p>
+                            <p class="text-gray-600 mb-2"><strong>F. Sung</strong>, L. Zhang, T. Xiang, T. M.
+                                Hospedales, Y. Yang</p>
+                            <p class="text-sm text-gray-500 mb-3">IEEE International Conference on Computer Vision
+                                (ICCV), 2017</p>
                             <div class="flex items-center text-sm text-gray-600">
-                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded mr-3">150 Citations</span>
+                                <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded mr-3">155 Citations</span>
                             </div>
                         </div>
-                        
+
                     </div>
-                    
+
                     <div class="text-center mt-12">
-                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN"
+                            class="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                             View All Publications <i class="fas fa-external-link-alt ml-2"></i>
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">代表性论文</h2>
-                    
+
                     <!-- 高亮论文 -->
                     <div class="paper-card highlight-paper mb-8">
                         <div class="flex items-start justify-between mb-4">
                             <div class="flex-1">
                                 <h3 class="text-xl font-semibold mb-2">
-                                    <a href="https://arxiv.org/pdf/1711.06025.pdf" class="citation">Learning to Compare: Relation Network for Few-Shot Learning</a>
+                                    <a href="https://arxiv.org/pdf/1711.06025.pdf" class="citation">Learning to Compare:
+                                        Relation Network for Few-Shot Learning</a>
                                 </h3>
                                 <p class="text-gray-600 mb-2">
-                                    <strong>Flood Sung</strong>, Y. Yang, L. Zhang, T. Xiang, P. H. S. Torr, T. M. Hospedales
+                                    <strong>Flood Sung</strong>, Y. Yang, L. Zhang, T. Xiang, P. H. S. Torr, T. M.
+                                    Hospedales
                                 </p>
                                 <p class="text-sm text-gray-500 mb-3">
                                     IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2018
                                 </p>
                                 <div class="flex items-center text-sm text-gray-600">
                                     <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-3">5,575 引用</span>
-                                    <a href="https://github.com/floodsung/LearningToCompare_FSL" class="citation flex items-center">
+                                    <a href="https://github.com/floodsung/LearningToCompare_FSL"
+                                        class="citation flex items-center">
                                         <i class="fab fa-github mr-1"></i> 代码
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <p class="text-gray-700">
-                            <strong>主要贡献：</strong> 这篇里程碑式的论文提出了少样本学习的关系网络方法，显著提升了模型在少量训练样本下的泛化能力。该方法通过学习嵌入模块和关系模块来比较样本，实现了最先进的性能。
+                            <strong>主要贡献：</strong>
+                            这篇里程碑式的论文提出了少样本学习的关系网络方法，显著提升了模型在少量训练样本下的泛化能力。该方法通过学习嵌入模块和关系模块来比较样本，实现了最先进的性能。
                         </p>
                     </div>
-                    
+
                     <!-- 近期论文 -->
                     <div class="space-y-6">
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
                                 <a href="#" class="citation">Kimi k1.5: Scaling reinforcement learning with llms</a>
                             </h3>
-                            <p class="text-gray-600 mb-2">K. Team, A. Du, B. Gao, ..., <strong>Flood Sung</strong> (团队合作)</p>
+                            <p class="text-gray-600 mb-2">K. Team, A. Du, B. Gao, ..., <strong>Flood Sung</strong>
+                                (团队合作)</p>
                             <p class="text-sm text-gray-500 mb-3">arXiv preprint arXiv:2501.12599, 2025</p>
                             <div class="flex items-center text-sm text-gray-600">
                                 <span class="bg-green-100 text-green-800 px-2 py-1 rounded mr-3">253 引用</span>
                             </div>
                         </div>
-                        
+
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
-                                <a href="#" class="citation">Learning to Learn: Meta-Critic Networks for Sample Efficient Learning</a>
+                                <a href="#" class="citation">Learning to Learn: Meta-Critic Networks for Sample
+                                    Efficient Learning</a>
                             </h3>
-                            <p class="text-gray-600 mb-2"><strong>Flood Sung</strong>, L. Zhang, T. Xiang, T. Hospedales, Y. Yang</p>
+                            <p class="text-gray-600 mb-2"><strong>Flood Sung</strong>, L. Zhang, T. Xiang, T.
+                                Hospedales, Y. Yang</p>
                             <p class="text-sm text-gray-500 mb-3">arXiv preprint arXiv:1706.09529, 2017</p>
                             <div class="flex items-center text-sm text-gray-600">
                                 <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-3">170 引用</span>
                             </div>
                         </div>
-                        
+
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
                                 <a href="#" class="citation">Actor-Critic Sequence Training for Image Captioning</a>
                             </h3>
-                            <p class="text-gray-600 mb-2"><strong>Flood Sung</strong>, L. Zhang, T. Xiang, T. M. Hospedales, Y. Yang</p>
-                            <p class="text-sm text-gray-500 mb-3">IEEE International Conference on Computer Vision (ICCV), 2017</p>
+                            <p class="text-gray-600 mb-2"><strong>Flood Sung</strong>, L. Zhang, T. Xiang, T. M.
+                                Hospedales, Y. Yang</p>
+                            <p class="text-sm text-gray-500 mb-3">IEEE International Conference on Computer Vision
+                                (ICCV), 2017</p>
                             <div class="flex items-center text-sm text-gray-600">
                                 <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded mr-3">150 引用</span>
                             </div>
                         </div>
-                        
+
                         <div class="paper-card">
                             <h3 class="text-lg font-semibold mb-2">
-                                <a href="#" class="citation">TACO-RL: Task Aware Prompt Compression Optimization with Reinforcement Learning</a>
+                                <a href="#" class="citation">TACO-RL: Task Aware Prompt Compression Optimization with
+                                    Reinforcement Learning</a>
                             </h3>
-                            <p class="text-gray-600 mb-2">Xiaoqing Zhang, Yuhan Liu, Xiuying Chen, Shuo Shang, Rui Yan, <strong>Flood Sung</strong></p>
+                            <p class="text-gray-600 mb-2">Xiaoqing Zhang, Yuhan Liu, Xiuying Chen, Shuo Shang, Rui Yan,
+                                <strong>Flood Sung</strong>
+                            </p>
                             <p class="text-sm text-gray-500 mb-3">ACL 2025 (Accepted Findings Papers)</p>
                         </div>
                     </div>
-                    
+
                     <div class="text-center mt-12">
-                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN"
+                            class="inline-flex items-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                             查看所有论文 <i class="fas fa-external-link-alt ml-2"></i>
                         </a>
                     </div>
@@ -707,7 +771,7 @@
             <div class="container mx-auto px-8 max-w-5xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Research Projects</h2>
-                    
+
                     <div class="grid md:grid-cols-2 gap-8">
                         <!-- Kimi k1.5 Project -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
@@ -721,8 +785,8 @@
                                 </div>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Leading the development of Kimi k1.5 multimodal reasoning model, focusing on 
-                                Long Chain-of-Thought (Long-CoT) technology to achieve state-of-the-art 
+                                Leading the development of Kimi k1.5 multimodal reasoning model, focusing on
+                                Long Chain-of-Thought (Long-CoT) technology to achieve state-of-the-art
                                 performance in complex reasoning tasks.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -731,11 +795,12 @@
                                 <span class="tag">Reasoning</span>
                                 <span class="tag">RL</span>
                             </div>
-                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 Learn More <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
-                        
+
                         <!-- Deep Learning Papers Roadmap -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
                             <div class="flex items-center mb-6">
@@ -748,8 +813,8 @@
                                 </div>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Curated collection of deep learning papers with reading roadmap, 
-                                helping researchers systematically master the field. 
+                                Curated collection of deep learning papers with reading roadmap,
+                                helping researchers systematically master the field.
                                 <strong>39.1k+ GitHub stars</strong> and widespread adoption in academia.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -757,11 +822,12 @@
                                 <span class="tag">Roadmap</span>
                                 <span class="tag">Community</span>
                             </div>
-                            <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 View Project <i class="fab fa-github ml-2"></i>
                             </a>
                         </div>
-                        
+
                         <!-- Long-CoT Research -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
                             <div class="flex items-center mb-6">
@@ -774,8 +840,8 @@
                                 </div>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Pioneering research on Long Chain-of-Thought reasoning, significantly 
-                                improving LLM performance in complex reasoning tasks through extended 
+                                Pioneering research on Long Chain-of-Thought reasoning, significantly
+                                improving LLM performance in complex reasoning tasks through extended
                                 reasoning chains and reinforcement learning optimization.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -784,11 +850,12 @@
                                 <span class="tag">AGI</span>
                                 <span class="tag">RL</span>
                             </div>
-                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 Read Analysis <i class="fas fa-external-link-alt ml-2"></i>
                             </a>
                         </div>
-                        
+
                         <!-- Relation Network Implementation -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
                             <div class="flex items-center mb-6">
@@ -801,8 +868,8 @@
                                 </div>
                             </div>
                             <p class="text-gray-600 mb-4">
-                                Official implementation of the CVPR 2018 paper &#34;Learning to Compare: 
-                                Relation Network for Few-Shot Learning,&#34; providing reproducible code 
+                                Official implementation of the CVPR 2018 paper &#34;Learning to Compare:
+                                Relation Network for Few-Shot Learning,&#34; providing reproducible code
                                 and benchmarks for the research community.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
@@ -810,16 +877,17 @@
                                 <span class="tag">CVPR</span>
                                 <span class="tag">PyTorch</span>
                             </div>
-                            <a href="https://github.com/floodsung/LearningToCompare_FSL" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://github.com/floodsung/LearningToCompare_FSL"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 View Code <i class="fab fa-github ml-2"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">研究项目</h2>
-                    
+
                     <div class="grid md:grid-cols-2 gap-8">
                         <!-- Kimi k1.5 项目 -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
@@ -842,11 +910,12 @@
                                 <span class="tag">推理</span>
                                 <span class="tag">强化学习</span>
                             </div>
-                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 了解更多 <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
-                        
+
                         <!-- 深度学习论文路线图 -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
                             <div class="flex items-center mb-6">
@@ -867,11 +936,12 @@
                                 <span class="tag">路线图</span>
                                 <span class="tag">社区</span>
                             </div>
-                            <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 查看项目 <i class="fab fa-github ml-2"></i>
                             </a>
                         </div>
-                        
+
                         <!-- 长思维链研究 -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
                             <div class="flex items-center mb-6">
@@ -893,11 +963,12 @@
                                 <span class="tag">AGI</span>
                                 <span class="tag">强化学习</span>
                             </div>
-                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://kimi-img.moonshot.cn/pub/icon/spinner.svg"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 阅读分析 <i class="fas fa-external-link-alt ml-2"></i>
                             </a>
                         </div>
-                        
+
                         <!-- 关系网络实现 -->
                         <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all">
                             <div class="flex items-center mb-6">
@@ -918,7 +989,8 @@
                                 <span class="tag">CVPR</span>
                                 <span class="tag">PyTorch</span>
                             </div>
-                            <a href="https://github.com/floodsung/LearningToCompare_FSL" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <a href="https://github.com/floodsung/LearningToCompare_FSL"
+                                class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
                                 查看代码 <i class="fab fa-github ml-2"></i>
                             </a>
                         </div>
@@ -932,22 +1004,26 @@
             <div class="container mx-auto px-8 max-w-5xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Blog &amp; Articles</h2>
-                    
+
                     <div class="space-y-8">
                         <!-- Featured Article -->
                         <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
                             <div class="flex items-start justify-between mb-6">
                                 <div class="flex-1">
                                     <div class="flex items-center mb-4">
-                                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mr-3">Featured</span>
+                                        <span
+                                            class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mr-3">Featured</span>
                                         <span class="text-sm text-gray-500">Moonshot AI Official • Feb 2025</span>
                                     </div>
                                     <h3 class="text-2xl font-semibold mb-4">
-                                        <a href="https://x.com/Kimi_Moonshot/status/1882413059513471044" class="citation">The Thought Process Behind Kimi k1.5 </a>
+                                        <a href="https://x.com/Kimi_Moonshot/status/1882413059513471044"
+                                            class="citation">The Thought Process Behind Kimi k1.5 </a>
                                     </h3>
                                     <p class="text-gray-700 mb-4">
-                                        A comprehensive analysis of OpenAI&#39;s o1 model breakthrough and Moonshot AI&#39;s journey 
-                                        in developing Long-CoT technology. This in-depth article reveals the technical challenges, 
+                                        A comprehensive analysis of OpenAI&#39;s o1 model breakthrough and Moonshot
+                                        AI&#39;s journey
+                                        in developing Long-CoT technology. This in-depth article reveals the technical
+                                        challenges,
                                         strategic decisions, and future implications for AGI development.
                                     </p>
                                     <div class="flex flex-wrap gap-2">
@@ -956,19 +1032,25 @@
                                         <span class="tag">Technical Analysis</span>
                                     </div>
                                 </div>
-                                <img src="https://kimi-web-img.moonshot.cn/img/cdn.vectorstock.com/208ecc939746f3d57b4371ded0e2c82a7545d6ed.jpg" alt="Long Chain-of-Thought reasoning visualization showing extended reasoning paths" class="w-32 h-32 object-cover rounded-lg ml-6" size="small" aspect="square" query="AI+brain+neural+network+thinking+chain+visualization" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                                <img src="https://kimi-web-img.moonshot.cn/img/cdn.vectorstock.com/208ecc939746f3d57b4371ded0e2c82a7545d6ed.jpg"
+                                    alt="Long Chain-of-Thought reasoning visualization showing extended reasoning paths"
+                                    class="w-32 h-32 object-cover rounded-lg ml-6" size="small" aspect="square"
+                                    query="AI+brain+neural+network+thinking+chain+visualization"
+                                    referrerpolicy="no-referrer" data-modified="1" data-score="1.00" />
                             </div>
                         </div>
-                        
+
                         <!-- Recent Articles -->
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">Zhihu Column • Jan 2025</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://www.zhihu.com/pin/1874790125608779776" class="citation">Behind Kimi k1.5: From Long-CoT Recognition to Model Training</a>
+                                    <a href="https://www.zhihu.com/pin/1874790125608779776" class="citation">Behind Kimi
+                                        k1.5: From Long-CoT Recognition to Model Training</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Personal reflections on the development process of Kimi k1.5, from initial 
+                                    Personal reflections on the development process of Kimi k1.5, from initial
                                     recognition of Long-CoT importance to practical training methodologies.
                                 </p>
                                 <div class="flex gap-2">
@@ -976,14 +1058,16 @@
                                     <span class="tag text-xs">Personal</span>
                                 </div>
                             </div>
-                            
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">TechBeat • Mar 2024</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://www.bilibili.com/read/cv16355286/" class="citation">Latest Advances in Deep Learning and Few-Shot Learning</a>
+                                    <a href="https://www.bilibili.com/read/cv16355286/" class="citation">Latest Advances
+                                        in Deep Learning and Few-Shot Learning</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Comprehensive overview of recent developments in deep learning and few-shot 
+                                    Comprehensive overview of recent developments in deep learning and few-shot
                                     learning, exploring practical applications and future directions.
                                 </p>
                                 <div class="flex gap-2">
@@ -991,14 +1075,16 @@
                                     <span class="tag text-xs">Survey</span>
                                 </div>
                             </div>
-                            
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">Zhihu Live • 2024</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://zhuanlan.zhihu.com/p/24816290" class="citation">AGI Discussions: The Future of Artificial General Intelligence</a>
+                                    <a href="https://zhuanlan.zhihu.com/p/24816290" class="citation">AGI Discussions:
+                                        The Future of Artificial General Intelligence</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Live discussion series exploring the definition, development paths, and 
+                                    Live discussion series exploring the definition, development paths, and
                                     potential impacts of AGI on society and ethics.
                                 </p>
                                 <div class="flex gap-2">
@@ -1006,14 +1092,16 @@
                                     <span class="tag text-xs">Live</span>
                                 </div>
                             </div>
-                            
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">ScienceNet • Feb 2025</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation">The Future of AI and AGI</a>
+                                    <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm"
+                                        class="citation">The Future of AI and AGI</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
-                                    Insights into AI&#39;s future development and the challenges and opportunities 
+                                    Insights into AI&#39;s future development and the challenges and opportunities
                                     facing AGI research and implementation.
                                 </p>
                                 <div class="flex gap-2">
@@ -1022,29 +1110,32 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center mt-12">
-                            <a href="https://www.zhihu.com/people/flood-sung" class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                            <a href="https://www.zhihu.com/people/flood-sung"
+                                class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                                 View All Articles <i class="fas fa-external-link-alt ml-2"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">博客与文章</h2>
-                    
+
                     <div class="space-y-8">
                         <!-- 特色文章 -->
                         <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
                             <div class="flex items-start justify-between mb-6">
                                 <div class="flex-1">
                                     <div class="flex items-center mb-4">
-                                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mr-3">精选</span>
+                                        <span
+                                            class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium mr-3">精选</span>
                                         <span class="text-sm text-gray-500">月之暗面官方 • 2025年2月</span>
                                     </div>
                                     <h3 class="text-2xl font-semibold mb-4">
-                                        <a href="https://mp.weixin.qq.com/s/sJmT-tM3A-mglZ1d4OI80A" class="citation">Kimi k1.5 背后的长长长长长思考</a>
+                                        <a href="https://mp.weixin.qq.com/s/sJmT-tM3A-mglZ1d4OI80A"
+                                            class="citation">Kimi k1.5 背后的长长长长长思考</a>
                                     </h3>
                                     <p class="text-gray-700 mb-4">
                                         对OpenAI o1模型突破的全面分析，以及月之暗面在开发长思维链技术过程中的旅程。
@@ -1056,16 +1147,21 @@
                                         <span class="tag">技术分析</span>
                                     </div>
                                 </div>
-                                <img src="https://kimi-web-img.moonshot.cn/img/nimi.cuc.edu.cn/a84fea9533f02131c76d7ed0d48987876e5aed86.jpg" alt="长思维链推理可视化，展示扩展的推理路径" class="w-32 h-32 object-cover rounded-lg ml-6" size="small" aspect="square" query="AI+大脑+神经网络+思考+链条+可视化" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                                <img src="https://kimi-web-img.moonshot.cn/img/nimi.cuc.edu.cn/a84fea9533f02131c76d7ed0d48987876e5aed86.jpg"
+                                    alt="长思维链推理可视化，展示扩展的推理路径" class="w-32 h-32 object-cover rounded-lg ml-6"
+                                    size="small" aspect="square" query="AI+大脑+神经网络+思考+链条+可视化"
+                                    referrerpolicy="no-referrer" data-modified="1" data-score="1.00" />
                             </div>
                         </div>
-                        
+
                         <!-- 近期文章 -->
                         <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">知乎专栏 • 2025年1月</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://www.zhihu.com/pin/1874790125608779776" class="citation">Kimi k1.5背后：从长思维链认识到模型训练</a>
+                                    <a href="https://www.zhihu.com/pin/1874790125608779776" class="citation">Kimi
+                                        k1.5背后：从长思维链认识到模型训练</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
                                     关于Kimi k1.5研发过程的个人思考，从最初认识到长思维链的重要性到实际的训练方法。
@@ -1075,11 +1171,13 @@
                                     <span class="tag text-xs">个人思考</span>
                                 </div>
                             </div>
-                            
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">TechBeat • 2024年3月</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://www.bilibili.com/read/cv16355286/" class="citation">深度学习与少样本学习的最新进展</a>
+                                    <a href="https://www.bilibili.com/read/cv16355286/"
+                                        class="citation">深度学习与少样本学习的最新进展</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
                                     全面概述深度学习和少样本学习的最新发展，探索实际应用和未来方向。
@@ -1089,8 +1187,9 @@
                                     <span class="tag text-xs">综述</span>
                                 </div>
                             </div>
-                            
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">知乎Live • 2024年</div>
                                 <h4 class="text-lg font-semibold mb-3">
                                     <a href="https://zhuanlan.zhihu.com/p/24816290" class="citation">AGI杂谈：人工通用智能的未来</a>
@@ -1103,11 +1202,13 @@
                                     <span class="tag text-xs">直播</span>
                                 </div>
                             </div>
-                            
-                            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+
+                            <div
+                                class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
                                 <div class="text-sm text-gray-500 mb-3">科学网 • 2025年2月</div>
                                 <h4 class="text-lg font-semibold mb-3">
-                                    <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm" class="citation">人工智能的未来与AGI</a>
+                                    <a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm"
+                                        class="citation">人工智能的未来与AGI</a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-4">
                                     关于AI未来发展的见解，以及AGI研究和实施所面临的挑战与机遇。
@@ -1118,9 +1219,10 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center mt-12">
-                            <a href="https://www.zhihu.com/people/flood-sung" class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                            <a href="https://www.zhihu.com/people/flood-sung"
+                                class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                                 查看所有文章 <i class="fas fa-external-link-alt ml-2"></i>
                             </a>
                         </div>
@@ -1134,11 +1236,14 @@
             <div class="container mx-auto px-8 max-w-5xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Open Source Projects</h2>
-                    
+
                     <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center">
-                                <img src="https://kimi-web-img.moonshot.cn/img/brandslogos.com/872cf2a17aeeb48dc71957cfdbb0906da26374f4.png" alt="GitHub logo" class="w-16 h-16 mr-4" size="small" aspect="square" query="GitHub+logo+octocat" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                                <img src="https://kimi-web-img.moonshot.cn/img/brandslogos.com/872cf2a17aeeb48dc71957cfdbb0906da26374f4.png"
+                                    alt="GitHub logo" class="w-16 h-16 mr-4" size="small" aspect="square"
+                                    query="GitHub+logo+octocat" referrerpolicy="no-referrer" data-modified="1"
+                                    data-score="1.00" />
                                 <div>
                                     <h3 class="text-2xl font-semibold">floodsung</h3>
                                     <p class="text-gray-600">AI Researcher &amp; Open Source Contributor</p>
@@ -1149,16 +1254,17 @@
                                 <div class="text-sm text-gray-600">Total Stars</div>
                             </div>
                         </div>
-                        
+
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
-                                    <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" class="citation">
+                                    <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap"
+                                        class="citation">
                                         Deep-Learning-Papers-Reading-Roadmap
                                     </a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-3">
-                                    Curated collection of deep learning papers with systematic reading roadmap. 
+                                    Curated collection of deep learning papers with systematic reading roadmap.
                                     Most starred repository with 39.1k+ stars.
                                 </p>
                                 <div class="flex items-center justify-between text-sm">
@@ -1166,10 +1272,11 @@
                                         <span class="text-gray-500">⭐ 39.1k</span>
                                         <span class="text-gray-500">🍴 7.4k</span>
                                     </div>
-                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Featured</span>
+                                    <span
+                                        class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Featured</span>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
                                     <a href="https://github.com/floodsung/LearningToCompare_FSL" class="citation">
@@ -1177,7 +1284,7 @@
                                     </a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-3">
-                                    Official implementation of CVPR 2018 paper &#34;Learning to Compare: 
+                                    Official implementation of CVPR 2018 paper &#34;Learning to Compare:
                                     Relation Network for Few-Shot Learning&#34;.
                                 </p>
                                 <div class="flex items-center justify-between text-sm">
@@ -1188,7 +1295,7 @@
                                     <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">CVPR</span>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
                                     <a href="https://github.com/floodsung/Deep-Reinforcement-Learning" class="citation">
@@ -1196,7 +1303,7 @@
                                     </a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-3">
-                                    Collection of deep reinforcement learning algorithms implementation 
+                                    Collection of deep reinforcement learning algorithms implementation
                                     for educational and research purposes.
                                 </p>
                                 <div class="flex items-center justify-between text-sm">
@@ -1207,7 +1314,7 @@
                                     <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">RL</span>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
                                     <a href="https://github.com/floodsung/Meta-Learning-Algorithms" class="citation">
@@ -1215,7 +1322,7 @@
                                     </a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-3">
-                                    Implementation of various meta-learning algorithms for 
+                                    Implementation of various meta-learning algorithms for
                                     sample-efficient learning tasks.
                                 </p>
                                 <div class="flex items-center justify-between text-sm">
@@ -1227,14 +1334,15 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center mt-8">
-                            <a href="https://github.com/floodsung" class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                            <a href="https://github.com/floodsung"
+                                class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                                 View All Projects <i class="fab fa-github ml-2"></i>
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- GitHub Stats -->
                     <div class="grid md:grid-cols-4 gap-6">
                         <div class="text-center bg-white rounded-xl p-6 shadow-lg">
@@ -1255,14 +1363,17 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">开源项目</h2>
-                    
+
                     <div class="bg-white rounded-2xl p-8 shadow-lg mb-12">
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center">
-                                <img src="https://kimi-web-img.moonshot.cn/img/brandslogos.com/872cf2a17aeeb48dc71957cfdbb0906da26374f4.png" alt="GitHub logo" class="w-16 h-16 mr-4" size="small" aspect="square" query="GitHub+logo+octocat" referrerpolicy="no-referrer" data-modified="1" data-score="1.00"/>
+                                <img src="https://kimi-web-img.moonshot.cn/img/brandslogos.com/872cf2a17aeeb48dc71957cfdbb0906da26374f4.png"
+                                    alt="GitHub logo" class="w-16 h-16 mr-4" size="small" aspect="square"
+                                    query="GitHub+logo+octocat" referrerpolicy="no-referrer" data-modified="1"
+                                    data-score="1.00" />
                                 <div>
                                     <h3 class="text-2xl font-semibold">floodsung</h3>
                                     <p class="text-gray-600">AI研究员 &amp; 开源贡献者</p>
@@ -1273,11 +1384,12 @@
                                 <div class="text-sm text-gray-600">总星标数</div>
                             </div>
                         </div>
-                        
+
                         <div class="grid md:grid-cols-2 gap-6">
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
-                                    <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" class="citation">
+                                    <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap"
+                                        class="citation">
                                         Deep-Learning-Papers-Reading-Roadmap
                                     </a>
                                 </h4>
@@ -1293,7 +1405,7 @@
                                     <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">精选</span>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
                                     <a href="https://github.com/floodsung/LearningToCompare_FSL" class="citation">
@@ -1301,7 +1413,8 @@
                                     </a>
                                 </h4>
                                 <p class="text-gray-600 text-sm mb-3">
-                                    CVPR 2018论文&#34;Learning to Compare: Relation Network for Few-Shot Learning&#34;的官方实现。
+                                    CVPR 2018论文&#34;Learning to Compare: Relation Network for Few-Shot
+                                    Learning&#34;的官方实现。
                                 </p>
                                 <div class="flex items-center justify-between text-sm">
                                     <div class="flex items-center space-x-4">
@@ -1311,7 +1424,7 @@
                                     <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">CVPR</span>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
                                     <a href="https://github.com/floodsung/Deep-Reinforcement-Learning" class="citation">
@@ -1329,7 +1442,7 @@
                                     <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">RL</span>
                                 </div>
                             </div>
-                            
+
                             <div class="bg-gray-50 rounded-lg p-6">
                                 <h4 class="font-semibold text-lg mb-2">
                                     <a href="https://github.com/floodsung/Meta-Learning-Algorithms" class="citation">
@@ -1348,14 +1461,15 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="text-center mt-8">
-                            <a href="https://github.com/floodsung" class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
+                            <a href="https://github.com/floodsung"
+                                class="inline-flex items-center bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors">
                                 查看所有项目 <i class="fab fa-github ml-2"></i>
                             </a>
                         </div>
                     </div>
-                    
+
                     <!-- GitHub 统计 -->
                     <div class="grid md:grid-cols-4 gap-6">
                         <div class="text-center bg-white rounded-xl p-6 shadow-lg">
@@ -1384,7 +1498,7 @@
             <div class="container mx-auto px-8 max-w-4xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Career Timeline</h2>
-                    
+
                     <div class="space-y-8">
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
@@ -1393,11 +1507,13 @@
                                         <h3 class="text-xl font-semibold">Moonshot AI (月之暗面)</h3>
                                         <p class="text-gray-600">Member of Technical Staff &amp; RL Lead</p>
                                     </div>
-                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">2023 - Present</span>
+                                    <span
+                                        class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">2023
+                                        - Present</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
-                                    Leading reinforcement learning research team focused on AGI development. 
-                                    Deeply involved in Kimi series models R&amp;D, particularly Kimi k1.5 multimodal 
+                                    Leading reinforcement learning research team focused on AGI development.
+                                    Deeply involved in Kimi series models R&amp;D, particularly Kimi k1.5 multimodal
                                     reasoning model and Long-CoT technology research.
                                 </p>
                                 <div class="flex flex-wrap gap-2">
@@ -1408,7 +1524,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1416,10 +1532,12 @@
                                         <h3 class="text-xl font-semibold">Inspir AI</h3>
                                         <p class="text-gray-600">Research Manager</p>
                                     </div>
-                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">2022 - 2023</span>
+                                    <span
+                                        class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">2022
+                                        - 2023</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
-                                    Focused on AGI research as Research Manager, leading projects in 
+                                    Focused on AGI research as Research Manager, leading projects in
                                     advanced AI algorithms and machine learning applications.
                                 </p>
                                 <div class="flex flex-wrap gap-2">
@@ -1429,7 +1547,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1437,10 +1555,12 @@
                                         <h3 class="text-xl font-semibold">ByteDance AI Lab</h3>
                                         <p class="text-gray-600">Research Scientist</p>
                                     </div>
-                                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">2020 - 2022</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">2020
+                                        - 2022</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
-                                    Conducted research and development in deep learning and reinforcement learning, 
+                                    Conducted research and development in deep learning and reinforcement learning,
                                     contributing to cutting-edge AI applications and algorithms.
                                 </p>
                                 <div class="flex flex-wrap gap-2">
@@ -1450,7 +1570,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1458,10 +1578,11 @@
                                         <h3 class="text-xl font-semibold">Inspir AI</h3>
                                         <p class="text-gray-600">Algorithm Expert</p>
                                     </div>
-                                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Earlier</span>
+                                    <span
+                                        class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Earlier</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
-                                    Served as Algorithm Expert, developing and optimizing AI algorithms 
+                                    Served as Algorithm Expert, developing and optimizing AI algorithms
                                     for various applications and use cases.
                                 </p>
                                 <div class="flex flex-wrap gap-2">
@@ -1470,7 +1591,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1478,10 +1599,13 @@
                                         <h3 class="text-xl font-semibold">Independent Researcher (Early Career)</h3>
                                         <p class="text-gray-600">Independent Research</p>
                                     </div>
-                                    <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Early</span>
+                                    <span
+                                        class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">Early</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
-                                    Worked as an independent researcher in artificial intelligence, focusing on deep learning and reinforcement learning. Self-driven research and open-source contributions laid the foundation for my AI career. 
+                                    Worked as an independent researcher in artificial intelligence, focusing on deep
+                                    learning and reinforcement learning. Self-driven research and open-source
+                                    contributions laid the foundation for my AI career.
                                 </p>
                                 <div class="flex flex-wrap gap-2">
                                     <span class="tag">Independent</span>
@@ -1490,10 +1614,10 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">职业经历</h2>
-                    
+
                     <div class="space-y-8">
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
@@ -1502,7 +1626,9 @@
                                         <h3 class="text-xl font-semibold">Moonshot AI (月之暗面)</h3>
                                         <p class="text-gray-600">技术专家 &amp; RL Lead</p>
                                     </div>
-                                    <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">2023 - 至今</span>
+                                    <span
+                                        class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">2023
+                                        - 至今</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
                                     领导强化学习研究团队，专注于AGI发展。深度参与Kimi系列模型研发，
@@ -1516,7 +1642,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1524,7 +1650,9 @@
                                         <h3 class="text-xl font-semibold">Inspir AI</h3>
                                         <p class="text-gray-600">研究经理</p>
                                     </div>
-                                    <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">2022 - 2023</span>
+                                    <span
+                                        class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">2022
+                                        - 2023</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
                                     作为研究经理专注于AGI研究，领导先进AI算法和机器学习应用项目。
@@ -1536,7 +1664,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1544,7 +1672,9 @@
                                         <h3 class="text-xl font-semibold">字节跳动 AI Lab</h3>
                                         <p class="text-gray-600">研究科学家</p>
                                     </div>
-                                    <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">2020 - 2022</span>
+                                    <span
+                                        class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">2020
+                                        - 2022</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
                                     从事深度学习和强化学习的研究与开发，为前沿AI应用和算法做出贡献。
@@ -1556,7 +1686,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1564,7 +1694,8 @@
                                         <h3 class="text-xl font-semibold">Inspir AI</h3>
                                         <p class="text-gray-600">算法专家</p>
                                     </div>
-                                    <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">早期</span>
+                                    <span
+                                        class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">早期</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
                                     担任算法专家，为各种应用和用例开发和优化AI算法。
@@ -1575,7 +1706,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="timeline-item">
                             <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-lg">
                                 <div class="flex items-center justify-between mb-4">
@@ -1583,7 +1714,8 @@
                                         <h3 class="text-xl font-semibold">独立研究员（早期职业）</h3>
                                         <p class="text-gray-600">独立研究</p>
                                     </div>
-                                    <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">早期</span>
+                                    <span
+                                        class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">早期</span>
                                 </div>
                                 <p class="text-gray-700 mb-4">
                                     作为独立研究员，专注于人工智能领域，重点是深度学习和强化学习。自主研究和开源贡献为我的AI职业奠定了基础。
@@ -1603,102 +1735,117 @@
             <div class="container mx-auto px-8 max-w-4xl">
                 <div class="content-en active">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">Get In Touch</h2>
-                    
+
                     <div class="bg-white rounded-2xl p-12 shadow-lg">
                         <div class="grid md:grid-cols-2 gap-12">
                             <div>
                                 <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
-                                
+
                                 <div class="space-y-6">
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fas fa-envelope text-blue-600"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">Academic Email</div>
-                                            <a href="mailto:floodsung@moonshot.cn" class="text-blue-600 hover:text-blue-800">floodsung@moonshot.cn</a>
+                                            <a href="mailto:floodsung@moonshot.cn"
+                                                class="text-blue-600 hover:text-blue-800">floodsung@moonshot.cn</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fab fa-linkedin text-gray-600"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">LinkedIn</div>
-                                            <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="text-blue-600 hover:text-blue-800">flood-sung-305273117</a>
+                                            <a href="https://cn.linkedin.com/in/flood-sung-305273117"
+                                                class="text-blue-600 hover:text-blue-800">flood-sung-305273117</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fas fa-graduation-cap text-orange-600"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">Google Scholar</div>
-                                            <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="text-blue-600 hover:text-blue-800">6,000+ citations</a>
+                                            <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN"
+                                                class="text-blue-600 hover:text-blue-800">6,000+ citations</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fab fa-github text-white"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">GitHub</div>
-                                            <a href="https://github.com/floodsung" class="text-blue-600 hover:text-blue-800">floodsung</a>
+                                            <a href="https://github.com/floodsung"
+                                                class="text-blue-600 hover:text-blue-800">floodsung</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fab fa-zhihu text-white"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">知乎</div>
-                                            <a href="https://www.zhihu.com/people/flood-sung" class="text-blue-600 hover:text-blue-800">flood-sung</a>
+                                            <a href="https://www.zhihu.com/people/flood-sung"
+                                                class="text-blue-600 hover:text-blue-800">flood-sung</a>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mt-8 p-4 bg-blue-50 rounded-lg">
                                     <p class="text-sm text-blue-800">
                                         <i class="fas fa-info-circle mr-2"></i>
-                                        For research collaborations, speaking opportunities, or media inquiries, 
+                                        For research collaborations, speaking opportunities, or media inquiries,
                                         please reach out via email or LinkedIn.
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <div>
                                 <h3 class="text-2xl font-semibold mb-6">Quick Message</h3>
                                 <form action="https://formspree.io/f/myzjeveb" method="POST" class="space-y-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                                        <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+                                        <input type="text" name="name"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                                        <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+                                        <input type="email" name="email"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
-                                        <select name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <select name="subject"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                             <option>Research Collaboration</option>
                                             <option>Speaking Opportunity</option>
                                             <option>Media Inquiry</option>
                                             <option>Other</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                                        <textarea rows="4" name="message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                        <textarea rows="4" name="message"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                                     </div>
-                                    
-                                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+
+                                    <button type="submit"
+                                        class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                                         Send Message
                                     </button>
                                 </form>
@@ -1706,67 +1853,77 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="content-zh">
                     <h2 class="font-serif text-4xl font-bold mb-12 text-center">联系方式</h2>
-                    
+
                     <div class="bg-white rounded-2xl p-12 shadow-lg">
                         <div class="grid md:grid-cols-2 gap-12">
                             <div>
                                 <h3 class="text-2xl font-semibold mb-6">联系信息</h3>
-                                
+
                                 <div class="space-y-6">
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fas fa-envelope text-blue-600"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">学术邮箱</div>
-                                            <a href="mailto:verified@moonshot.cn" class="text-blue-600 hover:text-blue-800">verified@moonshot.cn</a>
+                                            <a href="mailto:verified@moonshot.cn"
+                                                class="text-blue-600 hover:text-blue-800">verified@moonshot.cn</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fab fa-linkedin text-gray-600"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">LinkedIn</div>
-                                            <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="text-blue-600 hover:text-blue-800">flood-sung-305273117</a>
+                                            <a href="https://cn.linkedin.com/in/flood-sung-305273117"
+                                                class="text-blue-600 hover:text-blue-800">flood-sung-305273117</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fas fa-graduation-cap text-orange-600"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">Google Scholar</div>
-                                            <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="text-blue-600 hover:text-blue-800">6,000+ 引用</a>
+                                            <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN"
+                                                class="text-blue-600 hover:text-blue-800">6,000+ 引用</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fab fa-github text-white"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">GitHub</div>
-                                            <a href="https://github.com/floodsung" class="text-blue-600 hover:text-blue-800">floodsung</a>
+                                            <a href="https://github.com/floodsung"
+                                                class="text-blue-600 hover:text-blue-800">floodsung</a>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-center">
-                                        <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                                        <div
+                                            class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
                                             <i class="fab fa-zhihu text-white"></i>
                                         </div>
                                         <div>
                                             <div class="font-semibold">知乎</div>
-                                            <a href="https://www.zhihu.com/people/flood-sung" class="text-blue-600 hover:text-blue-800">flood-sung</a>
+                                            <a href="https://www.zhihu.com/people/flood-sung"
+                                                class="text-blue-600 hover:text-blue-800">flood-sung</a>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="mt-8 p-4 bg-blue-50 rounded-lg">
                                     <p class="text-sm text-blue-800">
                                         <i class="fas fa-info-circle mr-2"></i>
@@ -1774,36 +1931,41 @@
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <div>
                                 <h3 class="text-2xl font-semibold mb-6">快速留言</h3>
                                 <form action="https://formspree.io/f/myzjeveb" method="POST" class="space-y-4">
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">姓名</label>
-                                        <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+                                        <input type="text" name="name"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">邮箱</label>
-                                        <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"/>
+                                        <input type="email" name="email"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">主题</label>
-                                        <select name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <select name="subject"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                             <option>研究合作</option>
                                             <option>演讲机会</option>
                                             <option>媒体采访</option>
                                             <option>其他</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-2">留言</label>
-                                        <textarea rows="4" name="message" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                        <textarea rows="4" name="message"
+                                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                                     </div>
-                                    
-                                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+
+                                    <button type="submit"
+                                        class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                                         发送留言
                                     </button>
                                 </form>
@@ -1820,29 +1982,34 @@
                 <div class="text-center">
                     <h3 class="text-2xl font-semibold mb-4">Flood Sung</h3>
                     <p class="text-gray-400 mb-6">AI Researcher • RL Specialist • AGI Evangelist</p>
-                    
+
                     <div class="flex justify-center space-x-6 mb-8">
                         <a href="https://github.com/floodsung" class="text-gray-400 hover:text-white transition-colors">
                             <i class="fab fa-github text-2xl"></i>
                         </a>
-                        <a href="https://cn.linkedin.com/in/flood-sung-305273117" class="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://cn.linkedin.com/in/flood-sung-305273117"
+                            class="text-gray-400 hover:text-white transition-colors">
                             <i class="fab fa-linkedin text-2xl"></i>
                         </a>
-                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN" class="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&amp;hl=zh-CN"
+                            class="text-gray-400 hover:text-white transition-colors">
                             <i class="fas fa-graduation-cap text-2xl"></i>
                         </a>
-                        <a href="https://www.zhihu.com/people/flood-sung" class="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://www.zhihu.com/people/flood-sung"
+                            class="text-gray-400 hover:text-white transition-colors">
                             <i class="fab fa-zhihu text-2xl"></i>
                         </a>
                     </div>
-                    
+
                     <div class="border-t border-gray-800 pt-8">
                         <p class="text-gray-500 text-sm">
                             © 2025 Flood Sung. Building the future of AGI.
                         </p>
                         <div class="flex justify-center items-center mt-4">
-                            <span id="busuanzi_container_site_pv" class="inline-flex items-center px-4 py-2 rounded-full bg-black bg-opacity-80 text-white text-sm shadow-md content-en active mr-2">
-                                <i class="fas fa-eye text-blue-400 mr-1"></i> <span id="busuanzi_value_site_pv"></span> visits
+                            <span id="busuanzi_container_site_pv"
+                                class="inline-flex items-center px-4 py-2 rounded-full bg-black bg-opacity-80 text-white text-sm shadow-md content-en active mr-2">
+                                <i class="fas fa-eye text-blue-400 mr-1"></i> <span id="busuanzi_value_site_pv"></span>
+                                visits
                             </span>
                         </div>
                     </div>
@@ -1873,7 +2040,7 @@
         function toggleTOC() {
             const toc = document.getElementById('toc');
             const mainContent = document.querySelector('.main-content');
-            
+
             toc.classList.toggle('active');
             mainContent.classList.toggle('shifted');
         }
@@ -1888,7 +2055,7 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
-                    
+
                     // Close TOC on mobile after clicking
                     if (window.innerWidth <= 768) {
                         const toc = document.getElementById('toc');
@@ -1907,7 +2074,7 @@
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            
+
             // Show/hide content blocks
             document.querySelectorAll('.content-en, .content-zh').forEach(el => {
                 el.classList.remove('active');
@@ -1918,10 +2085,10 @@
         }
 
         // Close TOC when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             const toc = document.getElementById('toc');
             const tocToggle = document.querySelector('.toc-toggle');
-            
+
             if (!toc.contains(event.target) && !tocToggle.contains(event.target) && toc.classList.contains('active')) {
                 toc.classList.remove('active');
                 document.querySelector('.main-content').classList.remove('shifted');
@@ -1929,10 +2096,10 @@
         });
 
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             const toc = document.getElementById('toc');
             const mainContent = document.querySelector('.main-content');
-            
+
             if (window.innerWidth > 768) {
                 toc.classList.remove('active');
                 mainContent.classList.remove('shifted');
@@ -1945,7 +2112,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -1964,4 +2131,6 @@
     </script>
 
     <script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-</body></html>
+</body>
+
+</html>
