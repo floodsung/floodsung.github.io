@@ -13,20 +13,20 @@
 
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #0d1117;
-            --bg-card: #111822;
-            --cyan: #00f0ff;
-            --cyan-dim: #007a82;
-            --amber: #f0a500;
-            --amber-dim: #7a5500;
-            --red: #ff3355;
-            --green: #00ff88;
-            --text-primary: #e0e8f0;
-            --text-secondary: #7a8a9e;
-            --border: #1a2535;
-            --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.3);
-            --glow-amber: 0 0 20px rgba(240, 165, 0, 0.3);
+            --bg-primary: #f2f0eb;
+            --bg-secondary: #e9e7e2;
+            --bg-card: #ffffff;
+            --cyan: #3d8b99;
+            --cyan-dim: #7ab5bf;
+            --amber: #b58a2b;
+            --amber-dim: #d4ad5a;
+            --red: #c44054;
+            --green: #2a8f6a;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6b7a8d;
+            --border: #d0cdc5;
+            --glow-cyan: 0 0 15px rgba(61, 139, 153, 0.15);
+            --glow-amber: 0 0 15px rgba(181, 138, 43, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -53,8 +53,8 @@
                 0deg,
                 transparent,
                 transparent 2px,
-                rgba(0, 240, 255, 0.008) 2px,
-                rgba(0, 240, 255, 0.008) 4px
+                rgba(61, 139, 153, 0.02) 2px,
+                rgba(61, 139, 153, 0.02) 4px
             );
         }
 
@@ -66,7 +66,7 @@
             position: fixed;
             top: 0; left: 0; right: 0;
             z-index: 100;
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(242, 240, 235, 0.92);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0 2rem;
@@ -103,7 +103,7 @@
 
         .nav-links a:hover {
             color: var(--cyan);
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            text-shadow: 0 0 10px rgba(61, 139, 153, 0.4);
         }
 
         .lang-toggle {
@@ -151,8 +151,8 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image:
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(61, 139, 153, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(61, 139, 153, 0.07) 1px, transparent 1px);
             background-size: 60px 60px;
             animation: gridMove 20s linear infinite;
         }
@@ -201,7 +201,7 @@
 
         .hero-main {
             border: 1px solid var(--border);
-            background: rgba(17, 24, 34, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             padding: 3rem;
             position: relative;
@@ -257,7 +257,7 @@
             position: absolute;
             top: -5px; left: -5px; right: -5px; bottom: -5px;
             border-radius: 50%;
-            border: 1px solid rgba(0, 240, 255, 0.2);
+            border: 1px solid rgba(61, 139, 153, 0.25);
             animation: pulse 2s ease-in-out infinite;
         }
 
@@ -273,7 +273,7 @@
             color: var(--cyan);
             letter-spacing: 4px;
             margin-bottom: 0.5rem;
-            text-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+            text-shadow: 0 0 20px rgba(61, 139, 153, 0.2);
         }
 
         .hero-title {
@@ -319,7 +319,7 @@
             color: var(--cyan);
             letter-spacing: 1px;
             text-transform: uppercase;
-            background: rgba(0, 240, 255, 0.05);
+            background: rgba(61, 139, 153, 0.06);
         }
 
         .btn-group {
@@ -381,7 +381,7 @@
 
         .stat-card {
             border: 1px solid var(--border);
-            background: rgba(17, 24, 34, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
             padding: 1.5rem;
             position: relative;
@@ -586,7 +586,7 @@
 
         .pub-card.featured {
             border-left: 3px solid var(--amber);
-            background: linear-gradient(135deg, rgba(240, 165, 0, 0.05), var(--bg-card));
+            background: linear-gradient(135deg, rgba(181, 138, 43, 0.08), var(--bg-card));
         }
 
         .pub-card.featured::before {
@@ -761,7 +761,7 @@
 
         .blog-featured {
             border: 1px solid var(--amber-dim);
-            background: linear-gradient(135deg, rgba(240, 165, 0, 0.03), var(--bg-card));
+            background: linear-gradient(135deg, rgba(181, 138, 43, 0.05), var(--bg-card));
             padding: 2.5rem;
             margin-bottom: 2rem;
             position: relative;
@@ -782,7 +782,7 @@
         .blog-badge {
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.6rem;
-            color: var(--bg-primary);
+            color: #ffffff;
             background: var(--amber);
             padding: 0.2rem 0.6rem;
             letter-spacing: 2px;
@@ -897,7 +897,7 @@
 
         .repo-card {
             border: 1px solid var(--border);
-            background: rgba(10, 10, 15, 0.5);
+            background: rgba(233, 231, 226, 0.6);
             padding: 1.5rem;
             transition: all 0.3s;
         }
@@ -1136,7 +1136,7 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(242, 240, 235, 0.8);
             border: 1px solid var(--border);
             color: var(--text-primary);
             padding: 0.8rem;
@@ -1212,7 +1212,7 @@
 
         .footer-links a:hover {
             color: var(--cyan);
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+            text-shadow: 0 0 10px rgba(61, 139, 153, 0.4);
         }
 
         .footer-copy {
@@ -1320,7 +1320,7 @@
                     <div class="hero-name">FLOOD SUNG</div>
                     <div class="hero-title">AI Researcher &bull; RL Specialist &bull; AGI Architect</div>
                     <p class="hero-desc">
-                        Founder &amp; CEO of <a href="https://android16.ai">XVI Robotics</a>,
+                        Founder &amp; CEO of <a href="https://xvirobotics.ai">XVI Robotics</a>,
                         building general-purpose humanoid robot brain systems. Pioneer in few-shot learning,
                         meta-learning, reinforcement learning, and embodied AI.
                     </p>
@@ -1343,7 +1343,7 @@
                     <div class="hero-name">FLOOD SUNG</div>
                     <div class="hero-title">AI研究员 &bull; 强化学习专家 &bull; AGI架构师</div>
                     <p class="hero-desc">
-                        现任<a href="https://android16.ai">XVI Robotics</a>创始人兼CEO，
+                        现任<a href="https://xvirobotics.ai">XVI Robotics</a>创始人兼CEO，
                         打造通用人形机器人大小脑系统。在少样本学习、元学习、强化学习以及具身智能领域具有开创性贡献。
                     </p>
                     <div class="tags">
@@ -1424,7 +1424,7 @@
                 <div class="content-zh">
                     <p class="about-text">
                         Flood Sung 是一位在人工智能领域，特别是深度学习、强化学习、元学习和少样本学习方向有深入研究和显著成就的学者和工程师。
-                        他目前担任<a href="https://android16.ai">XVI Robotics</a>创始人兼CEO，
+                        他目前担任<a href="https://xvirobotics.ai">XVI Robotics</a>创始人兼CEO，
                         致力于打造通用人形机器人大小脑系统，推动具身智能与通用人工智能（AGI）的发展。
                     </p>
                     <p class="about-text">
