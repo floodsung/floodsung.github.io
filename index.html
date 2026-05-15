@@ -4,2404 +4,1588 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FLOOD SUNG // DELOS DIAGNOSTICS</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <meta name="description" content="Flood Sung - AI researcher, robotics founder, and reinforcement learning specialist." />
+    <title>Flood Sung | AI Researcher & Robotics Founder</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="favicon.png">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
     <style>
         :root {
-            --bg-primary: #f2f0eb;
-            --bg-secondary: #e9e7e2;
-            --bg-card: #ffffff;
-            --cyan: #3d8b99;
-            --cyan-dim: #7ab5bf;
-            --amber: #b58a2b;
-            --amber-dim: #d4ad5a;
-            --red: #c44054;
-            --green: #2a8f6a;
-            --text-primary: #1a1a2e;
-            --text-secondary: #6b7a8d;
-            --border: #d0cdc5;
-            --glow-cyan: 0 0 15px rgba(61, 139, 153, 0.15);
-            --glow-amber: 0 0 15px rgba(181, 138, 43, 0.15);
+            --bg: #05070d;
+            --bg-soft: #0a0f19;
+            --panel: rgba(13, 19, 31, 0.78);
+            --panel-strong: rgba(18, 27, 43, 0.94);
+            --panel-line: rgba(148, 163, 184, 0.17);
+            --line: rgba(148, 163, 184, 0.24);
+            --text: #eef6ff;
+            --muted: #96a4b8;
+            --quiet: #66748a;
+            --cyan: #40e7ff;
+            --mint: #65f4b2;
+            --amber: #ffd166;
+            --red: #ff6b8a;
+            --ink: #06080f;
+            --radius: 8px;
+            --shadow: 0 28px 90px rgba(0, 0, 0, 0.46);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            min-height: 100vh;
+            color: var(--text);
+            background:
+                linear-gradient(90deg, rgba(64, 231, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(64, 231, 255, 0.028) 1px, transparent 1px),
+                radial-gradient(circle at 50% 0%, rgba(64, 231, 255, 0.12), transparent 36rem),
+                linear-gradient(180deg, #04060b 0%, #07101b 42%, #05070d 100%);
+            background-size: 72px 72px, 72px 72px, auto, auto;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Scanline overlay */
-        body::after {
-            content: '';
+        body::before {
+            content: "";
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
+            z-index: -1;
             pointer-events: none;
-            z-index: 9999;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(61, 139, 153, 0.02) 2px,
-                rgba(61, 139, 153, 0.02) 4px
-            );
+            background:
+                linear-gradient(120deg, transparent 0 38%, rgba(101, 244, 178, 0.08) 39%, transparent 40% 100%),
+                repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 6px);
+            opacity: 0.68;
         }
 
-        .font-mono { font-family: 'Share Tech Mono', monospace; }
-        .font-display { font-family: 'Orbitron', sans-serif; }
+        body.lang-en .zh,
+        body.lang-zh .en {
+            display: none !important;
+        }
 
-        /* Navigation */
-        .nav-bar {
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+
+        .display {
+            font-family: "Space Grotesk", Inter, sans-serif;
+        }
+
+        .shell {
+            width: min(1180px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        .nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            background: rgba(242, 240, 235, 0.92);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 2rem;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            inset: 0 0 auto;
+            z-index: 50;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+            background: rgba(5, 7, 13, 0.76);
+            backdrop-filter: blur(18px);
         }
 
-        .nav-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 4px;
+        .nav-inner {
+            width: min(1280px, calc(100% - 36px));
+            height: 72px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(64, 231, 255, 0.62);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
             color: var(--cyan);
+            box-shadow: 0 0 28px rgba(64, 231, 255, 0.18);
+        }
+
+        .brand-name {
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            justify-content: center;
+            gap: 22px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.13em;
             text-transform: uppercase;
-            transition: color 0.3s, text-shadow 0.3s;
+            transition: color 0.2s ease;
         }
 
         .nav-links a:hover {
             color: var(--cyan);
-            text-shadow: 0 0 10px rgba(61, 139, 153, 0.4);
         }
 
-        .lang-toggle {
-            display: flex;
-            gap: 0;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            overflow: hidden;
+        .lang-switch {
+            display: inline-flex;
+            padding: 4px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .lang-toggle button {
+        .lang-switch button {
+            border: 0;
+            border-radius: 999px;
+            padding: 8px 12px;
+            color: var(--muted);
             background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            padding: 0.4rem 0.8rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
         }
 
-        .lang-toggle button.active {
+        .lang-switch button.active {
+            color: var(--ink);
             background: var(--cyan);
-            color: var(--bg-primary);
+            box-shadow: 0 0 20px rgba(64, 231, 255, 0.34);
         }
 
-        /* Content language visibility */
-        .content-en, .content-zh { display: none; }
-        .content-en.active, .content-zh.active { display: block; }
-
-        /* Hero Section */
         .hero {
             min-height: 100vh;
+            padding: 132px 0 72px;
+            display: grid;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(64, 231, 255, 0.65), transparent);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+            gap: 56px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            color: var(--mint);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 42px;
+            height: 1px;
+            background: var(--mint);
+            box-shadow: 0 0 16px rgba(101, 244, 178, 0.52);
+        }
+
+        h1 {
+            max-width: 780px;
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 5.05rem;
+            line-height: 0.94;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .hero-subtitle {
+            margin-top: 20px;
+            color: var(--cyan);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-copy {
+            max-width: 680px;
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 1.08rem;
+        }
+
+        .hero-copy strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .actions {
+            margin-top: 34px;
             display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            min-height: 46px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            border-radius: 999px;
+            padding: 12px 18px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.035);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(64, 231, 255, 0.62);
+            background: rgba(64, 231, 255, 0.08);
+        }
+
+        .btn.primary {
+            border-color: rgba(64, 231, 255, 0.7);
+            color: var(--ink);
+            background: linear-gradient(135deg, var(--cyan), var(--mint));
+            box-shadow: 0 0 36px rgba(64, 231, 255, 0.18);
+        }
+
+        .hero-visual {
             position: relative;
-            overflow: hidden;
-            padding-top: 60px;
-        }
-
-        /* Animated grid background */
-        .grid-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image:
-                linear-gradient(rgba(61, 139, 153, 0.07) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(61, 139, 153, 0.07) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(60px, 60px); }
-        }
-
-        /* Floating particles */
-        .particles {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--cyan);
-            border-radius: 50%;
-            animation: float linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes float {
-            0% { opacity: 0; transform: translateY(100vh); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { opacity: 0; transform: translateY(-10vh); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            width: 100%;
-            padding: 2rem;
+            min-height: 560px;
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 3rem;
-            align-items: center;
+            place-items: center;
         }
 
-        .hero-main {
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            padding: 3rem;
+        .orbital {
+            width: 430px;
+            height: 430px;
             position: relative;
-        }
-
-        .hero-main::before {
-            content: 'HOST PROFILE // ACTIVE';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--bg-primary);
-            padding: 0 10px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--cyan);
-            letter-spacing: 3px;
-        }
-
-        .hero-main::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
-            animation: scanLine 3s ease-in-out infinite;
-        }
-
-        @keyframes scanLine {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .avatar-container {
-            width: 120px;
-            height: 120px;
+            border: 1px solid rgba(148, 163, 184, 0.17);
             border-radius: 50%;
-            border: 2px solid var(--cyan);
-            padding: 3px;
-            margin-bottom: 1.5rem;
-            position: relative;
-            box-shadow: var(--glow-cyan);
+            display: grid;
+            place-items: center;
+            box-shadow: inset 0 0 80px rgba(64, 231, 255, 0.06);
         }
 
-        .avatar-container img {
+        .orbital::before,
+        .orbital::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(64, 231, 255, 0.2);
+        }
+
+        .orbital::before {
+            inset: 42px;
+            animation: spin 28s linear infinite;
+            border-style: dashed;
+        }
+
+        .orbital::after {
+            inset: 88px;
+            border-color: rgba(101, 244, 178, 0.2);
+            animation: spin 18s linear infinite reverse;
+            border-style: dashed;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .portrait {
+            position: relative;
+            z-index: 2;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            padding: 7px;
+            background:
+                linear-gradient(var(--panel-strong), var(--panel-strong)) padding-box,
+                linear-gradient(135deg, var(--cyan), var(--mint), var(--amber)) border-box;
+            border: 1px solid transparent;
+            box-shadow: var(--shadow), 0 0 48px rgba(64, 231, 255, 0.2);
+        }
+
+        .portrait img {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            filter: saturate(0.9) contrast(1.08);
         }
 
-        .avatar-container::after {
-            content: '';
+        .radar-note {
             position: absolute;
-            top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%;
-            border: 1px solid rgba(61, 139, 153, 0.25);
-            animation: pulse 2s ease-in-out infinite;
+            z-index: 3;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            background: rgba(8, 12, 21, 0.84);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-
-        .hero-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--cyan);
-            letter-spacing: 4px;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px rgba(61, 139, 153, 0.2);
-        }
-
-        .hero-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 3px;
+        .radar-note span {
+            display: block;
+            color: var(--quiet);
+            font-size: 0.65rem;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
         }
 
-        .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 2rem;
+        .radar-note strong {
+            display: block;
+            margin-top: 2px;
+            color: var(--text);
+            font-size: 1.02rem;
         }
 
-        .hero-desc a {
-            color: var(--amber);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s;
+        .note-a {
+            top: 66px;
+            right: 6px;
         }
 
-        .hero-desc a:hover {
-            border-bottom-color: var(--amber);
+        .note-b {
+            left: 0;
+            bottom: 108px;
         }
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
+        .metrics-strip {
+            margin-top: 64px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
         }
 
-        .tag {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.3rem 0.8rem;
-            border: 1px solid var(--cyan-dim);
-            color: var(--cyan);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            background: rgba(61, 139, 153, 0.06);
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-primary {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
-            padding: 0.8rem 2rem;
-            background: transparent;
-            border: 1px solid var(--cyan);
-            color: var(--cyan);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary:hover {
-            background: var(--cyan);
-            color: var(--bg-primary);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .btn-secondary {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
-            padding: 0.8rem 2rem;
-            background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--amber);
-            color: var(--amber);
-        }
-
-        /* Stats sidebar */
-        .stats-panel {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .stat-card {
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
+        .metric {
+            min-height: 116px;
+            border: 1px solid var(--panel-line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.035);
+            padding: 20px;
             position: relative;
             overflow: hidden;
         }
 
-        .stat-card::before {
-            content: '';
+        .metric::before {
+            content: "";
             position: absolute;
-            top: 0; left: 0;
-            width: 3px;
-            height: 100%;
-            background: var(--cyan);
+            inset: 0 auto 0 0;
+            width: 2px;
+            background: linear-gradient(var(--cyan), var(--mint));
         }
 
-        .stat-value {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
+        .metric-value {
+            display: block;
+            color: var(--text);
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 2.05rem;
             font-weight: 700;
-            color: var(--cyan);
-            margin-bottom: 0.3rem;
+            line-height: 1;
         }
 
-        .stat-label {
-            font-family: 'Share Tech Mono', monospace;
+        .metric-label {
+            display: block;
+            margin-top: 10px;
+            color: var(--muted);
+            font-family: "JetBrains Mono", monospace;
             font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 2px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
-        /* Section common */
         .section {
-            padding: 6rem 2rem;
-            position: relative;
-            scroll-margin-top: 60px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--cyan);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: 3px;
-        }
-
-        .section-line {
-            width: 60px;
-            height: 1px;
-            background: var(--cyan);
-            margin: 1rem auto 0;
-            box-shadow: var(--glow-cyan);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* About */
-        .about-section { background: var(--bg-secondary); }
-
-        .about-content {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 3rem;
+            padding: 104px 0;
+            scroll-margin-top: 90px;
             position: relative;
         }
 
-        .about-content::before {
-            content: 'ANALYSIS // COMPLETE';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            background: var(--bg-secondary);
-            padding: 0 10px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--green);
-            letter-spacing: 3px;
+        .section.alt {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.026), rgba(255, 255, 255, 0.01));
+            border-top: 1px solid rgba(148, 163, 184, 0.08);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.08);
         }
 
-        .about-text {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text strong {
-            color: var(--text-primary);
-        }
-
-        .about-text a {
-            color: var(--amber);
-            text-decoration: none;
-        }
-
-        .about-quote {
-            border-left: 2px solid var(--amber);
-            padding-left: 1.5rem;
-            margin: 2rem 0;
-            font-style: italic;
-            color: var(--amber);
-            font-size: 1.1rem;
-        }
-
-        /* Research */
-        .research-section { background: var(--bg-primary); }
-
-        .research-grid {
+        .section-head {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.28fr);
+            gap: 32px;
+            align-items: end;
+            margin-bottom: 42px;
+        }
+
+        .section-kicker {
+            color: var(--cyan);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            color: var(--text);
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 2.65rem;
+            line-height: 1.04;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .section-deck {
+            color: var(--muted);
+            font-size: 0.98rem;
+        }
+
+        .source-line {
+            color: var(--quiet);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.68rem;
+            line-height: 1.7;
+            text-transform: uppercase;
+        }
+
+        .source-line a {
+            color: var(--cyan);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.55fr);
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        .panel {
+            border: 1px solid var(--panel-line);
+            border-radius: var(--radius);
+            background: var(--panel);
+            box-shadow: 0 20px 64px rgba(0, 0, 0, 0.22);
+        }
+
+        .bio-panel {
+            padding: 34px;
+        }
+
+        .bio-panel p {
+            color: var(--muted);
+            margin-bottom: 18px;
+            font-size: 1.02rem;
+        }
+
+        .bio-panel p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bio-panel strong {
+            color: var(--text);
+        }
+
+        .bio-panel a {
+            color: var(--mint);
+            border-bottom: 1px solid rgba(101, 244, 178, 0.35);
+        }
+
+        .focus-panel {
+            padding: 28px;
+        }
+
+        .focus-title {
+            color: var(--quiet);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .focus-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .focus-list span,
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 999px;
+            padding: 8px 11px;
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.035);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+        }
+
+        .tag i,
+        .focus-list i {
+            color: var(--cyan);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .research-card,
+        .publication,
+        .repo,
+        .timeline-item,
+        .contact-card {
+            border: 1px solid var(--panel-line);
+            border-radius: var(--radius);
+            background: rgba(13, 19, 31, 0.75);
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .research-card:hover,
+        .publication:hover,
+        .repo:hover,
+        .timeline-item:hover,
+        .contact-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(64, 231, 255, 0.45);
+            background: rgba(16, 25, 40, 0.88);
         }
 
         .research-card {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            padding: 26px;
+            min-height: 250px;
         }
 
-        .research-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--cyan), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .research-card:hover {
-            border-color: var(--cyan-dim);
-            transform: translateY(-4px);
-        }
-
-        .research-card:hover::after {
-            opacity: 1;
-        }
-
-        .research-icon {
-            width: 50px;
-            height: 50px;
-            border: 1px solid var(--cyan-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 24px;
+            border: 1px solid rgba(64, 231, 255, 0.34);
+            border-radius: var(--radius);
             color: var(--cyan);
-            font-size: 1.2rem;
+            background: rgba(64, 231, 255, 0.06);
         }
 
-        .research-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+        .research-card h3,
+        .repo h3,
+        .contact-card h3 {
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 1.08rem;
+            line-height: 1.25;
+            margin-bottom: 12px;
         }
 
-        .research-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .research-card p,
+        .repo p,
+        .publication p,
+        .timeline-item p,
+        .contact-card p {
+            color: var(--muted);
+            font-size: 0.94rem;
         }
 
-        /* Publications */
-        .pub-section { background: var(--bg-secondary); }
-
-        .pub-card {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s;
-            position: relative;
+        .publication-list {
+            display: grid;
+            gap: 12px;
         }
 
-        .pub-card:hover {
-            border-color: var(--cyan-dim);
+        .publication {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: start;
+            padding: 24px;
         }
 
-        .pub-card.featured {
-            border-left: 3px solid var(--amber);
-            background: linear-gradient(135deg, rgba(181, 138, 43, 0.08), var(--bg-card));
-        }
-
-        .pub-card.featured::before {
-            content: 'LANDMARK';
-            position: absolute;
-            top: 1rem; right: 1rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--amber);
-            letter-spacing: 2px;
-            border: 1px solid var(--amber-dim);
-            padding: 0.2rem 0.6rem;
+        .publication.featured {
+            border-color: rgba(255, 209, 102, 0.36);
+            background:
+                linear-gradient(90deg, rgba(255, 209, 102, 0.09), transparent 42%),
+                rgba(13, 19, 31, 0.84);
         }
 
         .pub-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .pub-title a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 1.12rem;
+            font-weight: 700;
+            line-height: 1.32;
         }
 
         .pub-title a:hover {
             color: var(--cyan);
         }
 
-        .pub-authors {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.3rem;
-        }
-
-        .pub-authors strong {
-            color: var(--cyan);
-        }
-
-        .pub-venue {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-            margin-bottom: 0.8rem;
-        }
-
         .pub-meta {
+            margin-top: 8px;
+            color: var(--quiet);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+        }
+
+        .pub-tags {
             display: flex;
-            align-items: center;
-            gap: 1rem;
             flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
         }
 
-        .citation-badge {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.7rem;
-            border: 1px solid var(--amber-dim);
+        .cite {
+            min-width: 112px;
+            justify-self: end;
+            border: 1px solid rgba(255, 209, 102, 0.36);
+            border-radius: var(--radius);
+            padding: 12px;
             color: var(--amber);
-            letter-spacing: 1px;
-        }
-
-        .code-link {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--cyan);
-            text-decoration: none;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .pub-desc {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .pub-desc strong {
-            color: var(--amber);
-        }
-
-        .view-all-btn {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        /* Projects */
-        .projects-section { background: var(--bg-primary); }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .project-card:hover {
-            border-color: var(--cyan-dim);
-        }
-
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-icon {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--cyan-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--cyan);
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .project-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--text-primary);
-        }
-
-        .project-date {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-        }
-
-        .project-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .project-link {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--cyan);
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s;
-        }
-
-        .project-link:hover {
-            color: var(--amber);
-        }
-
-        /* Blog */
-        .blog-section { background: var(--bg-secondary); }
-
-        .blog-featured {
-            border: 1px solid var(--amber-dim);
-            background: linear-gradient(135deg, rgba(181, 138, 43, 0.05), var(--bg-card));
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .blog-featured::before {
-            content: 'FEATURED TRANSMISSION';
-            position: absolute;
-            top: -10px; left: 20px;
-            background: var(--bg-secondary);
-            padding: 0 10px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--amber);
-            letter-spacing: 3px;
-        }
-
-        .blog-badge {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            color: #ffffff;
-            background: var(--amber);
-            padding: 0.2rem 0.6rem;
-            letter-spacing: 2px;
-            display: inline-block;
-            margin-bottom: 0.8rem;
-        }
-
-        .blog-date {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-        }
-
-        .blog-title a {
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .blog-title a:hover { color: var(--amber); }
-
-        .blog-excerpt {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .blog-card {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .blog-card:hover { border-color: var(--cyan-dim); }
-
-        .blog-card .blog-title { font-size: 1rem; }
-
-        /* GitHub / Open Source */
-        .github-section { background: var(--bg-primary); }
-
-        .github-main {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .github-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .github-user {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .github-avatar {
-            width: 50px; height: 50px;
-            border: 1px solid var(--cyan-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--cyan);
-            font-size: 1.5rem;
-        }
-
-        .github-username {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .github-role {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .github-total-stars {
+            background: rgba(255, 209, 102, 0.06);
             text-align: right;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .github-total-stars .stat-value { font-size: 1.5rem; }
+        .cite strong {
+            display: block;
+            color: var(--text);
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 1.42rem;
+            line-height: 1.1;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+
+        .opensource-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .os-summary {
+            padding: 28px;
+            position: sticky;
+            top: 96px;
+        }
+
+        .big-number {
+            display: block;
+            color: var(--cyan);
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 3.4rem;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .os-summary p {
+            margin-top: 16px;
+            color: var(--muted);
+        }
+
+        .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .mini-stat {
+            border: 1px solid rgba(148, 163, 184, 0.17);
+            border-radius: var(--radius);
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .mini-stat strong {
+            display: block;
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 1.24rem;
+        }
+
+        .mini-stat span {
+            color: var(--quiet);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.66rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
 
         .repo-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
 
-        .repo-card {
-            border: 1px solid var(--border);
-            background: rgba(233, 231, 226, 0.6);
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .repo-card:hover { border-color: var(--cyan-dim); }
-
-        .repo-name {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--cyan);
-            margin-bottom: 0.5rem;
-        }
-
-        .repo-name a {
-            color: var(--cyan);
-            text-decoration: none;
-        }
-
-        .repo-name a:hover { text-decoration: underline; }
-
-        .repo-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 0.8rem;
+        .repo {
+            padding: 22px;
         }
 
         .repo-stats {
             display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+            color: var(--quiet);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+        }
+
+        .repo-stats span {
+            display: inline-flex;
             align-items: center;
-            justify-content: space-between;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
+            gap: 6px;
         }
 
-        .repo-badge {
-            font-size: 0.6rem;
-            padding: 0.15rem 0.5rem;
-            border: 1px solid var(--amber-dim);
+        .repo-stats i {
             color: var(--amber);
-            letter-spacing: 1px;
         }
-
-        .github-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .github-stat {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .github-stat .stat-value {
-            font-size: 1.5rem;
-        }
-
-        /* Career */
-        .career-section { background: var(--bg-secondary); }
 
         .timeline {
+            display: grid;
+            gap: 14px;
             position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0;
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--cyan), var(--cyan-dim), transparent);
         }
 
         .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 2rem;
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 24px;
+            padding: 24px;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 1.5rem;
-            width: 9px;
-            height: 9px;
-            background: var(--cyan);
-            box-shadow: var(--glow-cyan);
-        }
-
-        .timeline-card {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .timeline-card:hover {
-            border-color: var(--cyan-dim);
-        }
-
-        .timeline-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .timeline-company {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .timeline-role {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .timeline-period {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
+        .period {
             color: var(--cyan);
-            letter-spacing: 2px;
-            border: 1px solid var(--cyan-dim);
-            padding: 0.3rem 0.8rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .timeline-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 1rem;
+        .timeline-item h3 {
+            font-family: "Space Grotesk", Inter, sans-serif;
+            font-size: 1.16rem;
+            margin-bottom: 4px;
         }
 
-        /* Contact */
-        .contact-section { background: var(--bg-primary); }
+        .role {
+            color: var(--quiet);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
         }
 
-        .contact-info {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2.5rem;
+        .contact-card {
+            padding: 24px;
+            min-height: 164px;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+        .contact-card .card-icon {
+            margin-bottom: 18px;
         }
 
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .contact-card a {
             color: var(--cyan);
-            font-size: 0.9rem;
-            flex-shrink: 0;
+            word-break: break-word;
         }
 
-        .contact-label {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .contact-value a {
-            color: var(--cyan);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .contact-value a:hover { text-decoration: underline; }
-
-        .contact-form {
-            border: 1px solid var(--border);
-            background: var(--bg-card);
-            padding: 2.5rem;
-            position: relative;
-        }
-
-        .contact-form::before {
-            content: 'SECURE CHANNEL';
-            position: absolute;
-            top: -10px; left: 20px;
-            background: var(--bg-primary);
-            padding: 0 10px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--green);
-            letter-spacing: 3px;
-        }
-
-        .contact-form h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            background: rgba(242, 240, 235, 0.8);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 0.8rem;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.95rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--cyan);
-        }
-
-        .form-submit {
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--cyan);
-            color: var(--cyan);
-            padding: 0.8rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .form-submit:hover {
-            background: var(--cyan);
-            color: var(--bg-primary);
-            box-shadow: var(--glow-cyan);
-        }
-
-        /* Footer */
         .footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
-            text-align: center;
+            padding: 48px 0 56px;
+            border-top: 1px solid rgba(148, 163, 184, 0.12);
+            color: var(--quiet);
         }
 
-        .footer-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
         }
 
-        .footer-desc {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
+        .footer strong {
+            color: var(--text);
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            gap: 14px;
         }
 
         .footer-links a {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: color 0.3s, text-shadow 0.3s;
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: 50%;
+            color: var(--muted);
+            transition: color 0.2s ease, border-color 0.2s ease;
         }
 
         .footer-links a:hover {
             color: var(--cyan);
-            text-shadow: 0 0 10px rgba(61, 139, 153, 0.4);
+            border-color: rgba(64, 231, 255, 0.45);
         }
 
-        .footer-copy {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            letter-spacing: 2px;
-        }
-
-        .footer-visits {
-            margin-top: 0.8rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-name { font-size: 2rem; }
-
-            .research-grid { grid-template-columns: 1fr; }
-            .project-grid { grid-template-columns: 1fr; }
-            .blog-grid { grid-template-columns: 1fr; }
-            .repo-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .github-stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .github-header { flex-direction: column; gap: 1rem; }
-
-            .stats-panel {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Animations */
-        .fade-in {
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(16px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
         }
 
-        .fade-in.visible {
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Typing cursor */
-        .typing-cursor::after {
-            content: '_';
-            animation: blink 1s step-end infinite;
-            color: var(--cyan);
+        @media (max-width: 1020px) {
+            .nav-inner {
+                grid-template-columns: auto auto;
+                justify-content: space-between;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-grid,
+            .profile-grid,
+            .opensource-layout,
+            .section-head {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                min-height: 440px;
+            }
+
+            .metrics-strip,
+            .contact-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .os-summary {
+                position: static;
+            }
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        @media (max-width: 720px) {
+            .shell {
+                width: min(100% - 28px, 1180px);
+            }
+
+            .nav-inner {
+                width: min(100% - 24px, 1280px);
+                height: 64px;
+                gap: 12px;
+            }
+
+            .brand-name {
+                display: none;
+            }
+
+            .lang-switch button {
+                padding: 7px 10px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 112px 0 56px;
+            }
+
+            h1 {
+                font-size: 3.02rem;
+            }
+
+            h2 {
+                font-size: 2.05rem;
+            }
+
+            .hero-copy {
+                font-size: 1rem;
+            }
+
+            .hero-visual {
+                min-height: 344px;
+            }
+
+            .orbital {
+                width: 300px;
+                height: 300px;
+            }
+
+            .portrait {
+                width: 154px;
+                height: 154px;
+            }
+
+            .radar-note {
+                padding: 10px 12px;
+            }
+
+            .note-a {
+                top: 14px;
+                right: 0;
+            }
+
+            .note-b {
+                left: 0;
+                bottom: 26px;
+            }
+
+            .metrics-strip,
+            .repo-grid,
+            .contact-grid,
+            .mini-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .publication,
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .cite {
+                justify-self: start;
+                text-align: left;
+            }
+
+            .section {
+                padding: 72px 0;
+            }
+
+            .bio-panel,
+            .focus-panel,
+            .os-summary {
+                padding: 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
 
-<body>
-
-    <!-- Navigation -->
-    <nav class="nav-bar">
-        <div class="nav-logo">FLOOD.SUNG</div>
-        <ul class="nav-links content-en active">
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#career">Career</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <ul class="nav-links content-zh">
-            <li><a href="#about">简介</a></li>
-            <li><a href="#research">研究</a></li>
-            <li><a href="#publications">论文</a></li>
-            <li><a href="#projects">项目</a></li>
-            <li><a href="#career">经历</a></li>
-            <li><a href="#contact">联系</a></li>
-        </ul>
-        <div class="lang-toggle">
-            <button onclick="setLanguage('en')" class="active">EN</button>
-            <button onclick="setLanguage('zh')">中文</button>
+<body class="lang-en">
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#top" class="brand" aria-label="Flood Sung home">
+                <span class="brand-mark"><i class="fa-solid fa-wave-square"></i></span>
+                <span class="brand-name">Flood Sung</span>
+            </a>
+            <ul class="nav-links mono">
+                <li><a class="en" href="#profile">Profile</a><a class="zh" href="#profile">简介</a></li>
+                <li><a class="en" href="#research">Research</a><a class="zh" href="#research">研究</a></li>
+                <li><a class="en" href="#publications">Papers</a><a class="zh" href="#publications">论文</a></li>
+                <li><a class="en" href="#opensource">Open Source</a><a class="zh" href="#opensource">开源</a></li>
+                <li><a class="en" href="#career">Career</a><a class="zh" href="#career">经历</a></li>
+                <li><a class="en" href="#contact">Contact</a><a class="zh" href="#contact">联系</a></li>
+            </ul>
+            <div class="lang-switch" aria-label="Language switcher">
+                <button type="button" class="active" data-lang="en">EN</button>
+                <button type="button" data-lang="zh">中文</button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="hero" class="hero">
-        <div class="grid-bg"></div>
-        <div class="particles" id="particles"></div>
-
-        <div class="hero-content">
-            <div class="hero-main">
-                <div class="content-en active">
-                    <div class="avatar-container">
-                        <img src="avatar.png" alt="Flood Sung" />
+    <main id="top">
+        <section class="hero">
+            <div class="shell">
+                <div class="hero-grid">
+                    <div>
+                        <div class="eyebrow en">Robotics / RL / Foundation Models</div>
+                        <div class="eyebrow zh">机器人 / 强化学习 / 基础模型</div>
+                        <h1>Flood Sung</h1>
+                        <div class="hero-subtitle en">AI Researcher. Robotics Founder. Agent Systems Builder.</div>
+                        <div class="hero-subtitle zh">AI 研究员。机器人创业者。智能体系统建设者。</div>
+                        <p class="hero-copy en">
+                            Founder &amp; CEO of <strong>XVI Robotics</strong>, focused on general-purpose humanoid robot
+                            brain systems. Research spans reinforcement learning, meta-learning, few-shot learning,
+                            agentic intelligence, and multimodal foundation models.
+                        </p>
+                        <p class="hero-copy zh">
+                            <strong>XVI Robotics</strong> 创始人兼 CEO，专注于通用人形机器人的大小脑系统。研究方向覆盖强化学习、元学习、
+                            少样本学习、智能体智能与多模态基础模型。
+                        </p>
+                        <div class="actions">
+                            <a class="btn primary en" href="#publications"><i class="fa-solid fa-arrow-trend-up"></i> Research Signal</a>
+                            <a class="btn primary zh" href="#publications"><i class="fa-solid fa-arrow-trend-up"></i> 研究成果</a>
+                            <a class="btn" href="https://github.com/floodsung"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <a class="btn" href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en"><i class="fa-solid fa-graduation-cap"></i> Scholar</a>
+                        </div>
                     </div>
-                    <div class="hero-name">FLOOD SUNG</div>
-                    <div class="hero-title">AI Researcher &bull; RL Specialist &bull; AGI Architect</div>
-                    <p class="hero-desc">
-                        Founder &amp; CEO of <a href="https://xvirobotics.ai">XVI Robotics</a>,
-                        building general-purpose humanoid robot brain systems. Pioneer in few-shot learning,
-                        meta-learning, reinforcement learning, and embodied AI.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">AGI Research</span>
-                        <span class="tag">Reinforcement Learning</span>
-                        <span class="tag">Few-Shot Learning</span>
-                        <span class="tag">Meta-Learning</span>
-                        <span class="tag">LLM</span>
-                    </div>
-                    <div class="btn-group">
-                        <a href="#research" class="btn-primary">Explore Research <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/floodsung" class="btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                </div>
-                <div class="content-zh">
-                    <div class="avatar-container">
-                        <img src="avatar.png" alt="Flood Sung" />
-                    </div>
-                    <div class="hero-name">FLOOD SUNG</div>
-                    <div class="hero-title">AI研究员 &bull; 强化学习专家 &bull; AGI架构师</div>
-                    <p class="hero-desc">
-                        现任<a href="https://xvirobotics.ai">XVI Robotics</a>创始人兼CEO，
-                        打造通用人形机器人大小脑系统。在少样本学习、元学习、强化学习以及具身智能领域具有开创性贡献。
-                    </p>
-                    <div class="tags">
-                        <span class="tag">AGI研究</span>
-                        <span class="tag">强化学习</span>
-                        <span class="tag">少样本学习</span>
-                        <span class="tag">元学习</span>
-                        <span class="tag">大语言模型</span>
-                    </div>
-                    <div class="btn-group">
-                        <a href="#research" class="btn-primary">探索研究 <i class="fas fa-arrow-right"></i></a>
-                        <a href="https://github.com/floodsung" class="btn-secondary"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                </div>
-            </div>
 
-            <div class="stats-panel">
-                <div class="stat-card">
-                    <div class="stat-value">7,513</div>
-                    <div class="stat-label content-en active">Citations</div>
-                    <div class="stat-label content-zh">引用次数</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">45.4K</div>
-                    <div class="stat-label content-en active">GitHub Stars</div>
-                    <div class="stat-label content-zh">GitHub星标</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">AGI</div>
-                    <div class="stat-label content-en active">Research Focus</div>
-                    <div class="stat-label content-zh">研究重点</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">77K+</div>
-                    <div class="stat-label content-en active">Zhihu Followers</div>
-                    <div class="stat-label content-zh">知乎粉丝</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="section about-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// System Analysis</div>
-                <div class="content-en active"><h2 class="section-title">ABOUT</h2></div>
-                <div class="content-zh"><h2 class="section-title">个人简介</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="about-content fade-in">
-                <div class="content-en active">
-                    <p class="about-text">
-                        Flood Sung is a distinguished AI researcher and engineer specializing in deep learning,
-                        reinforcement learning, meta-learning, and few-shot learning. Currently serving as
-                        <strong>Founder &amp; CEO of XVI Robotics</strong>, he is building general-purpose humanoid
-                        robot brain systems and advancing embodied AI towards AGI.
-                    </p>
-                    <p class="about-text">
-                        With over <strong>7,500 citations</strong> on Google Scholar, Flood has published numerous
-                        high-impact papers at top-tier conferences including CVPR, NeurIPS, and ICLR. His groundbreaking
-                        work on "Learning to Compare: Relation Network for Few-Shot Learning" has achieved over
-                        <strong>6,000 citations</strong>, establishing him as a leading authority in the field.
-                    </p>
-                    <p class="about-text">
-                        Beyond research, Flood is a passionate open-source contributor, maintaining the widely acclaimed
-                        <strong>"Deep-Learning-Papers-Reading-Roadmap"</strong> with over 39.1k GitHub stars. He actively
-                        shares his insights through blog posts, academic conferences, and technical talks, earning recognition
-                        as an "AGI, Metaverse, and Robotics Evangelist."
-                    </p>
-                    <div class="about-quote">
-                        "AGI is within reach, and the future lies in successfully applying reinforcement learning
-                        to increasingly complex scenarios&mdash;from AI simulating driving and writing articles to
-                        developing apps and publishing scientific papers."
-                    </div>
-                </div>
-                <div class="content-zh">
-                    <p class="about-text">
-                        Flood Sung 是一位在人工智能领域，特别是深度学习、强化学习、元学习和少样本学习方向有深入研究和显著成就的学者和工程师。
-                        他目前担任<a href="https://xvirobotics.ai">XVI Robotics</a>创始人兼CEO，
-                        致力于打造通用人形机器人大小脑系统，推动具身智能与通用人工智能（AGI）的发展。
-                    </p>
-                    <p class="about-text">
-                        根据<a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN">Google Scholar</a>的数据，Flood Sung的学术成果显著，其论文总引用量已超过<strong>7,500次</strong>。
-                        他在CVPR、NeurIPS、ICLR等顶级学术会议发表了多篇高影响力论文，其中"Learning to Compare: Relation Network for Few-Shot Learning"获得了高达<strong>6,000次</strong>的引用。
-                    </p>
-                    <p class="about-text">
-                        作为开源社区的积极贡献者，Flood Sung维护着广受欢迎的<strong>"Deep-Learning-Papers-Reading-Roadmap"</strong>项目，获得了超过39.1k的GitHub星标。
-                        他通过撰写博客文章、参与学术会议和技术分享，积极传播知识和见解，被同行和媒体描述为"AGI、元宇宙及机器人革命布道师"。
-                    </p>
-                    <div class="about-quote">
-                        "AGI近在眼前，未来的方向是将强化学习成功应用于更复杂的场景，例如让AI模拟驾驶、创作文章、开发APP、发表科研论文等。"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research -->
-    <section id="research" class="section research-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Core Directives</div>
-                <div class="content-en active"><h2 class="section-title">RESEARCH FOCUS</h2></div>
-                <div class="content-zh"><h2 class="section-title">研究方向</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
-                <div class="research-grid">
-                    <div class="research-card fade-in">
-                        <div class="research-icon"><i class="fas fa-brain"></i></div>
-                        <h3>Few-Shot Learning</h3>
-                        <p>Pioneering work on relation networks for learning from limited data, with applications in computer vision and pattern recognition.</p>
-                    </div>
-                    <div class="research-card fade-in">
-                        <div class="research-icon"><i class="fas fa-robot"></i></div>
-                        <h3>Reinforcement Learning</h3>
-                        <p>Advancing RL algorithms for sample-efficient learning, meta-RL, and their integration with large language models.</p>
-                    </div>
-                    <div class="research-card fade-in">
-                        <div class="research-icon"><i class="fas fa-infinity"></i></div>
-                        <h3>AGI Development</h3>
-                        <p>Leading research on Long Chain-of-Thought reasoning and building foundation models for artificial general intelligence.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="content-zh">
-                <div class="research-grid">
-                    <div class="research-card fade-in">
-                        <div class="research-icon"><i class="fas fa-brain"></i></div>
-                        <h3>少样本学习</h3>
-                        <p>在关系网络方面的开创性工作，用于从有限数据中学习，在计算机视觉和模式识别领域有广泛应用。</p>
-                    </div>
-                    <div class="research-card fade-in">
-                        <div class="research-icon"><i class="fas fa-robot"></i></div>
-                        <h3>强化学习</h3>
-                        <p>推进样本高效学习的RL算法，元强化学习，以及它们与大语言模型的集成。</p>
-                    </div>
-                    <div class="research-card fade-in">
-                        <div class="research-icon"><i class="fas fa-infinity"></i></div>
-                        <h3>AGI发展</h3>
-                        <p>领导长思维链推理研究，为人工通用智能构建基础模型。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications -->
-    <section id="publications" class="section pub-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Research Logs</div>
-                <div class="content-en active"><h2 class="section-title">PUBLICATIONS</h2></div>
-                <div class="content-zh"><h2 class="section-title">代表性论文</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
-                <div class="pub-card featured fade-in">
-                    <h3 class="pub-title">
-                        <a href="https://arxiv.org/pdf/1711.06025.pdf">Learning to Compare: Relation Network for Few-Shot Learning</a>
-                    </h3>
-                    <p class="pub-authors"><strong>F. Sung</strong>, Y. Yang, L. Zhang, T. Xiang, P. H. S. Torr, T. M. Hospedales</p>
-                    <p class="pub-venue">CVPR 2018</p>
-                    <div class="pub-meta">
-                        <span class="citation-badge">6,000+ Citations</span>
-                        <a href="https://github.com/floodsung/LearningToCompare_FSL" class="code-link"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                    <p class="pub-desc">
-                        <strong>Contribution:</strong> Landmark paper introducing Relation Networks for few-shot learning,
-                        significantly improving model generalization with limited training samples through learned comparison mechanisms.
-                    </p>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/2501.12599">Kimi k1.5: Scaling reinforcement learning with LLMs</a></h3>
-                    <p class="pub-authors">K. Team, A. Du, B. Gao, ..., <strong>F. Sung</strong> (Team collaboration)</p>
-                    <p class="pub-venue">arXiv:2501.12599, 2025</p>
-                    <div class="pub-meta"><span class="citation-badge">716 Citations</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/2507.20534">Kimi k2: Open agentic intelligence</a></h3>
-                    <p class="pub-authors">K. Team, Y. Bai, Y. Bao, ..., <strong>F. Sung</strong> (Team collaboration)</p>
-                    <p class="pub-venue">arXiv:2507.20534, 2025</p>
-                    <div class="pub-meta"><span class="citation-badge">176 Citations</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/1706.09529">Learning to Learn: Meta-Critic Networks for Sample Efficient Learning</a></h3>
-                    <p class="pub-authors"><strong>F. Sung</strong>, L. Zhang, T. Xiang, T. Hospedales, Y. Yang</p>
-                    <p class="pub-venue">arXiv:1706.09529, 2017</p>
-                    <div class="pub-meta"><span class="citation-badge">175 Citations</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/1706.09601">Actor-Critic Sequence Training for Image Captioning</a></h3>
-                    <p class="pub-authors"><strong>F. Sung</strong>, L. Zhang, T. Xiang, T. M. Hospedales, Y. Yang</p>
-                    <p class="pub-venue">ICCV 2017</p>
-                    <div class="pub-meta"><span class="citation-badge">155 Citations</span></div>
-                </div>
-
-                <div class="view-all-btn">
-                    <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN" class="btn-primary">
-                        View All Publications <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="content-zh">
-                <div class="pub-card featured fade-in">
-                    <h3 class="pub-title">
-                        <a href="https://arxiv.org/pdf/1711.06025.pdf">Learning to Compare: Relation Network for Few-Shot Learning</a>
-                    </h3>
-                    <p class="pub-authors"><strong>Flood Sung</strong>, Y. Yang, L. Zhang, T. Xiang, P. H. S. Torr, T. M. Hospedales</p>
-                    <p class="pub-venue">CVPR 2018</p>
-                    <div class="pub-meta">
-                        <span class="citation-badge">6,000+ 引用</span>
-                        <a href="https://github.com/floodsung/LearningToCompare_FSL" class="code-link"><i class="fab fa-github"></i> 代码</a>
-                    </div>
-                    <p class="pub-desc">
-                        <strong>主要贡献：</strong>这篇里程碑式的论文提出了少样本学习的关系网络方法，显著提升了模型在少量训练样本下的泛化能力。
-                    </p>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/2501.12599">Kimi k1.5: Scaling reinforcement learning with LLMs</a></h3>
-                    <p class="pub-authors">K. Team, A. Du, B. Gao, ..., <strong>Flood Sung</strong> (团队合作)</p>
-                    <p class="pub-venue">arXiv:2501.12599, 2025</p>
-                    <div class="pub-meta"><span class="citation-badge">716 引用</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/2507.20534">Kimi k2: Open agentic intelligence</a></h3>
-                    <p class="pub-authors">K. Team, Y. Bai, Y. Bao, ..., <strong>Flood Sung</strong> (团队合作)</p>
-                    <p class="pub-venue">arXiv:2507.20534, 2025</p>
-                    <div class="pub-meta"><span class="citation-badge">176 引用</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/1706.09529">Learning to Learn: Meta-Critic Networks for Sample Efficient Learning</a></h3>
-                    <p class="pub-authors"><strong>Flood Sung</strong>, L. Zhang, T. Xiang, T. Hospedales, Y. Yang</p>
-                    <p class="pub-venue">arXiv:1706.09529, 2017</p>
-                    <div class="pub-meta"><span class="citation-badge">175 引用</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="https://arxiv.org/abs/1706.09601">Actor-Critic Sequence Training for Image Captioning</a></h3>
-                    <p class="pub-authors"><strong>Flood Sung</strong>, L. Zhang, T. Xiang, T. M. Hospedales, Y. Yang</p>
-                    <p class="pub-venue">ICCV 2017</p>
-                    <div class="pub-meta"><span class="citation-badge">155 引用</span></div>
-                </div>
-
-                <div class="pub-card fade-in">
-                    <h3 class="pub-title"><a href="#">TACO-RL: Task Aware Prompt Compression Optimization with Reinforcement Learning</a></h3>
-                    <p class="pub-authors">Xiaoqing Zhang, Yuhan Liu, Xiuying Chen, Shuo Shang, Rui Yan, <strong>Flood Sung</strong></p>
-                    <p class="pub-venue">ACL 2025 (Accepted Findings Papers)</p>
-                </div>
-
-                <div class="view-all-btn">
-                    <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN" class="btn-primary">
-                        查看所有论文 <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects" class="section projects-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Active Programs</div>
-                <div class="content-en active"><h2 class="section-title">PROJECTS</h2></div>
-                <div class="content-zh"><h2 class="section-title">研究项目</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
-                <div class="project-grid">
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-brain"></i></div>
-                            <div>
-                                <div class="project-name">Kimi k1.5 Multimodal Reasoning</div>
-                                <div class="project-date">Moonshot AI, 2025</div>
+                    <div class="hero-visual" aria-label="Flood Sung portrait and profile signals">
+                        <div class="orbital">
+                            <div class="portrait">
+                                <img src="avatar.png" alt="Flood Sung portrait" />
                             </div>
                         </div>
-                        <p class="project-desc">Leading the development of Kimi k1.5 multimodal reasoning model, focusing on Long Chain-of-Thought (Long-CoT) technology to achieve state-of-the-art performance in complex reasoning tasks.</p>
-                        <div class="tags" style="margin-bottom:1rem"><span class="tag">Long-CoT</span><span class="tag">Multimodal</span><span class="tag">RL</span></div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-map"></i></div>
-                            <div>
-                                <div class="project-name">DL Papers Reading Roadmap</div>
-                                <div class="project-date">Open Source, 2018-Present</div>
-                            </div>
+                        <div class="radar-note note-a mono">
+                            <span class="en">Affiliation</span>
+                            <span class="zh">当前身份</span>
+                            <strong>XVI Robotics</strong>
                         </div>
-                        <p class="project-desc">Curated collection of deep learning papers with reading roadmap, helping researchers systematically master the field. <strong style="color:var(--amber)">39.1k+ GitHub stars</strong> and widespread adoption.</p>
-                        <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" class="project-link"><i class="fab fa-github"></i> View Project</a>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-link"></i></div>
-                            <div>
-                                <div class="project-name">Long Chain-of-Thought Research</div>
-                                <div class="project-date">AGI Research, 2024-2025</div>
-                            </div>
+                        <div class="radar-note note-b mono">
+                            <span class="en">Research Identity</span>
+                            <span class="zh">研究标识</span>
+                            <strong>RL + Agents</strong>
                         </div>
-                        <p class="project-desc">Pioneering research on Long Chain-of-Thought reasoning, significantly improving LLM performance in complex reasoning tasks through extended reasoning chains and RL optimization.</p>
-                        <div class="tags"><span class="tag">Long-CoT</span><span class="tag">Reasoning</span><span class="tag">AGI</span></div>
                     </div>
+                </div>
 
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-code"></i></div>
-                            <div>
-                                <div class="project-name">Relation Network Implementation</div>
-                                <div class="project-date">Open Source, 2018-Present</div>
-                            </div>
-                        </div>
-                        <p class="project-desc">Official implementation of the CVPR 2018 paper "Learning to Compare: Relation Network for Few-Shot Learning," providing reproducible code and benchmarks.</p>
-                        <a href="https://github.com/floodsung/LearningToCompare_FSL" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                <div class="metrics-strip reveal">
+                    <div class="metric">
+                        <span class="metric-value">11,089</span>
+                        <span class="metric-label en">Google Scholar citations</span>
+                        <span class="metric-label zh">Google Scholar 引用</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">13</span>
+                        <span class="metric-label en">h-index</span>
+                        <span class="metric-label zh">h-index</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">45.9K</span>
+                        <span class="metric-label en">GitHub stars</span>
+                        <span class="metric-label zh">GitHub 星标</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">120</span>
+                        <span class="metric-label en">Public repositories</span>
+                        <span class="metric-label zh">公开仓库</span>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="content-zh">
-                <div class="project-grid">
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-brain"></i></div>
-                            <div>
-                                <div class="project-name">Kimi k1.5 多模态思考模型</div>
-                                <div class="project-date">月之暗面, 2025</div>
-                            </div>
-                        </div>
-                        <p class="project-desc">主导Kimi k1.5多模态思考模型的研发，专注于长思维链（Long-CoT）技术，在复杂推理任务中实现最先进的性能。</p>
-                        <div class="tags"><span class="tag">长思维链</span><span class="tag">多模态</span><span class="tag">强化学习</span></div>
+        <section id="profile" class="section">
+            <div class="shell">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker en">Profile</div>
+                        <div class="section-kicker zh">个人简介</div>
+                        <h2 class="en">From few-shot learning to embodied intelligence.</h2>
+                        <h2 class="zh">从少样本学习到具身智能。</h2>
+                    </div>
+                    <p class="source-line">
+                        <span class="en">Data refreshed May 12, 2026 from </span>
+                        <span class="zh">数据于 2026-05-12 更新，来源：</span>
+                        <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en">Scholar</a>,
+                        <a href="https://api.github.com/users/floodsung">GitHub API</a>,
+                        <a href="https://api.openalex.org/authors?search=Flood%20Sung">OpenAlex</a>
+                    </p>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="panel bio-panel reveal">
+                        <p class="en">
+                            Flood Sung is an AI researcher and engineer working across deep learning, reinforcement learning,
+                            meta-learning, few-shot learning, and agentic systems. He currently leads <strong>XVI Robotics</strong>,
+                            building brain systems for general-purpose humanoid robots.
+                        </p>
+                        <p class="en">
+                            His Google Scholar profile lists <strong>11,089 citations</strong>, with research interests in
+                            robotics, foundation models, agents, reinforcement learning, and meta learning. His CVPR 2018 paper
+                            <strong>Learning to Compare: Relation Network for Few-Shot Learning</strong> remains a landmark work
+                            in few-shot visual recognition.
+                        </p>
+                        <p class="en">
+                            At Moonshot AI, his recent coauthored work connects long-chain reasoning, reinforcement learning,
+                            multimodal models, formal reasoning, and open agentic intelligence through the Kimi series.
+                        </p>
+
+                        <p class="zh">
+                            Flood Sung 是一位横跨深度学习、强化学习、元学习、少样本学习与智能体系统的 AI 研究员与工程师。
+                            他目前领导 <strong>XVI Robotics</strong>，打造面向通用人形机器人的大小脑系统。
+                        </p>
+                        <p class="zh">
+                            他的 Google Scholar 主页显示总引用 <strong>11,089 次</strong>，研究兴趣包括机器人、基础模型、智能体、
+                            强化学习与元学习。CVPR 2018 论文 <strong>Learning to Compare: Relation Network for Few-Shot Learning</strong>
+                            至今仍是少样本视觉识别方向的代表性工作。
+                        </p>
+                        <p class="zh">
+                            在月之暗面的近期合作研究中，他参与了 Kimi 系列模型相关工作，把长链推理、强化学习、多模态模型、
+                            形式化推理与开放智能体智能连接起来。
+                        </p>
                     </div>
 
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-map"></i></div>
-                            <div>
-                                <div class="project-name">深度学习论文阅读路线图</div>
-                                <div class="project-date">开源项目, 2018-至今</div>
-                            </div>
+                    <div class="panel focus-panel reveal">
+                        <div class="focus-title en">Active vectors</div>
+                        <div class="focus-title zh">当前方向</div>
+                        <div class="focus-list">
+                            <span><i class="fa-solid fa-robot"></i> Robotics</span>
+                            <span><i class="fa-solid fa-layer-group"></i> Foundation Models</span>
+                            <span><i class="fa-solid fa-diagram-project"></i> Agent Systems</span>
+                            <span><i class="fa-solid fa-route"></i> Reinforcement Learning</span>
+                            <span><i class="fa-solid fa-bolt"></i> Meta Learning</span>
+                            <span><i class="fa-solid fa-eye"></i> Multimodal Reasoning</span>
                         </div>
-                        <p class="project-desc">精选的深度学习论文集合与阅读路线图，帮助研究者系统性地掌握该领域。<strong style="color:var(--amber)">39.1k+ GitHub星标</strong>。</p>
-                        <a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap" class="project-link"><i class="fab fa-github"></i> 查看项目</a>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-link"></i></div>
-                            <div>
-                                <div class="project-name">长思维链研究</div>
-                                <div class="project-date">AGI研究, 2024-2025</div>
-                            </div>
-                        </div>
-                        <p class="project-desc">长思维链推理的开创性研究，通过扩展推理链和强化学习优化，显著提升LLM在复杂推理任务中的性能。</p>
-                        <div class="tags"><span class="tag">长思维链</span><span class="tag">推理</span><span class="tag">AGI</span></div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-code"></i></div>
-                            <div>
-                                <div class="project-name">关系网络实现</div>
-                                <div class="project-date">开源项目, 2018-至今</div>
-                            </div>
-                        </div>
-                        <p class="project-desc">CVPR 2018论文"Learning to Compare: Relation Network for Few-Shot Learning"的官方实现，为研究社区提供可复现的代码和基准测试。</p>
-                        <a href="https://github.com/floodsung/LearningToCompare_FSL" class="project-link"><i class="fab fa-github"></i> 查看代码</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blog -->
-    <section id="blog" class="section blog-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Signal Transmissions</div>
-                <div class="content-en active"><h2 class="section-title">BLOG &amp; ARTICLES</h2></div>
-                <div class="content-zh"><h2 class="section-title">博客与文章</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
-                <div class="blog-featured fade-in">
-                    <div class="blog-badge">Featured</div>
-                    <div class="blog-date">Moonshot AI Official &bull; Feb 2025</div>
-                    <h3 class="blog-title">
-                        <a href="https://x.com/Kimi_Moonshot/status/1882413059513471044">The Thought Process Behind Kimi k1.5</a>
-                    </h3>
-                    <p class="blog-excerpt">A comprehensive analysis of OpenAI's o1 model breakthrough and Moonshot AI's journey in developing Long-CoT technology. Reveals technical challenges, strategic decisions, and future implications for AGI.</p>
-                    <div class="tags"><span class="tag">Long-CoT</span><span class="tag">AGI</span><span class="tag">Technical Analysis</span></div>
+        <section id="research" class="section alt">
+            <div class="shell">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker en">Research System</div>
+                        <div class="section-kicker zh">研究系统</div>
+                        <h2 class="en">A compact map of the work.</h2>
+                        <h2 class="zh">一张紧凑的研究图谱。</h2>
+                    </div>
+                    <p class="section-deck en">The through-line is sample-efficient intelligence: models that reason, adapt, act, and transfer across real environments.</p>
+                    <p class="section-deck zh">主线是样本高效智能：能够推理、适应、行动，并迁移到真实环境中的模型。</p>
                 </div>
 
-                <div class="blog-grid">
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">Zhihu Column &bull; Jan 2025</div>
-                        <h3 class="blog-title"><a href="https://www.zhihu.com/pin/1874790125608779776">Behind Kimi k1.5: From Long-CoT Recognition to Model Training</a></h3>
-                        <p class="blog-excerpt">Personal reflections on the development process of Kimi k1.5, from initial recognition of Long-CoT importance to practical training methodologies.</p>
-                    </div>
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">TechBeat &bull; Mar 2024</div>
-                        <h3 class="blog-title"><a href="https://www.bilibili.com/read/cv16355286/">Latest Advances in Deep Learning and Few-Shot Learning</a></h3>
-                        <p class="blog-excerpt">Comprehensive overview of recent developments in deep learning and few-shot learning, exploring practical applications and future directions.</p>
-                    </div>
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">Zhihu Live &bull; 2024</div>
-                        <h3 class="blog-title"><a href="https://zhuanlan.zhihu.com/p/24816290">AGI Discussions: The Future of Artificial General Intelligence</a></h3>
-                        <p class="blog-excerpt">Live discussion series exploring AGI definition, development paths, and potential impacts on society and ethics.</p>
-                    </div>
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">ScienceNet &bull; Feb 2025</div>
-                        <h3 class="blog-title"><a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm">The Future of AI and AGI</a></h3>
-                        <p class="blog-excerpt">Insights into AI's future development and the challenges and opportunities facing AGI research and implementation.</p>
-                    </div>
-                </div>
-
-                <div class="view-all-btn">
-                    <a href="https://www.zhihu.com/people/flood-sung" class="btn-primary">View All Articles <i class="fas fa-external-link-alt"></i></a>
+                <div class="card-grid">
+                    <article class="research-card reveal">
+                        <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="en">Few-Shot &amp; Meta-Learning</h3>
+                        <h3 class="zh">少样本与元学习</h3>
+                        <p class="en">Relation Networks and meta-critic methods for learning from limited supervision and improving transfer.</p>
+                        <p class="zh">关系网络与元评论器方法，面向少监督学习与跨任务迁移。</p>
+                    </article>
+                    <article class="research-card reveal">
+                        <div class="card-icon"><i class="fa-solid fa-route"></i></div>
+                        <h3 class="en">Reinforcement Learning</h3>
+                        <h3 class="zh">强化学习</h3>
+                        <p class="en">RL for reasoning, planning, formal proof, code generation, and long-horizon agent behavior.</p>
+                        <p class="zh">面向推理、规划、形式化证明、代码生成与长程智能体行为的强化学习。</p>
+                    </article>
+                    <article class="research-card reveal">
+                        <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
+                        <h3 class="en">Foundation Agents</h3>
+                        <h3 class="zh">基础智能体</h3>
+                        <p class="en">Open agentic intelligence, computer-use agents, multimodal models, and tool-using systems.</p>
+                        <p class="zh">开放智能体智能、计算机使用智能体、多模态模型与工具使用系统。</p>
+                    </article>
                 </div>
             </div>
+        </section>
 
-            <div class="content-zh">
-                <div class="blog-featured fade-in">
-                    <div class="blog-badge">精选</div>
-                    <div class="blog-date">月之暗面官方 &bull; 2025年2月</div>
-                    <h3 class="blog-title">
-                        <a href="https://mp.weixin.qq.com/s/sJmT-tM3A-mglZ1d4OI80A">Kimi k1.5 背后的长长长长长思考</a>
-                    </h3>
-                    <p class="blog-excerpt">对OpenAI o1模型突破的全面分析，以及月之暗面在开发长思维链技术过程中的旅程。揭示了技术挑战、战略决策以及对AGI发展的未来影响。</p>
-                    <div class="tags"><span class="tag">长思维链</span><span class="tag">AGI</span><span class="tag">技术分析</span></div>
+        <section id="publications" class="section">
+            <div class="shell">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker en">Selected Publications</div>
+                        <div class="section-kicker zh">代表性论文</div>
+                        <h2 class="en">High-impact papers and recent frontier systems.</h2>
+                        <h2 class="zh">高影响力论文与前沿系统工作。</h2>
+                    </div>
+                    <p class="source-line">
+                        <span class="en">Citation counts: Google Scholar, May 12, 2026.</span>
+                        <span class="zh">引用数：Google Scholar，2026-05-12。</span>
+                    </p>
                 </div>
 
-                <div class="blog-grid">
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">知乎专栏 &bull; 2025年1月</div>
-                        <h3 class="blog-title"><a href="https://www.zhihu.com/pin/1874790125608779776">Kimi k1.5背后：从长思维链认识到模型训练</a></h3>
-                        <p class="blog-excerpt">关于Kimi k1.5研发过程的个人思考，从最初认识到长思维链的重要性到实际的训练方法。</p>
-                    </div>
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">TechBeat &bull; 2024年3月</div>
-                        <h3 class="blog-title"><a href="https://www.bilibili.com/read/cv16355286/">深度学习与少样本学习的最新进展</a></h3>
-                        <p class="blog-excerpt">全面概述深度学习和少样本学习的最新发展，探索实际应用和未来方向。</p>
-                    </div>
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">知乎Live &bull; 2024年</div>
-                        <h3 class="blog-title"><a href="https://zhuanlan.zhihu.com/p/24816290">AGI杂谈：人工通用智能的未来</a></h3>
-                        <p class="blog-excerpt">探讨AGI的定义、发展路径以及对社会和伦理的潜在影响的系列直播讨论。</p>
-                    </div>
-                    <div class="blog-card fade-in">
-                        <div class="blog-date">科学网 &bull; 2025年2月</div>
-                        <h3 class="blog-title"><a href="https://news.sciencenet.cn/htmlnews/2025/2/538884.shtm">人工智能的未来与AGI</a></h3>
-                        <p class="blog-excerpt">关于AI未来发展的见解，以及AGI研究和实施所面临的挑战与机遇。</p>
-                    </div>
-                </div>
-
-                <div class="view-all-btn">
-                    <a href="https://www.zhihu.com/people/flood-sung" class="btn-primary">查看所有文章 <i class="fas fa-external-link-alt"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GitHub / Open Source -->
-    <section id="github" class="section github-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Open Source Matrix</div>
-                <div class="content-en active"><h2 class="section-title">OPEN SOURCE</h2></div>
-                <div class="content-zh"><h2 class="section-title">开源项目</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
-                <div class="github-main fade-in">
-                    <div class="github-header">
-                        <div class="github-user">
-                            <div class="github-avatar"><i class="fab fa-github"></i></div>
-                            <div>
-                                <div class="github-username">floodsung</div>
-                                <div class="github-role">AI Researcher &amp; Open Source Contributor</div>
+                <div class="publication-list">
+                    <article class="publication featured reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/1711.06025">Learning to Compare: Relation Network for Few-Shot Learning</a></h3>
+                            <div class="pub-meta">CVPR 2018 · Flood Sung, Yongxin Yang, Li Zhang, Tao Xiang, Philip H. S. Torr, Timothy M. Hospedales</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-star"></i> Few-Shot Learning</span>
+                                <a class="tag" href="https://github.com/floodsung/LearningToCompare_FSL"><i class="fa-brands fa-github"></i> Code</a>
                             </div>
                         </div>
-                        <div class="github-total-stars">
-                            <div class="stat-value">45.4K+</div>
-                            <div class="stat-label">Total Stars</div>
+                        <div class="cite"><strong>6,378</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2504.07491">Kimi-VL Technical Report</a></h3>
+                            <div class="pub-meta">arXiv 2025 · Kimi Team · includes Flood Sung</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-eye"></i> Vision-Language</span>
+                                <span class="tag"><i class="fa-solid fa-ruler-combined"></i> 128K Context</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>2,093</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2501.12599">Kimi k1.5: Scaling Reinforcement Learning with LLMs</a></h3>
+                            <div class="pub-meta">arXiv 2025 · Kimi Team · includes Flood Sung</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-link"></i> Long-CoT</span>
+                                <span class="tag"><i class="fa-solid fa-route"></i> Reinforcement Learning</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>1,091</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2507.20534">Kimi K2: Open Agentic Intelligence</a></h3>
+                            <div class="pub-meta">arXiv 2025 · Kimi Team · includes Flood Sung</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-diagram-project"></i> Agentic Intelligence</span>
+                                <span class="tag"><i class="fa-solid fa-code"></i> Coding</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>637</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2504.11354">Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning</a></h3>
+                            <div class="pub-meta">arXiv 2025 · includes Flood Sung</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-square-root-variable"></i> Formal Reasoning</span>
+                                <span class="tag"><i class="fa-solid fa-route"></i> RL</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>149</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2602.02276">Kimi K2.5: Visual Agentic Intelligence</a></h3>
+                            <div class="pub-meta">arXiv 2026 · Kimi Team · includes Flood Sung</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-eye"></i> Multimodal Agents</span>
+                                <span class="tag"><i class="fa-solid fa-people-arrows"></i> Agent Swarm</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>112</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2508.09123">OpenCUA: Open Foundations for Computer-Use Agents</a></h3>
+                            <div class="pub-meta">arXiv 2025 · includes Flood Sung</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-desktop"></i> Computer Use</span>
+                                <span class="tag"><i class="fa-solid fa-layer-group"></i> Open Foundations</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>55</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+
+                    <article class="publication reveal">
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/1706.09529">Learning to Learn: Meta-Critic Networks for Sample Efficient Learning</a></h3>
+                            <div class="pub-meta">arXiv 2017 · Flood Sung, Li Zhang, Tao Xiang, Timothy Hospedales, Yongxin Yang</div>
+                            <div class="pub-tags">
+                                <span class="tag"><i class="fa-solid fa-bolt"></i> Meta Learning</span>
+                            </div>
+                        </div>
+                        <div class="cite"><strong>181</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                    </article>
+                </div>
+
+                <div class="actions" style="justify-content:center;margin-top:34px">
+                    <a class="btn primary en" href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en"><i class="fa-solid fa-up-right-from-square"></i> View Scholar Profile</a>
+                    <a class="btn primary zh" href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN"><i class="fa-solid fa-up-right-from-square"></i> 查看 Scholar 主页</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="opensource" class="section alt">
+            <div class="shell">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker en">Open Source</div>
+                        <div class="section-kicker zh">开源项目</div>
+                        <h2 class="en">Research tools that became community infrastructure.</h2>
+                        <h2 class="zh">成为社区基础设施的研究工具。</h2>
+                    </div>
+                    <p class="source-line">
+                        <span class="en">GitHub API snapshot: 120 public repos, 45,931 stars, 8,877 forks.</span>
+                        <span class="zh">GitHub API 快照：120 个公开仓库，45,931 stars，8,877 forks。</span>
+                    </p>
+                </div>
+
+                <div class="opensource-layout">
+                    <div class="panel os-summary reveal">
+                        <span class="big-number">45.9K</span>
+                        <p class="en">stars across public GitHub repositories, led by long-running reading roadmaps and reproducible research code.</p>
+                        <p class="zh">公开 GitHub 仓库累计 stars，以长期维护的论文路线图与可复现研究代码为主。</p>
+                        <div class="mini-stats">
+                            <div class="mini-stat"><strong>8.9K</strong><span>Forks</span></div>
+                            <div class="mini-stat"><strong>3.3K</strong><span>Followers</span></div>
+                            <div class="mini-stat"><strong>120</strong><span>Repos</span></div>
+                            <div class="mini-stat"><strong>39.5K</strong><span>Top repo stars</span></div>
                         </div>
                     </div>
 
                     <div class="repo-grid">
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap">Deep-Learning-Papers-Reading-Roadmap</a></div>
-                            <p class="repo-desc">Curated collection of deep learning papers with systematic reading roadmap. Most starred repository.</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 39.1k &nbsp; &#127860; 7.4k</span>
-                                <span class="repo-badge">Featured</span>
-                            </div>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/LearningToCompare_FSL">LearningToCompare_FSL</a></div>
-                            <p class="repo-desc">Official implementation of CVPR 2018 "Learning to Compare: Relation Network for Few-Shot Learning".</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 1.1K &nbsp; &#127860; 264</span>
-                                <span class="repo-badge">CVPR</span>
-                            </div>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/Deep-Reinforcement-Learning">Deep-Reinforcement-Learning</a></div>
-                            <p class="repo-desc">Collection of deep reinforcement learning algorithms for educational and research purposes.</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 987 &nbsp; &#127860; 321</span>
-                                <span class="repo-badge">RL</span>
-                            </div>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/Meta-Learning-Algorithms">Meta-Learning-Algorithms</a></div>
-                            <p class="repo-desc">Implementation of various meta-learning algorithms for sample-efficient learning tasks.</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 756 &nbsp; &#127860; 234</span>
-                                <span class="repo-badge">Meta</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="view-all-btn" style="margin-top:1.5rem">
-                        <a href="https://github.com/floodsung" class="btn-primary"><i class="fab fa-github"></i> View All Projects</a>
-                    </div>
-                </div>
-
-                <div class="github-stats-grid">
-                    <div class="github-stat">
-                        <div class="stat-value">15+</div>
-                        <div class="stat-label">Repositories</div>
-                    </div>
-                    <div class="github-stat">
-                        <div class="stat-value" style="color:var(--green)">40K+</div>
-                        <div class="stat-label">Total Stars</div>
-                    </div>
-                    <div class="github-stat">
-                        <div class="stat-value" style="color:var(--amber)">10K+</div>
-                        <div class="stat-label">Total Forks</div>
-                    </div>
-                    <div class="github-stat">
-                        <div class="stat-value" style="color:var(--red)">7</div>
-                        <div class="stat-label">Languages</div>
+                        <article class="repo reveal">
+                            <h3><a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap">Deep-Learning-Papers-Reading-Roadmap</a></h3>
+                            <p class="en">A curated reading roadmap for deep learning papers, widely used by students and researchers.</p>
+                            <p class="zh">面向深度学习论文的系统阅读路线图，被学生与研究者广泛使用。</p>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>39,493</span><span><i class="fa-solid fa-code-fork"></i>7,306</span></div>
+                        </article>
+                        <article class="repo reveal">
+                            <h3><a href="https://github.com/floodsung/Meta-Learning-Papers">Meta-Learning-Papers</a></h3>
+                            <p class="en">Paper collection for meta-learning, learning to learn, one-shot learning, and few-shot learning.</p>
+                            <p class="zh">元学习、learning to learn、one-shot 与 few-shot learning 论文合集。</p>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>2,654</span><span><i class="fa-solid fa-code-fork"></i>474</span></div>
+                        </article>
+                        <article class="repo reveal">
+                            <h3><a href="https://github.com/floodsung/LearningToCompare_FSL">LearningToCompare_FSL</a></h3>
+                            <p class="en">PyTorch implementation of the CVPR 2018 Relation Network paper.</p>
+                            <p class="zh">CVPR 2018 关系网络论文的 PyTorch 官方实现。</p>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>1,075</span><span><i class="fa-solid fa-code-fork"></i>264</span></div>
+                        </article>
+                        <article class="repo reveal">
+                            <h3><a href="https://github.com/floodsung/DRL-FlappyBird">DRL-FlappyBird</a></h3>
+                            <p class="en">Playing Flappy Bird with deep Q-learning, built as a practical RL learning project.</p>
+                            <p class="zh">使用 Deep Q-Learning 玩 Flappy Bird 的强化学习实践项目。</p>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>585</span><span><i class="fa-solid fa-code-fork"></i>322</span></div>
+                        </article>
+                        <article class="repo reveal">
+                            <h3><a href="https://github.com/floodsung/DDPG">DDPG</a></h3>
+                            <p class="en">Reimplementation of DDPG for continuous control with OpenAI Gym and TensorFlow.</p>
+                            <p class="zh">基于 OpenAI Gym 与 TensorFlow 的 DDPG 连续控制复现。</p>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>575</span><span><i class="fa-solid fa-code-fork"></i>177</span></div>
+                        </article>
+                        <article class="repo reveal">
+                            <h3><a href="https://github.com/floodsung/LLM-with-RL-papers">LLM-with-RL-papers</a></h3>
+                            <p class="en">A focused collection of papers on the intersection of LLMs and reinforcement learning.</p>
+                            <p class="zh">聚焦 LLM 与强化学习交叉方向的论文合集。</p>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>280</span><span><i class="fa-solid fa-code-fork"></i>10</span></div>
+                        </article>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="content-zh">
-                <div class="github-main fade-in">
-                    <div class="github-header">
-                        <div class="github-user">
-                            <div class="github-avatar"><i class="fab fa-github"></i></div>
-                            <div>
-                                <div class="github-username">floodsung</div>
-                                <div class="github-role">AI研究员 &amp; 开源贡献者</div>
-                            </div>
-                        </div>
-                        <div class="github-total-stars">
-                            <div class="stat-value">45.4K+</div>
-                            <div class="stat-label">总星标数</div>
-                        </div>
+        <section id="career" class="section">
+            <div class="shell">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker en">Career Timeline</div>
+                        <div class="section-kicker zh">职业经历</div>
+                        <h2 class="en">Research, systems, and company building.</h2>
+                        <h2 class="zh">研究、系统与公司建设。</h2>
                     </div>
-
-                    <div class="repo-grid">
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap">Deep-Learning-Papers-Reading-Roadmap</a></div>
-                            <p class="repo-desc">精选的深度学习论文集合与系统性的阅读路线图。最受欢迎的项目。</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 39.1k &nbsp; &#127860; 7.4k</span>
-                                <span class="repo-badge">精选</span>
-                            </div>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/LearningToCompare_FSL">LearningToCompare_FSL</a></div>
-                            <p class="repo-desc">CVPR 2018论文"Learning to Compare: Relation Network for Few-Shot Learning"的官方实现。</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 1.1k &nbsp; &#127860; 264</span>
-                                <span class="repo-badge">CVPR</span>
-                            </div>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/Deep-Reinforcement-Learning">Deep-Reinforcement-Learning</a></div>
-                            <p class="repo-desc">深度强化学习算法的集合实现，用于教育和研究目的。</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 987 &nbsp; &#127860; 321</span>
-                                <span class="repo-badge">RL</span>
-                            </div>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name"><a href="https://github.com/floodsung/Meta-Learning-Algorithms">Meta-Learning-Algorithms</a></div>
-                            <p class="repo-desc">多种元学习算法的实现，用于样本高效的学习任务。</p>
-                            <div class="repo-stats">
-                                <span>&#11088; 756 &nbsp; &#127860; 234</span>
-                                <span class="repo-badge">元学习</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="view-all-btn" style="margin-top:1.5rem">
-                        <a href="https://github.com/floodsung" class="btn-primary"><i class="fab fa-github"></i> 查看所有项目</a>
-                    </div>
+                    <p class="section-deck en">A concise public-facing timeline of roles and research programs.</p>
+                    <p class="section-deck zh">公开主页中的简明经历线索。</p>
                 </div>
 
-                <div class="github-stats-grid">
-                    <div class="github-stat">
-                        <div class="stat-value">15+</div>
-                        <div class="stat-label">公开仓库</div>
-                    </div>
-                    <div class="github-stat">
-                        <div class="stat-value" style="color:var(--green)">40K+</div>
-                        <div class="stat-label">总星标数</div>
-                    </div>
-                    <div class="github-stat">
-                        <div class="stat-value" style="color:var(--amber)">10K+</div>
-                        <div class="stat-label">总复刻数</div>
-                    </div>
-                    <div class="github-stat">
-                        <div class="stat-value" style="color:var(--red)">7</div>
-                        <div class="stat-label">编程语言</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Career -->
-    <section id="career" class="section career-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Memory Archive</div>
-                <div class="content-en active"><h2 class="section-title">CAREER TIMELINE</h2></div>
-                <div class="content-zh"><h2 class="section-title">职业经历</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
                 <div class="timeline">
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">XVI Robotics</div>
-                                    <div class="timeline-role">Founder &amp; CEO</div>
-                                </div>
-                                <div class="timeline-period">2025 - Present</div>
-                            </div>
-                            <p class="timeline-desc">Building general-purpose humanoid robot brain systems. Leading the development of embodied AI solutions that integrate perception, planning, and control for next-generation humanoid robots.</p>
-                            <div class="tags"><span class="tag">Embodied AI</span><span class="tag">Humanoid Robots</span><span class="tag">AGI</span></div>
+                    <article class="timeline-item reveal">
+                        <div class="period">2025 - Present</div>
+                        <div>
+                            <h3>XVI Robotics</h3>
+                            <div class="role en">Founder &amp; CEO</div>
+                            <div class="role zh">创始人兼 CEO</div>
+                            <p class="en">Building general-purpose humanoid robot brain systems that integrate perception, reasoning, planning, and control.</p>
+                            <p class="zh">打造通用人形机器人大小脑系统，连接感知、推理、规划与控制。</p>
                         </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Moonshot AI</div>
-                                    <div class="timeline-role">Member of Technical Staff &amp; RL Lead</div>
-                                </div>
-                                <div class="timeline-period">2023 - 2025</div>
-                            </div>
-                            <p class="timeline-desc">Led reinforcement learning research team focused on AGI development. Deeply involved in Kimi series models R&amp;D, particularly Kimi k1.5 multimodal reasoning model and Long-CoT technology research.</p>
-                            <div class="tags"><span class="tag">AGI</span><span class="tag">RL</span><span class="tag">Long-CoT</span></div>
+                    </article>
+                    <article class="timeline-item reveal">
+                        <div class="period">2023 - 2025</div>
+                        <div>
+                            <h3>Moonshot AI</h3>
+                            <div class="role en">Member of Technical Staff &amp; RL Lead</div>
+                            <div class="role zh">技术专家 &amp; RL Lead</div>
+                            <p class="en">Worked on Kimi series research, including long-chain reasoning, RL scaling, multimodal models, and agentic systems.</p>
+                            <p class="zh">参与 Kimi 系列研究，包括长链推理、RL scaling、多模态模型与智能体系统。</p>
                         </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Inspir AI</div>
-                                    <div class="timeline-role">Research Manager</div>
-                                </div>
-                                <div class="timeline-period">2022 - 2023</div>
-                            </div>
-                            <p class="timeline-desc">Focused on AGI research as Research Manager, leading projects in advanced AI algorithms and machine learning applications.</p>
-                            <div class="tags"><span class="tag">AGI Research</span><span class="tag">Management</span></div>
+                    </article>
+                    <article class="timeline-item reveal">
+                        <div class="period">2022 - 2023</div>
+                        <div>
+                            <h3>Inspir AI</h3>
+                            <div class="role en">Research Manager</div>
+                            <div class="role zh">研究经理</div>
+                            <p class="en">Led AGI-oriented research projects and advanced machine-learning applications.</p>
+                            <p class="zh">领导面向 AGI 的研究项目与机器学习应用探索。</p>
                         </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">ByteDance AI Lab</div>
-                                    <div class="timeline-role">Research Scientist</div>
-                                </div>
-                                <div class="timeline-period">2020 - 2022</div>
-                            </div>
-                            <p class="timeline-desc">Conducted research and development in deep learning and reinforcement learning, contributing to cutting-edge AI applications and algorithms.</p>
-                            <div class="tags"><span class="tag">Deep Learning</span><span class="tag">RL</span></div>
+                    </article>
+                    <article class="timeline-item reveal">
+                        <div class="period">2020 - 2022</div>
+                        <div>
+                            <h3>ByteDance AI Lab</h3>
+                            <div class="role en">Research Scientist</div>
+                            <div class="role zh">研究科学家</div>
+                            <p class="en">Conducted research and development in deep learning and reinforcement learning.</p>
+                            <p class="zh">从事深度学习与强化学习方向的研究和开发。</p>
                         </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Inspir AI</div>
-                                    <div class="timeline-role">Algorithm Expert</div>
-                                </div>
-                                <div class="timeline-period">Earlier</div>
-                            </div>
-                            <p class="timeline-desc">Served as Algorithm Expert, developing and optimizing AI algorithms for various applications and use cases.</p>
-                            <div class="tags"><span class="tag">Algorithms</span><span class="tag">AI</span></div>
+                    </article>
+                    <article class="timeline-item reveal">
+                        <div class="period en">Earlier</div>
+                        <div class="period zh">早期</div>
+                        <div>
+                            <h3>Independent Research &amp; Open Source</h3>
+                            <div class="role en">Research foundation</div>
+                            <div class="role zh">研究基础</div>
+                            <p class="en">Built the research and open-source body of work that led to few-shot learning, RL, and meta-learning contributions.</p>
+                            <p class="zh">通过独立研究与开源积累，形成少样本学习、强化学习与元学习方向的长期贡献。</p>
                         </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Independent Researcher</div>
-                                    <div class="timeline-role">Early Career</div>
-                                </div>
-                                <div class="timeline-period">Foundation</div>
-                            </div>
-                            <p class="timeline-desc">Worked as an independent researcher in AI, focusing on deep learning and reinforcement learning. Self-driven research and open-source contributions laid the foundation for my AI career.</p>
-                            <div class="tags"><span class="tag">Independent</span></div>
-                        </div>
-                    </div>
+                    </article>
                 </div>
             </div>
+        </section>
 
-            <div class="content-zh">
-                <div class="timeline">
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">XVI Robotics</div>
-                                    <div class="timeline-role">创始人 &amp; CEO</div>
-                                </div>
-                                <div class="timeline-period">2025 - 至今</div>
-                            </div>
-                            <p class="timeline-desc">打造通用人形机器人大小脑系统。领导开发集感知、规划和控制于一体的具身智能解决方案，致力于下一代人形机器人技术研发。</p>
-                            <div class="tags"><span class="tag">具身智能</span><span class="tag">人形机器人</span><span class="tag">AGI</span></div>
-                        </div>
+        <section id="contact" class="section alt">
+            <div class="shell">
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker en">Contact</div>
+                        <div class="section-kicker zh">联系方式</div>
+                        <h2 class="en">Signals, profiles, and collaboration channels.</h2>
+                        <h2 class="zh">信号、主页与合作渠道。</h2>
                     </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Moonshot AI (月之暗面)</div>
-                                    <div class="timeline-role">技术专家 &amp; RL Lead</div>
-                                </div>
-                                <div class="timeline-period">2023 - 2025</div>
-                            </div>
-                            <p class="timeline-desc">领导强化学习研究团队，专注于AGI发展。深度参与Kimi系列模型研发，特别是Kimi k1.5多模态思考模型和长思维链技术研究。</p>
-                            <div class="tags"><span class="tag">AGI</span><span class="tag">强化学习</span><span class="tag">长思维链</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Inspir AI</div>
-                                    <div class="timeline-role">研究经理</div>
-                                </div>
-                                <div class="timeline-period">2022 - 2023</div>
-                            </div>
-                            <p class="timeline-desc">作为研究经理专注于AGI研究，领导先进AI算法和机器学习应用项目。</p>
-                            <div class="tags"><span class="tag">AGI研究</span><span class="tag">管理</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">字节跳动 AI Lab</div>
-                                    <div class="timeline-role">研究科学家</div>
-                                </div>
-                                <div class="timeline-period">2020 - 2022</div>
-                            </div>
-                            <p class="timeline-desc">从事深度学习和强化学习的研究与开发，为前沿AI应用和算法做出贡献。</p>
-                            <div class="tags"><span class="tag">深度学习</span><span class="tag">强化学习</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">Inspir AI</div>
-                                    <div class="timeline-role">算法专家</div>
-                                </div>
-                                <div class="timeline-period">早期</div>
-                            </div>
-                            <p class="timeline-desc">担任算法专家，为各种应用和用例开发和优化AI算法。</p>
-                            <div class="tags"><span class="tag">算法</span><span class="tag">AI开发</span></div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item fade-in">
-                        <div class="timeline-card">
-                            <div class="timeline-header">
-                                <div>
-                                    <div class="timeline-company">独立研究员</div>
-                                    <div class="timeline-role">早期职业</div>
-                                </div>
-                                <div class="timeline-period">基础</div>
-                            </div>
-                            <p class="timeline-desc">作为独立研究员，专注于人工智能领域，重点是深度学习和强化学习。自主研究和开源贡献为AI职业奠定了基础。</p>
-                            <div class="tags"><span class="tag">独立</span></div>
-                        </div>
-                    </div>
+                    <p class="section-deck en">For research collaboration, speaking, media, or company-building conversations.</p>
+                    <p class="section-deck zh">适用于研究合作、演讲、媒体与创业交流。</p>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">// Establish Connection</div>
-                <div class="content-en active"><h2 class="section-title">CONTACT</h2></div>
-                <div class="content-zh"><h2 class="section-title">联系方式</h2></div>
-                <div class="section-line"></div>
-            </div>
-
-            <div class="content-en active">
                 <div class="contact-grid">
-                    <div class="contact-info fade-in">
-                        <h3 style="font-family:'Orbitron',sans-serif;font-size:1rem;letter-spacing:2px;margin-bottom:1.5rem;">Contact Information</h3>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <div class="contact-label">Email</div>
-                                <div class="contact-value"><a href="mailto:floodsung@gmail.com">floodsung@gmail.com</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                            <div>
-                                <div class="contact-label">LinkedIn</div>
-                                <div class="contact-value"><a href="https://cn.linkedin.com/in/flood-sung-305273117">flood-sung-305273117</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-graduation-cap"></i></div>
-                            <div>
-                                <div class="contact-label">Google Scholar</div>
-                                <div class="contact-value"><a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN">7,500+ citations</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-github"></i></div>
-                            <div>
-                                <div class="contact-label">GitHub</div>
-                                <div class="contact-value"><a href="https://github.com/floodsung">floodsung</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-zhihu"></i></div>
-                            <div>
-                                <div class="contact-label">Zhihu</div>
-                                <div class="contact-value"><a href="https://www.zhihu.com/people/flood-sung">flood-sung</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-form fade-in">
-                        <h3>Quick Message</h3>
-                        <form action="https://formspree.io/f/myzjeveb" method="POST">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" />
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" />
-                            </div>
-                            <div class="form-group">
-                                <label>Subject</label>
-                                <select name="subject">
-                                    <option>Research Collaboration</option>
-                                    <option>Speaking Opportunity</option>
-                                    <option>Media Inquiry</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Message</label>
-                                <textarea rows="4" name="message"></textarea>
-                            </div>
-                            <button type="submit" class="form-submit">Transmit Message</button>
-                        </form>
-                    </div>
+                    <article class="contact-card reveal">
+                        <div class="card-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:floodsung@gmail.com">floodsung@gmail.com</a></p>
+                    </article>
+                    <article class="contact-card reveal">
+                        <div class="card-icon"><i class="fa-brands fa-github"></i></div>
+                        <h3>GitHub</h3>
+                        <p><a href="https://github.com/floodsung">github.com/floodsung</a></p>
+                    </article>
+                    <article class="contact-card reveal">
+                        <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3>Google Scholar</h3>
+                        <p><a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en">11,089 citations</a></p>
+                    </article>
+                    <article class="contact-card reveal">
+                        <div class="card-icon"><i class="fa-brands fa-linkedin"></i></div>
+                        <h3>LinkedIn</h3>
+                        <p><a href="https://cn.linkedin.com/in/flood-sung-305273117">flood-sung-305273117</a></p>
+                    </article>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="content-zh">
-                <div class="contact-grid">
-                    <div class="contact-info fade-in">
-                        <h3 style="font-family:'Orbitron',sans-serif;font-size:1rem;letter-spacing:2px;margin-bottom:1.5rem;">联系信息</h3>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <div class="contact-label">邮箱</div>
-                                <div class="contact-value"><a href="mailto:floodsung@gmail.com">floodsung@gmail.com</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                            <div>
-                                <div class="contact-label">LinkedIn</div>
-                                <div class="contact-value"><a href="https://cn.linkedin.com/in/flood-sung-305273117">flood-sung-305273117</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-graduation-cap"></i></div>
-                            <div>
-                                <div class="contact-label">Google Scholar</div>
-                                <div class="contact-value"><a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN">7,500+ 引用</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-github"></i></div>
-                            <div>
-                                <div class="contact-label">GitHub</div>
-                                <div class="contact-value"><a href="https://github.com/floodsung">floodsung</a></div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-zhihu"></i></div>
-                            <div>
-                                <div class="contact-label">知乎</div>
-                                <div class="contact-value"><a href="https://www.zhihu.com/people/flood-sung">flood-sung</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-form fade-in">
-                        <h3>快速留言</h3>
-                        <form action="https://formspree.io/f/myzjeveb" method="POST">
-                            <div class="form-group">
-                                <label>姓名</label>
-                                <input type="text" name="name" />
-                            </div>
-                            <div class="form-group">
-                                <label>邮箱</label>
-                                <input type="email" name="email" />
-                            </div>
-                            <div class="form-group">
-                                <label>主题</label>
-                                <select name="subject">
-                                    <option>研究合作</option>
-                                    <option>演讲机会</option>
-                                    <option>媒体采访</option>
-                                    <option>其他</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>留言</label>
-                                <textarea rows="4" name="message"></textarea>
-                            </div>
-                            <button type="submit" class="form-submit">发送信号</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-name">FLOOD SUNG</div>
-        <div class="footer-desc">AI Researcher // RL Specialist // AGI Architect</div>
-        <div class="footer-links">
-            <a href="https://github.com/floodsung"><i class="fab fa-github"></i></a>
-            <a href="https://cn.linkedin.com/in/flood-sung-305273117"><i class="fab fa-linkedin"></i></a>
-            <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=zh-CN"><i class="fas fa-graduation-cap"></i></a>
-            <a href="https://www.zhihu.com/people/flood-sung"><i class="fab fa-zhihu"></i></a>
-        </div>
-        <div class="footer-copy">&copy; 2025 FLOOD SUNG // BUILDING THE FUTURE OF AGI</div>
-        <div class="footer-visits">
-            <span id="busuanzi_container_site_pv">
-                <i class="fas fa-eye" style="color:var(--cyan);margin-right:4px"></i>
-                <span id="busuanzi_value_site_pv"></span> visits
-            </span>
+        <div class="shell footer-inner">
+            <div class="mono">
+                <strong>Flood Sung</strong><br />
+                <span class="en">Robotics, RL, foundation models, and agentic intelligence. © 2026</span>
+                <span class="zh">机器人、强化学习、基础模型与智能体智能。© 2026</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/floodsung" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en" aria-label="Google Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+                <a href="https://cn.linkedin.com/in/flood-sung-305273117" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://www.zhihu.com/people/flood-sung" aria-label="Zhihu"><i class="fa-brands fa-zhihu"></i></a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Generate floating particles
-        (function() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = (8 + Math.random() * 12) + 's';
-                p.style.animationDelay = Math.random() * 10 + 's';
-                p.style.width = (1 + Math.random() * 2) + 'px';
-                p.style.height = p.style.width;
-                container.appendChild(p);
-            }
-        })();
+        const body = document.body;
+        const langButtons = document.querySelectorAll(".lang-switch button");
 
-        // Language switching
         function setLanguage(lang) {
-            document.querySelectorAll('.lang-toggle button').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('.content-en, .content-zh').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.content-' + lang).forEach(el => el.classList.add('active'));
+            body.classList.toggle("lang-en", lang === "en");
+            body.classList.toggle("lang-zh", lang === "zh");
+            document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+            langButtons.forEach((button) => {
+                button.classList.toggle("active", button.dataset.lang === lang);
+            });
         }
 
-        // Intersection Observer for fade-in animations
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
+        langButtons.forEach((button) => {
+            button.addEventListener("click", () => setLanguage(button.dataset.lang));
         });
-    </script>
 
-    <script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) entry.target.classList.add("visible");
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    </script>
 </body>
 
 </html>
