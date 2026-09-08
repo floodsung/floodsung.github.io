@@ -1,0 +1,49 @@
+{
+  "url": "http://127.0.0.1:4173/?v=skillqa4",
+  "mode": "mobile",
+  "state": "active-play",
+  "requestedState": "active-play",
+  "appliedState": "active-play",
+  "runId": "skill-pass-4-mobile",
+  "seed": null,
+  "screenshotPath": "artifacts/inspect-mobile.json/mobile-active-play.png",
+  "gpu": {
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+    "vendor": "Google Inc. (Apple)",
+    "softwareRendered": false
+  },
+  "result": {
+    "ok": true,
+    "reason": "nonblank",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 664
+    },
+    "drawingBuffer": {
+      "width": 448,
+      "height": 763
+    },
+    "alphaPixels": 4097,
+    "variance": 255,
+    "colorBuckets": 125,
+    "metrics": {
+      "colorBuckets": 160,
+      "colorEntropyBits": 3.59,
+      "edgeDensity": 0.16,
+      "luminance": {
+        "mean": 42.6,
+        "p5": 10.1,
+        "p95": 97.2,
+        "contrast": 87.1
+      },
+      "dominantColorShare": 0.402,
+      "nonBackgroundShare": 0.598
+    },
+    "renderBudget": null,
+    "diagnostics": null
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

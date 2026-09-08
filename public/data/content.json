@@ -1,0 +1,163 @@
+{
+  "retrievedAt": "2026-09-08",
+  "profile": {
+    "name": "Flood Sung",
+    "role": "AI Researcher. Robotics Founder. Agent Systems Builder.",
+    "company": "XVI Robotics",
+    "summary": "Founder & CEO of XVI Robotics, focused on general-purpose humanoid robot brain systems. Research spans reinforcement learning, meta-learning, few-shot learning, agentic intelligence, and multimodal foundation models.",
+    "metrics": {
+      "citations": "11,140",
+      "hIndex": "16",
+      "githubStars": "46.1K",
+      "repositories": "121",
+      "citationsSince2021": "9,958",
+      "i10Index": "16"
+    }
+  },
+  "research": [
+    {
+      "title": "Few-Shot & Meta-Learning",
+      "body": "Relation Networks and meta-critic methods for learning from limited supervision and improving transfer."
+    },
+    {
+      "title": "Reinforcement Learning",
+      "body": "RL for reasoning, planning, formal proof, code generation, and long-horizon agent behavior."
+    },
+    {
+      "title": "Foundation Agents",
+      "body": "Open agentic intelligence, computer-use agents, multimodal models, and tool-using systems."
+    }
+  ],
+  "publications": [
+    {
+      "title": "Learning to Compare: Relation Network for Few-Shot Learning",
+      "year": "CVPR 2018",
+      "citations": "6,689",
+      "url": "https://arxiv.org/abs/1711.06025"
+    },
+    {
+      "title": "Kimi k1.5: Scaling Reinforcement Learning with LLMs",
+      "year": "arXiv 2025",
+      "citations": "1,452",
+      "url": "https://arxiv.org/abs/2501.12599"
+    },
+    {
+      "title": "Kimi K2: Open Agentic Intelligence",
+      "year": "arXiv 2025",
+      "citations": "977",
+      "url": "https://arxiv.org/abs/2507.20534"
+    },
+    {
+      "title": "Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning",
+      "year": "arXiv 2025",
+      "citations": "597",
+      "url": "https://arxiv.org/abs/2504.11354"
+    },
+    {
+      "title": "Kimi K2.5: Visual Agentic Intelligence",
+      "year": "arXiv 2026",
+      "citations": "409",
+      "url": "https://arxiv.org/abs/2602.02276"
+    },
+    {
+      "title": "Kimi-VL Technical Report",
+      "year": "arXiv 2025",
+      "citations": "278",
+      "url": "https://arxiv.org/abs/2504.07491"
+    },
+    {
+      "title": "OpenCUA: Open Foundations for Computer-Use Agents",
+      "year": "arXiv 2025",
+      "citations": "108",
+      "url": "https://arxiv.org/abs/2508.09123"
+    },
+    {
+      "title": "Learning to Learn: Meta-Critic Networks for Sample Efficient Learning",
+      "year": "arXiv 2017",
+      "citations": "185",
+      "url": "https://arxiv.org/abs/1706.09529"
+    },
+    {
+      "title": "Actor-Critic Sequence Training for Image Captioning",
+      "year": "ICCV 2017",
+      "citations": "153",
+      "url": "https://arxiv.org/abs/1706.09601"
+    }
+  ],
+  "opensource": {
+    "summary": "Research tools and reading roadmaps published for the community.",
+    "stats": {
+      "stars": "46,094",
+      "forks": "8,916",
+      "followers": "3,374",
+      "repos": "121"
+    },
+    "repos": [
+      "Deep-Learning-Papers-Reading-Roadmap",
+      "Meta-Learning-Papers",
+      "LearningToCompare_FSL",
+      "DRL-FlappyBird",
+      "DDPG",
+      "LLM-with-RL-papers"
+    ],
+    "repoDetails": [
+      {
+        "name": "Deep-Learning-Papers-Reading-Roadmap",
+        "url": "https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap",
+        "description": "Deep Learning papers reading roadmap for anyone eager to learn this field.",
+        "stars": "39,556",
+        "forks": "7,258"
+      },
+      {
+        "name": "Meta-Learning-Papers",
+        "url": "https://github.com/floodsung/Meta-Learning-Papers",
+        "description": "Meta learning, learning to learn, one-shot learning, and few-shot learning papers.",
+        "stars": "2,656",
+        "forks": "473"
+      },
+      {
+        "name": "LearningToCompare_FSL",
+        "url": "https://github.com/floodsung/LearningToCompare_FSL",
+        "description": "PyTorch code for the CVPR 2018 Relation Network few-shot learning paper.",
+        "stars": "1,076",
+        "forks": "263"
+      },
+      {
+        "name": "DRL-FlappyBird",
+        "url": "https://github.com/floodsung/DRL-FlappyBird",
+        "description": "Playing Flappy Bird using deep reinforcement learning and DQN.",
+        "stars": "584",
+        "forks": "322"
+      },
+      {
+        "name": "DDPG",
+        "url": "https://github.com/floodsung/DDPG",
+        "description": "DDPG continuous control reimplementation based on OpenAI Gym and TensorFlow.",
+        "stars": "576",
+        "forks": "176"
+      },
+      {
+        "name": "LLM-with-RL-papers",
+        "url": "https://github.com/floodsung/LLM-with-RL-papers",
+        "description": "A collection of papers on large language models with reinforcement learning.",
+        "stars": "281",
+        "forks": "11"
+      }
+    ]
+  },
+  "career": [
+    "2025—Present · XVI Robotics — Founder & CEO",
+    "2023—2025 · Moonshot AI — Member of Technical Staff & RL Lead",
+    "2022—2023 · Inspir AI — Research Manager",
+    "2020—2022 · ByteDance AI Lab — Research Scientist",
+    "Earlier · Inspir AI — Algorithm Expert",
+    "Earlier · Independent Research & Open Source"
+  ],
+  "contact": {
+    "email": "floodsung@gmail.com",
+    "github": "https://github.com/floodsung",
+    "scholar": "https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en",
+    "linkedin": "https://cn.linkedin.com/in/flood-sung-305273117",
+    "zhihu": "https://www.zhihu.com/people/flood-sung"
+  }
+}
