@@ -1046,7 +1046,30 @@
                 transition: none !important;
             }
         }
-    </style>
+
+/* OPEN-WORLD 3D LAYER */
+:root{--bg:#03040a;--bg-soft:#080b18;--panel:rgba(10,16,34,.72);--panel-strong:rgba(14,20,44,.9);--panel-line:rgba(116,145,255,.22);--line:rgba(127,149,255,.28);--cyan:#77efff;--mint:#92ffc8;--amber:#ffd47a;--violet:#9b7cff}
+body{background:radial-gradient(ellipse at 65% 8%,rgba(93,68,210,.28),transparent 34rem),radial-gradient(ellipse at 20% 40%,rgba(0,205,255,.1),transparent 32rem),#03040a;perspective:1200px}
+body:before{opacity:.55;background-image:radial-gradient(circle at 20% 30%,#fff 0 1px,transparent 1.5px),radial-gradient(circle at 80% 70%,#7de7ff 0 1px,transparent 1.5px);background-size:140px 140px,220px 220px}
+.nav{background:linear-gradient(180deg,rgba(3,4,10,.94),rgba(3,4,10,.48));border-bottom:1px solid rgba(119,239,255,.18)}
+.hero{isolation:isolate;min-height:100vh;overflow:hidden;background:linear-gradient(180deg,transparent 72%,rgba(48,55,120,.12))}
+.hero:before{content:"";position:absolute;z-index:-1;left:-10%;right:-10%;bottom:-18%;height:48%;transform:perspective(500px) rotateX(64deg);transform-origin:bottom;background:linear-gradient(rgba(119,239,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(119,239,255,.1) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to top,black,transparent)}
+.hero:after{height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent);box-shadow:0 0 24px var(--cyan)}
+h1{font-size:clamp(4rem,8vw,7.5rem);letter-spacing:-.06em;text-shadow:0 8px 40px rgba(0,0,0,.55)}
+.hero-subtitle{color:var(--cyan);text-shadow:0 0 14px rgba(119,239,255,.55)}
+.hero-visual{transform-style:preserve-3d;filter:drop-shadow(0 30px 55px rgba(0,0,0,.5));transition:transform .2s ease-out}
+.hero-visual:before{content:"";position:absolute;width:520px;height:190px;border:1px solid rgba(119,239,255,.22);border-radius:50%;transform:rotateX(72deg) rotateZ(-24deg) translateZ(-30px);box-shadow:0 0 32px rgba(119,239,255,.14),inset 0 0 24px rgba(155,124,255,.15);animation:world-orbit 16s linear infinite}
+.hero-visual:after{content:"◈  WORLD NODE  /  07";position:absolute;right:0;top:5%;padding:8px 12px;border:1px solid rgba(119,239,255,.3);color:var(--cyan);background:rgba(3,4,10,.7);font:10px "JetBrains Mono",monospace;letter-spacing:.14em;transform:translateZ(70px)}
+.orbital{transform-style:preserve-3d;border-color:rgba(119,239,255,.34);box-shadow:inset 0 0 100px rgba(119,239,255,.1),0 0 80px rgba(80,90,220,.18);animation:float-world 7s ease-in-out infinite}
+.orbital:before{border-color:rgba(119,239,255,.6);box-shadow:0 0 16px rgba(119,239,255,.24)}.orbital:after{border-color:rgba(155,124,255,.55)}
+.portrait{box-shadow:0 0 70px rgba(119,239,255,.35),0 25px 50px #000;border-width:2px;transform:translateZ(55px)}
+.radar-note{border-color:rgba(119,239,255,.32);box-shadow:0 0 24px rgba(119,239,255,.1),0 20px 44px rgba(0,0,0,.42);transform:translateZ(100px)}
+.metrics-strip{transform:translateZ(20px)}.metric,.panel,.research-card,.publication,.repo,.timeline-item,.contact-card{background:linear-gradient(145deg,rgba(17,24,51,.85),rgba(7,10,23,.72));border-color:rgba(119,239,255,.2);box-shadow:0 18px 50px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.04)}
+.metric:hover,.research-card:hover,.publication:hover,.repo:hover,.timeline-item:hover,.contact-card:hover{transform:translateY(-7px) rotateX(2deg);border-color:rgba(119,239,255,.68);box-shadow:0 20px 55px rgba(0,0,0,.4),0 0 22px rgba(119,239,255,.12)}
+.section.alt{background:linear-gradient(180deg,rgba(22,24,58,.35),rgba(3,4,10,.1));border-color:rgba(119,239,255,.12)}
+@keyframes world-orbit{to{transform:rotateX(72deg) rotateZ(336deg) translateZ(-30px)}}@keyframes float-world{0%,100%{transform:translateY(0) rotateX(0)}50%{transform:translateY(-10px) rotateX(2deg)}}
+@media(max-width:800px){.hero:before{bottom:-8%;height:36%;background-size:32px 32px}.hero-visual:before{width:350px}.hero-visual:after{top:0;font-size:8px}.radar-note{transform:translateZ(40px)}}
+</style>
 </head>
 
 <body class="lang-en">
@@ -1119,22 +1142,22 @@
 
                 <div class="metrics-strip reveal">
                     <div class="metric">
-                        <span class="metric-value">11,089</span>
+                        <span class="metric-value">11,140</span>
                         <span class="metric-label en">Google Scholar citations</span>
                         <span class="metric-label zh">Google Scholar 引用</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-value">13</span>
+                        <span class="metric-value">16</span>
                         <span class="metric-label en">h-index</span>
                         <span class="metric-label zh">h-index</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-value">45.9K</span>
+                        <span class="metric-value">46.1K</span>
                         <span class="metric-label en">GitHub stars</span>
                         <span class="metric-label zh">GitHub 星标</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-value">120</span>
+                        <span class="metric-value">121</span>
                         <span class="metric-label en">Public repositories</span>
                         <span class="metric-label zh">公开仓库</span>
                     </div>
@@ -1152,8 +1175,8 @@
                         <h2 class="zh">从少样本学习到具身智能。</h2>
                     </div>
                     <p class="source-line">
-                        <span class="en">Data refreshed May 12, 2026 from </span>
-                        <span class="zh">数据于 2026-05-12 更新，来源：</span>
+                        <span class="en">Data refreshed September 8, 2026 from </span>
+                        <span class="zh">数据于 2026-09-08 更新，来源：</span>
                         <a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en">Scholar</a>,
                         <a href="https://api.github.com/users/floodsung">GitHub API</a>,
                         <a href="https://api.openalex.org/authors?search=Flood%20Sung">OpenAlex</a>
@@ -1168,10 +1191,9 @@
                             building brain systems for general-purpose humanoid robots.
                         </p>
                         <p class="en">
-                            His Google Scholar profile lists <strong>11,089 citations</strong>, with research interests in
+                            His Google Scholar profile lists <strong>11,140 citations</strong>, with research interests in
                             robotics, foundation models, agents, reinforcement learning, and meta learning. His CVPR 2018 paper
-                            <strong>Learning to Compare: Relation Network for Few-Shot Learning</strong> remains a landmark work
-                            in few-shot visual recognition.
+                            <strong>Learning to Compare: Relation Network for Few-Shot Learning</strong> is a CVPR 2018 paper on few-shot visual recognition.
                         </p>
                         <p class="en">
                             At Moonshot AI, his recent coauthored work connects long-chain reasoning, reinforcement learning,
@@ -1183,9 +1205,9 @@
                             他目前领导 <strong>XVI Robotics</strong>，打造面向通用人形机器人的大小脑系统。
                         </p>
                         <p class="zh">
-                            他的 Google Scholar 主页显示总引用 <strong>11,089 次</strong>，研究兴趣包括机器人、基础模型、智能体、
+                            他的 Google Scholar 主页显示总引用 <strong>11,140 次</strong>，研究兴趣包括机器人、基础模型、智能体、
                             强化学习与元学习。CVPR 2018 论文 <strong>Learning to Compare: Relation Network for Few-Shot Learning</strong>
-                            至今仍是少样本视觉识别方向的代表性工作。
+                            是一篇关于少样本视觉识别的 CVPR 2018 论文。
                         </p>
                         <p class="zh">
                             在月之暗面的近期合作研究中，他参与了 Kimi 系列模型相关工作，把长链推理、强化学习、多模态模型、
@@ -1258,8 +1280,8 @@
                         <h2 class="zh">高影响力论文与前沿系统工作。</h2>
                     </div>
                     <p class="source-line">
-                        <span class="en">Citation counts: Google Scholar, May 12, 2026.</span>
-                        <span class="zh">引用数：Google Scholar，2026-05-12。</span>
+                        <span class="en">Citation counts: Google Scholar, September 8, 2026.</span>
+                        <span class="zh">引用数：Google Scholar，2026-09-08。</span>
                     </p>
                 </div>
 
@@ -1273,7 +1295,7 @@
                                 <a class="tag" href="https://github.com/floodsung/LearningToCompare_FSL"><i class="fa-brands fa-github"></i> Code</a>
                             </div>
                         </div>
-                        <div class="cite"><strong>6,378</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>6,689</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1285,7 +1307,7 @@
                                 <span class="tag"><i class="fa-solid fa-ruler-combined"></i> 128K Context</span>
                             </div>
                         </div>
-                        <div class="cite"><strong>2,093</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>278</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1297,7 +1319,7 @@
                                 <span class="tag"><i class="fa-solid fa-route"></i> Reinforcement Learning</span>
                             </div>
                         </div>
-                        <div class="cite"><strong>1,091</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>1,452</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1309,7 +1331,7 @@
                                 <span class="tag"><i class="fa-solid fa-code"></i> Coding</span>
                             </div>
                         </div>
-                        <div class="cite"><strong>637</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>977</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1321,7 +1343,7 @@
                                 <span class="tag"><i class="fa-solid fa-route"></i> RL</span>
                             </div>
                         </div>
-                        <div class="cite"><strong>149</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>597</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1333,7 +1355,7 @@
                                 <span class="tag"><i class="fa-solid fa-people-arrows"></i> Agent Swarm</span>
                             </div>
                         </div>
-                        <div class="cite"><strong>112</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>409</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1345,7 +1367,7 @@
                                 <span class="tag"><i class="fa-solid fa-layer-group"></i> Open Foundations</span>
                             </div>
                         </div>
-                        <div class="cite"><strong>55</strong><span class="en">Citations</span><span class="zh">引用</span></div>
+                        <div class="cite"><strong>108</strong><span class="en">Citations</span><span class="zh">引用</span></div>
                     </article>
 
                     <article class="publication reveal">
@@ -1377,21 +1399,21 @@
                         <h2 class="zh">成为社区基础设施的研究工具。</h2>
                     </div>
                     <p class="source-line">
-                        <span class="en">GitHub API snapshot: 120 public repos, 45,931 stars, 8,877 forks.</span>
-                        <span class="zh">GitHub API 快照：120 个公开仓库，45,931 stars，8,877 forks。</span>
+                        <span class="en">GitHub API snapshot: 121 public repos, 46,094 stars, 8,916 forks.</span>
+                        <span class="zh">GitHub API 快照：121 个公开仓库，46,094 stars，8,916 forks。</span>
                     </p>
                 </div>
 
                 <div class="opensource-layout">
                     <div class="panel os-summary reveal">
-                        <span class="big-number">45.9K</span>
+                        <span class="big-number">46.1K</span>
                         <p class="en">stars across public GitHub repositories, led by long-running reading roadmaps and reproducible research code.</p>
                         <p class="zh">公开 GitHub 仓库累计 stars，以长期维护的论文路线图与可复现研究代码为主。</p>
                         <div class="mini-stats">
                             <div class="mini-stat"><strong>8.9K</strong><span>Forks</span></div>
-                            <div class="mini-stat"><strong>3.3K</strong><span>Followers</span></div>
-                            <div class="mini-stat"><strong>120</strong><span>Repos</span></div>
-                            <div class="mini-stat"><strong>39.5K</strong><span>Top repo stars</span></div>
+                            <div class="mini-stat"><strong>3.4K</strong><span>Followers</span></div>
+                            <div class="mini-stat"><strong>121</strong><span>Repos</span></div>
+                            <div class="mini-stat"><strong>39.6K</strong><span>Top repo stars</span></div>
                         </div>
                     </div>
 
@@ -1400,37 +1422,37 @@
                             <h3><a href="https://github.com/floodsung/Deep-Learning-Papers-Reading-Roadmap">Deep-Learning-Papers-Reading-Roadmap</a></h3>
                             <p class="en">A curated reading roadmap for deep learning papers, widely used by students and researchers.</p>
                             <p class="zh">面向深度学习论文的系统阅读路线图，被学生与研究者广泛使用。</p>
-                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>39,493</span><span><i class="fa-solid fa-code-fork"></i>7,306</span></div>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>39,556</span><span><i class="fa-solid fa-code-fork"></i>7,258</span></div>
                         </article>
                         <article class="repo reveal">
                             <h3><a href="https://github.com/floodsung/Meta-Learning-Papers">Meta-Learning-Papers</a></h3>
                             <p class="en">Paper collection for meta-learning, learning to learn, one-shot learning, and few-shot learning.</p>
                             <p class="zh">元学习、learning to learn、one-shot 与 few-shot learning 论文合集。</p>
-                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>2,654</span><span><i class="fa-solid fa-code-fork"></i>474</span></div>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>2,656</span><span><i class="fa-solid fa-code-fork"></i>473</span></div>
                         </article>
                         <article class="repo reveal">
                             <h3><a href="https://github.com/floodsung/LearningToCompare_FSL">LearningToCompare_FSL</a></h3>
                             <p class="en">PyTorch implementation of the CVPR 2018 Relation Network paper.</p>
                             <p class="zh">CVPR 2018 关系网络论文的 PyTorch 官方实现。</p>
-                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>1,075</span><span><i class="fa-solid fa-code-fork"></i>264</span></div>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>1,076</span><span><i class="fa-solid fa-code-fork"></i>263</span></div>
                         </article>
                         <article class="repo reveal">
                             <h3><a href="https://github.com/floodsung/DRL-FlappyBird">DRL-FlappyBird</a></h3>
                             <p class="en">Playing Flappy Bird with deep Q-learning, built as a practical RL learning project.</p>
                             <p class="zh">使用 Deep Q-Learning 玩 Flappy Bird 的强化学习实践项目。</p>
-                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>585</span><span><i class="fa-solid fa-code-fork"></i>322</span></div>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>584</span><span><i class="fa-solid fa-code-fork"></i>322</span></div>
                         </article>
                         <article class="repo reveal">
                             <h3><a href="https://github.com/floodsung/DDPG">DDPG</a></h3>
                             <p class="en">Reimplementation of DDPG for continuous control with OpenAI Gym and TensorFlow.</p>
                             <p class="zh">基于 OpenAI Gym 与 TensorFlow 的 DDPG 连续控制复现。</p>
-                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>575</span><span><i class="fa-solid fa-code-fork"></i>177</span></div>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>576</span><span><i class="fa-solid fa-code-fork"></i>176</span></div>
                         </article>
                         <article class="repo reveal">
                             <h3><a href="https://github.com/floodsung/LLM-with-RL-papers">LLM-with-RL-papers</a></h3>
                             <p class="en">A focused collection of papers on the intersection of LLMs and reinforcement learning.</p>
                             <p class="zh">聚焦 LLM 与强化学习交叉方向的论文合集。</p>
-                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>280</span><span><i class="fa-solid fa-code-fork"></i>10</span></div>
+                            <div class="repo-stats"><span><i class="fa-solid fa-star"></i>281</span><span><i class="fa-solid fa-code-fork"></i>10</span></div>
                         </article>
                     </div>
                 </div>
@@ -1533,7 +1555,7 @@
                     <article class="contact-card reveal">
                         <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
                         <h3>Google Scholar</h3>
-                        <p><a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en">11,089 citations</a></p>
+                        <p><a href="https://scholar.google.com/citations?user=s11zFYQAAAAJ&hl=en">11,140 citations</a></p>
                     </article>
                     <article class="contact-card reveal">
                         <div class="card-icon"><i class="fa-brands fa-linkedin"></i></div>
@@ -1585,6 +1607,17 @@
         }, { threshold: 0.12 });
 
         document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+        const visual = document.querySelector(".hero-visual");
+        if (visual) {
+            visual.addEventListener("pointermove", (event) => {
+                const rect = visual.getBoundingClientRect();
+                const x = (event.clientX - rect.left) / rect.width - .5;
+                const y = (event.clientY - rect.top) / rect.height - .5;
+                visual.style.transform = `rotateY(${x * 8}deg) rotateX(${y * -6}deg)`;
+            });
+            visual.addEventListener("pointerleave", () => visual.style.transform = "");
+        }
     </script>
 </body>
 
